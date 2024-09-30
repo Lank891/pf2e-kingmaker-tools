@@ -187,7 +187,7 @@ fun getDefaultCamping(game: Game): CampingData {
         regionSettings = RegionSettings(
             regions = arrayOf(
                 RegionSetting(
-                    name = "Zone 00",
+                    name = "00: Brevoy",
                     zoneDc = 14,
                     encounterDc = 12,
                     level = 0,
@@ -195,7 +195,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     terrain = Terrain.HILLS.toCamelCase(),
                 ),
                 RegionSetting(
-                    name = "Zone 01",
+                    name = "01: Rostland Hinterlands",
                     zoneDc = 15,
                     encounterDc = 12,
                     level = 1,
@@ -204,7 +204,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[0],
                 ),
                 RegionSetting(
-                    name = "Zone 02",
+                    name = "02: Greenbelt",
                     zoneDc = 16,
                     encounterDc = 14,
                     level = 2,
@@ -213,7 +213,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[1],
                 ),
                 RegionSetting(
-                    name = "Zone 03",
+                    name = "03: Tuskwater",
                     zoneDc = 18,
                     encounterDc = 12,
                     level = 3,
@@ -222,7 +222,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[2],
                 ),
                 RegionSetting(
-                    name = "Zone 04",
+                    name = "04: Kamelands",
                     zoneDc = 19,
                     encounterDc = 12,
                     level = 4,
@@ -231,7 +231,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[3],
                 ),
                 RegionSetting(
-                    name = "Zone 05",
+                    name = "05: Narlmarches",
                     zoneDc = 20,
                     encounterDc = 14,
                     level = 5,
@@ -240,7 +240,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[4],
                 ),
                 RegionSetting(
-                    name = "Zone 06",
+                    name = "06: Sellen Hills",
                     zoneDc = 20,
                     encounterDc = 12,
                     level = 6,
@@ -249,7 +249,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[5],
                 ),
                 RegionSetting(
-                    name = "Zone 07",
+                    name = "07: Dunsward",
                     zoneDc = 18,
                     encounterDc = 12,
                     level = 7,
@@ -258,7 +258,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[6],
                 ),
                 RegionSetting(
-                    name = "Zone 08",
+                    name = "08: Nomen Heights",
                     zoneDc = 24,
                     encounterDc = 12,
                     level = 8,
@@ -267,7 +267,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[7],
                 ),
                 RegionSetting(
-                    name = "Zone 09",
+                    name = "09: Tors of Levenies",
                     zoneDc = 28,
                     encounterDc = 16,
                     level = 9,
@@ -276,7 +276,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[8],
                 ),
                 RegionSetting(
-                    name = "Zone 10",
+                    name = "10: Hooktongue",
                     zoneDc = 32,
                     encounterDc = 14,
                     level = 10,
@@ -285,7 +285,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[9],
                 ),
                 RegionSetting(
-                    name = "Zone 11",
+                    name = "11: Drelev",
                     zoneDc = 28,
                     encounterDc = 12,
                     level = 11,
@@ -294,7 +294,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[10],
                 ),
                 RegionSetting(
-                    name = "Zone 12",
+                    name = "12: Tiger Lords",
                     zoneDc = 28,
                     encounterDc = 12,
                     level = 12,
@@ -303,7 +303,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[11],
                 ),
                 RegionSetting(
-                    name = "Zone 13",
+                    name = "13: Rushlight",
                     zoneDc = 26,
                     encounterDc = 12,
                     level = 13,
@@ -312,7 +312,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[12],
                 ),
                 RegionSetting(
-                    name = "Zone 14",
+                    name = "14: Glenbon Lowlands",
                     zoneDc = 30,
                     encounterDc = 12,
                     level = 14,
@@ -321,7 +321,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[13],
                 ),
                 RegionSetting(
-                    name = "Zone 15",
+                    name = "15: Pitax",
                     zoneDc = 29,
                     encounterDc = 12,
                     level = 15,
@@ -330,7 +330,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[14],
                 ),
                 RegionSetting(
-                    name = "Zone 16",
+                    name = "16: Glenbon Uplands",
                     zoneDc = 35,
                     encounterDc = 12,
                     level = 16,
@@ -339,7 +339,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[15],
                 ),
                 RegionSetting(
-                    name = "Zone 17",
+                    name = "17: Numeria",
                     zoneDc = 36,
                     encounterDc = 12,
                     level = 17,
@@ -348,7 +348,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[16],
                 ),
                 RegionSetting(
-                    name = "Zone 18",
+                    name = "18: Thousand Voices",
                     zoneDc = 43,
                     encounterDc = 14,
                     level = 18,
@@ -357,7 +357,7 @@ fun getDefaultCamping(game: Game): CampingData {
                     rollTableUuid = rolltableUuids[17],
                 ),
                 RegionSetting(
-                    name = "Zone 19",
+                    name = "19: Branthlend Mountains",
                     zoneDc = 41,
                     encounterDc = 16,
                     level = 19,
