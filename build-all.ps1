@@ -6,6 +6,12 @@ if($proc.ExitCode -ne 0) {
 	return
 }
 
+$proc = Start-Process -FilePath "$Path\gradlew.bat" -ArgumentList "jsProcessResources" -WorkingDirectory $Path -NoNewWindow -Wait -PassThru
+if($proc.ExitCode -ne 0) {
+	echo "Aborting the process due to a failure"
+	return
+}
+
 $proc = Start-Process -FilePath "$Path\gradlew.bat" -ArgumentList "compileOldJs --stacktrace" -WorkingDirectory $Path -NoNewWindow -Wait -PassThru
 if($proc.ExitCode -ne 0) {
 	echo "Aborting the process due to a failure"

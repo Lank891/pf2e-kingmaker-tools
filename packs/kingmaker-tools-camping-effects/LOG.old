@@ -1,3 +1,5 @@
-2024/09/30-14:17:22.577 529c Recovering log #1446
-2024/09/30-14:17:22.588 529c Delete type=0 #1446
-2024/09/30-14:17:22.588 529c Delete type=3 #1444
+2024/09/30-19:27:48.885 5d7c Log #1451: 0 ops saved to Table #1452 OK
+2024/09/30-19:27:48.886 5d7c Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-camping-effects/001451.log: OK
+2024/09/30-19:27:48.889 5d7c Table #1431: 23 entries OK
+2024/09/30-19:27:48.894 5d7c Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-camping-effects/MANIFEST-001450: OK
+2024/09/30-19:27:48.903 5d7c **** Repaired leveldb C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-camping-effects; recovered 1 files; 15103 bytes. Some data may have been lost. ****

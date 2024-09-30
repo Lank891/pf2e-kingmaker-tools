@@ -1,3 +1,5 @@
-2024/09/30-14:17:22.527 9378 Recovering log #779
-2024/09/30-14:17:22.537 9378 Delete type=0 #779
-2024/09/30-14:17:22.538 9378 Delete type=3 #777
+2024/09/30-19:27:48.715 1f7c Log #784: 0 ops saved to Table #785 OK
+2024/09/30-19:27:48.718 1f7c Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-settlements/000784.log: OK
+2024/09/30-19:27:48.720 1f7c Table #764: 190 entries OK
+2024/09/30-19:27:48.726 1f7c Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-settlements/MANIFEST-000783: OK
+2024/09/30-19:27:48.732 1f7c **** Repaired leveldb C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-settlements; recovered 1 files; 32850 bytes. Some data may have been lost. ****

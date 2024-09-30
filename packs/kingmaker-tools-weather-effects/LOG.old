@@ -1,3 +1,5 @@
-2024/09/30-14:17:22.598 9378 Recovering log #1419
-2024/09/30-14:17:22.607 9378 Delete type=0 #1419
-2024/09/30-14:17:22.607 9378 Delete type=3 #1417
+2024/09/30-19:27:48.941 81b0 Log #1424: 0 ops saved to Table #1425 OK
+2024/09/30-19:27:48.942 81b0 Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-weather-effects/001424.log: OK
+2024/09/30-19:27:48.952 81b0 Table #1404: 6 entries OK
+2024/09/30-19:27:48.958 81b0 Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-weather-effects/MANIFEST-001423: OK
+2024/09/30-19:27:48.965 81b0 **** Repaired leveldb C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-weather-effects; recovered 1 files; 3643 bytes. Some data may have been lost. ****

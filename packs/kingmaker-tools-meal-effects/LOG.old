@@ -1,3 +1,5 @@
-2024/09/30-14:17:22.556 9378 Recovering log #1442
-2024/09/30-14:17:22.566 9378 Delete type=0 #1442
-2024/09/30-14:17:22.567 9378 Delete type=3 #1440
+2024/09/30-19:27:48.814 1f7c Log #1447: 0 ops saved to Table #1448 OK
+2024/09/30-19:27:48.816 1f7c Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-meal-effects/001447.log: OK
+2024/09/30-19:27:48.829 1f7c Table #1427: 167 entries OK
+2024/09/30-19:27:48.833 1f7c Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-meal-effects/MANIFEST-001446: OK
+2024/09/30-19:27:48.839 1f7c **** Repaired leveldb C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-meal-effects; recovered 1 files; 125300 bytes. Some data may have been lost. ****
