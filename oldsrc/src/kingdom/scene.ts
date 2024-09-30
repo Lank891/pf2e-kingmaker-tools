@@ -172,14 +172,26 @@ function getFilledBlocks(scene: Scene): number {
         .length || 1;
 }
 
-export function getSettlementInfo(settlement: SettlementAndScene, autoCalculateSettlementLevel: boolean): {
+export function getSettlementInfo(settlement: SettlementAndScene, autoCalculateSettlementLevel: boolean, kingdomLevel: number): {
     level: number;
     lots: number
 } {
     if (autoCalculateSettlementLevel && !settlement.settlement.manualSettlementLevel) {
         const blocks = getFilledBlocks(settlement.scene);
+        let level = Math.min(20, blocks);
+
+        if(kingdomLevel < 15) {
+            level = Math.min(level, 9);
+        }
+        if(kingdomLevel < 9) {
+            level = Math.min(level, 4);
+        }
+        if(kingdomLevel < 3) {
+            level = Math.min(level, 1);
+        }
+
         return {
-            level: Math.min(20, blocks),
+            level: level,
             lots: blocks,
         };
     } else {
@@ -263,9 +275,10 @@ function getSettlementStructureResult(
     mode: StructureStackRule,
     autoCalculateSettlementLevel: boolean,
     activities: KingdomActivityById,
+    kingdomLevel: number
 ): StructureResult {
     const structures = getSceneStructures(settlement.scene);
-    const level = getSettlementInfo(settlement, autoCalculateSettlementLevel).level;
+    const level = getSettlementInfo(settlement, autoCalculateSettlementLevel, kingdomLevel).level;
     return evaluateStructures(structures, level, mode, activities);
 }
 
@@ -275,14 +288,15 @@ export function getStructureResult(
     autoCalculateSettlementLevel: boolean,
     activities: KingdomActivityById,
     active: SettlementAndScene,
+    kingdomLevel: number,
     capital?: SettlementAndScene,
 ): StructureResult {
     if (capital && capital.scene.id !== active.scene.id) {
         return includeCapital(
-            getSettlementStructureResult(capital, mode, autoCalculateSettlementLevel, activities),
-            getSettlementStructureResult(active, mode, autoCalculateSettlementLevel, activities));
+            getSettlementStructureResult(capital, mode, autoCalculateSettlementLevel, activities, kingdomLevel),
+            getSettlementStructureResult(active, mode, autoCalculateSettlementLevel, activities, kingdomLevel));
     } else {
-        return getSettlementStructureResult(active, mode, autoCalculateSettlementLevel, activities);
+        return getSettlementStructureResult(active, mode, autoCalculateSettlementLevel, activities, kingdomLevel);
     }
 }
 
@@ -303,7 +317,7 @@ export function getAllMergedSettlements(game: Game, kingdom: Kingdom): MergedSet
     const autoCalculateSettlementLevel = getBooleanSetting(game, 'autoCalculateSettlementLevel');
     return getAllSettlements(game, kingdom)
         .map(settlement => {
-            const structureResult = getSettlementStructureResult(settlement, mode, autoCalculateSettlementLevel, activities);
+            const structureResult = getSettlementStructureResult(settlement, mode, autoCalculateSettlementLevel, activities, kingdom.level);
             return {
                 leadershipActivityNumber: structureResult.increaseLeadershipActivities ? 3 : 2,
                 settlementConsumption: structureResult.consumption,
@@ -344,8 +358,8 @@ export function getActiveSettlementStructureResult(game: Game, kingdom: Kingdom)
     const autoCalculateSettlementLevel = getBooleanSetting(game, 'autoCalculateSettlementLevel');
     if (activeSettlement) {
         const mode = getStructureStackMode(game);
-        const activeSettlementStructures = getStructureResult(mode, autoCalculateSettlementLevel, activities, activeSettlement);
-        const mergedSettlementStructures = getStructureResult(mode, autoCalculateSettlementLevel, activities, activeSettlement, capitalSettlement);
+        const activeSettlementStructures = getStructureResult(mode, autoCalculateSettlementLevel, activities, activeSettlement, kingdom.level);
+        const mergedSettlementStructures = getStructureResult(mode, autoCalculateSettlementLevel, activities, activeSettlement, kingdom.level, capitalSettlement);
         return {
             active: activeSettlementStructures,
             merged: mergedSettlementStructures,
@@ -359,7 +373,7 @@ export function getSettlementsWithoutLandBorders(game: Game, kingdom: Kingdom): 
     const activities = getKingdomActivitiesById(kingdom.homebrewActivities);
     return getAllSettlements(game, kingdom)
         .filter(settlementAndScene => {
-            const structures = getStructureResult(mode, autoCalculateSettlementLevel, activities, settlementAndScene);
+            const structures = getStructureResult(mode, autoCalculateSettlementLevel, activities, settlementAndScene, kingdom.level);
             return (settlementAndScene.settlement?.waterBorders ?? 0) >= 4 && !structures.hasBridge;
         })
         .length;

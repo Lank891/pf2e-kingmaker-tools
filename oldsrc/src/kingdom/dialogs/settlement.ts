@@ -73,15 +73,31 @@ class SettlementApp extends Application<ApplicationOptions & SettlementOptions> 
         const structureStackMode = getStructureStackMode(this.game);
         const autoCalculateSettlementLevel = getBooleanSetting(this.game, 'autoCalculateSettlementLevel');
         const activities = getKingdomActivitiesById(this.kingdom.homebrewActivities);
-        const structureData = getStructureResult(structureStackMode, autoCalculateSettlementLevel, activities, settlement, capital);
+        const structureData = getStructureResult(structureStackMode, autoCalculateSettlementLevel, activities, settlement, this.kingdom.level, capital);
         const builtStructures = await this.getBuiltStructures(settlement);
         const storage = this.getStorage(structureData);
-        const settlementInfo = getSettlementInfo(settlement, autoCalculateSettlementLevel);
+        const settlementInfo = getSettlementInfo(settlement, autoCalculateSettlementLevel, this.kingdom.level);
         const skillItemBonuses = this.getSkillBonuses(structureData.skillBonuses);
         const hasEffects = structureData.notes.length > 0;
         const hasStorage = Object.keys(storage).length > 0;
         const hasBonuses = skillItemBonuses.map(b => b.value > 0 || b.actions.some(a => a.value > 0));
         const hasBuildings = builtStructures.length > 0;
+
+        // Hardcoded minimum influence and higher consumption even though effective level is lower
+        if(settlement.settlement.type === 'capital') {
+            structureData.config.influence = Math.max(structureData.config.influence, 1);
+
+            if(settlementInfo.lots > 1) {
+                structureData.consumption = 2;
+            }
+            if(settlementInfo.lots > 4) {
+                structureData.consumption = 4;
+            }
+            if(settlementInfo.lots > 9) {
+                structureData.consumption = 6;
+            }
+        }
+
         // reset active tab if not active anymore
         if (this.nav === 'effects' && !hasEffects) this.nav = 'status';
         if (this.nav === 'storage' && !hasStorage) this.nav = 'status';

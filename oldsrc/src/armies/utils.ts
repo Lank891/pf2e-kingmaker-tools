@@ -116,6 +116,7 @@ export function isArmyTactic(item: Item<unknown>): item is CampaignFeaturePF2E {
 }
 
 function filterArmyTactics(items: Item[]): CampaignFeaturePF2E[] {
+    // @ts-ignore
     const campaignFeatures = (items?.filter(i => isCampaignFeature(i)) ?? []) as unknown as CampaignFeaturePF2E[];
     return campaignFeatures.filter(i => isArmyTactic(i));
 }

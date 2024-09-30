@@ -269,15 +269,18 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
                 .map(settlement => {
                     const s = settlement as SettlementAndScene;
                     const waterBorders = s.settlement.waterBorders ?? 0;
-                    const structureResult = getStructureResult(structureStackMode, autoCalculateSettlementLevel, activities, s);
+                    const structureResult = getStructureResult(structureStackMode, autoCalculateSettlementLevel, activities, s, kingdomData.level);
+                    const settlementInfo = getSettlementInfo(s, autoCalculateSettlementLevel, kingdomData.level);
+                    
+                    const isCapital = settlement?.settlement.type === 'capital';
                     return {
                         ...s.settlement,
-                        ...getSettlementInfo(s, autoCalculateSettlementLevel),
+                        ...settlementInfo,
                         waterBorders,
-                        overcrowded: this.isOvercrowded(s),
+                        overcrowded: this.isOvercrowded(s, kingdomData.level),
                         residentialLots: structureResult.residentialLots,
                         lacksBridge: waterBorders >= 4 && !structureResult.hasBridge,
-                        isCapital: settlement?.settlement.type === 'capital',
+                        isCapital: isCapital,
                         name: s.scene.name ?? undefined,
                     };
                 }),
@@ -802,18 +805,18 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
         });
     }
 
-    private isOvercrowded(settlement: SettlementAndScene): boolean {
+    private isOvercrowded(settlement: SettlementAndScene, kingdomLevel: number): boolean {
         const structureStackMode = getStructureStackMode(this.game);
         const autoCalculateSettlementLevel = getBooleanSetting(this.game, 'autoCalculateSettlementLevel');
         const activities = getKingdomActivitiesById(this.getKingdom().homebrewActivities);
-        const structures = getStructureResult(structureStackMode, autoCalculateSettlementLevel, activities, settlement);
-        return getSettlementInfo(settlement, autoCalculateSettlementLevel).lots > structures.residentialLots;
+        const structures = getStructureResult(structureStackMode, autoCalculateSettlementLevel, activities, settlement, kingdomLevel);
+        return getSettlementInfo(settlement, autoCalculateSettlementLevel, kingdomLevel).lots > structures.residentialLots;
     }
 
     private async adjustUnrest(): Promise<void> {
         const current = this.getKingdom();
         const data = getAllSettlements(this.game, current);
-        const overcrowdedSettlements = data.filter(s => this.isOvercrowded(s)).length;
+        const overcrowdedSettlements = data.filter(s => this.isOvercrowded(s, current.level)).length;
         const secondaryTerritories = data.some(s => s.settlement.secondaryTerritory) ? 1 : 0;
         const atWar = current.atWar ? 1 : 0;
         let rulerVacancyUnrest = 0;
