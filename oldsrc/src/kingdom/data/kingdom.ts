@@ -315,6 +315,8 @@ function getDefaultMilestones(): MileStone[] {
         ...getCultEventMilestones(),
         {name: 'Expand a city into your first metropolis', xp: 120, completed: false, homebrew: false},
         {name: 'Reach kingdom Size 100', xp: 120, completed: false, homebrew: false},
+		{name: '[Repeatable] Connect a settlement to your capital via roads', xp: 40, completed: false, homebrew: true},
+		{name: '[Repeatable] Claim all hexes in a region', xp: 100, completed: false, homebrew: true},
     ];
 }
 
