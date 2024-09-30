@@ -10,6 +10,7 @@
       "activity": "provide-care"
     }
   ],
+  "notes": "Temple gives a +1 status bonus to perform rituals if a ritual is performed in this settlement.",
   "availableItemsRules": [
     {
       "value": 1,

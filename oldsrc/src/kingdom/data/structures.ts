@@ -432,7 +432,7 @@ const structures: Structure[] = [
             group: 'divine',
             maximumStacks: 3,
         }],
-        notes: 'While in a settlement with a cathedral, you gain a +3 item bonus to Lore and Religion checks made to Recall Knowledge while Investigating, and to all faith-themed checks made while Researching.',
+        notes: 'While in a settlement with a cathedral, you gain a +3 item bonus to Lore and Religion checks made to Recall Knowledge while Investigating, and to all faith-themed checks made while Researching. Cathedral also gives a +1 status bonus to perform rituals if a ritual is performed in this settlement.',
         traits: ['building', 'edifice', 'famous', 'infamous'],
         affectsDowntime: true,
         reducesUnrest: true,
@@ -1833,6 +1833,7 @@ const structures: Structure[] = [
             value: 1,
             activity: 'provide-care',
         }],
+		notes: 'Temple gives a +1 status bonus to perform rituals if a ritual is performed in this settlement.',
         availableItemsRules: [{
             value: 1,
             group: 'divine',
