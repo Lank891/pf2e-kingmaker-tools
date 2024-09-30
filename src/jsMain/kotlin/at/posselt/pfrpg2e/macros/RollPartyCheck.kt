@@ -46,7 +46,7 @@ suspend fun rollPartyCheckMacro(players: Array<PF2ECharacter>) {
         players.rollChecks(
             attribute = Attribute.fromString(data.skill),
             dc = data.dc,
-            rollMode = if (data.private) RollMode.GMROLL else RollMode.PUBLICROLL
+            rollMode = if (data.private) RollMode.BLINDROLL else RollMode.PUBLICROLL
         ).awaitAll()
     }
 }
