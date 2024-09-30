@@ -39,7 +39,7 @@ kotlin {
             }
             testTask {
                 useKarma {
-                    useFirefoxHeadless()
+                    useChrome()
                 }
             }
         }
@@ -149,12 +149,12 @@ tasks.register<PackJsonFile>("packJsonFiles") {
 
 tasks.register<Exec>("installOldJs") {
     workingDir = layout.projectDirectory.dir("oldsrc/").asFile
-    commandLine = listOf("yarn", "install")
+    commandLine = listOf("cmd", "/C", "yarn", "install")
 }
 
 tasks.register<Exec>("compileOldJs") {
     workingDir = layout.projectDirectory.dir("oldsrc/").asFile
-    commandLine = listOf("yarn", "run", "build")
+    commandLine = listOf("cmd", "/C", "yarn", "run", "build")
 }
 
 /**
