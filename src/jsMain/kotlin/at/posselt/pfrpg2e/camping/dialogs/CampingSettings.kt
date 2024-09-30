@@ -47,6 +47,7 @@ import kotlin.js.Promise
 @JsPlainObject
 external interface CampingSettings {
     val gunsToClean: Int
+    val additionalRationConsumption: Int
     val restRollMode: String
     val increaseWatchActorNumber: Int
     val actorUuidsNotKeepingWatch: Array<String>
@@ -71,6 +72,7 @@ class CampingSettingsDataModel(value: AnyObject) : DataModel(value) {
         @JsStatic
         fun defineSchema() = buildSchema {
             int("gunsToClean")
+            int("additionalRationConsumption")
             string("restRollMode") {
                 choices = RestRollMode.entries.map { it.toCamelCase() }.toTypedArray()
             }
@@ -135,6 +137,7 @@ class CampingSettingsApplication(
         val camping = campingActor.getCamping()!!
         settings = CampingSettings(
             gunsToClean = camping.gunsToClean,
+            additionalRationConsumption = camping.additionalRationConsumption,
             restRollMode = camping.restRollMode,
             increaseWatchActorNumber = camping.increaseWatchActorNumber,
             actorUuidsNotKeepingWatch = camping.actorUuidsNotKeepingWatch,
@@ -295,6 +298,13 @@ class CampingSettingsApplication(
                             help = "Up to 4 guns can be cleaned in an hour during Daily Preparations. If you go over 4 guns, Daily Preparations will take an additional hour for every set of 4 guns rounded up."
                         ),
                         NumberInput(
+                            name = "additionalRationConsumption",
+                            label = "Additional Consumption of Rations",
+                            value = settings.additionalRationConsumption,
+                            stacked = false,
+                            help = "If you have creatures eating more than one ration, write the amount - 1 (for each creature). If you have creatures not present in the sheet, write the amount."
+                        ),
+                        NumberInput(
                             name = "increaseWatchActorNumber",
                             label = "Increase Actors Keeping Watch",
                             value = settings.increaseWatchActorNumber,
@@ -345,6 +355,7 @@ class CampingSettingsApplication(
                     campingActor.getCamping()?.let { camping ->
                         val alwaysPerformNames = settings.alwaysPerformActivities.toSet()
                         camping.gunsToClean = settings.gunsToClean
+                        camping.additionalRationConsumption = settings.additionalRationConsumption
                         camping.restRollMode = settings.restRollMode
                         camping.increaseWatchActorNumber = settings.increaseWatchActorNumber
                         camping.actorUuidsNotKeepingWatch = settings.actorUuidsNotKeepingWatch

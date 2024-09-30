@@ -73,6 +73,7 @@ external interface CampingData {
     var encounterModifier: Int
     var restRollMode: String
     var increaseWatchActorNumber: Int
+    var additionalRationConsumption: Int
     var actorUuidsNotKeepingWatch: Array<String>
     var alwaysPerformActivities: Array<String>
     var huntAndGatherTargetActorUuid: String?
@@ -178,6 +179,7 @@ fun getDefaultCamping(game: Game): CampingData {
         encounterModifier = 0,
         restRollMode = "one",
         increaseWatchActorNumber = 0,
+        additionalRationConsumption = 0,
         actorUuidsNotKeepingWatch = emptyArray(),
         ignoreSkillRequirements = false,
         randomEncounterRollMode = "gmroll",
@@ -568,6 +570,7 @@ class ParsedCamping(
     val recipes: List<RecipeData>,
     var gunsToClean: Int,
     var increaseWatchActorNumber: Int,
+    var additionalRationConsumption: Int,
     var watchSecondsRemaining: Int,
     actorsNotKeepingWatch: Set<String>,
     knownRecipes: Set<String>,
@@ -678,6 +681,7 @@ suspend fun PF2ENpc.getParsedCamping(game: Game): ParsedCamping? {
         recipes = camping.getAllRecipes().toList(),
         gunsToClean = camping.gunsToClean,
         increaseWatchActorNumber = camping.increaseWatchActorNumber,
+        additionalRationConsumption = camping.additionalRationConsumption,
         watchSecondsRemaining = camping.watchSecondsRemaining,
         actorsNotKeepingWatch = camping.actorUuidsNotKeepingWatch.toMutableSet(),
         knownRecipes = camping.cooking.knownRecipes.toMutableSet(),
@@ -715,6 +719,7 @@ suspend fun PF2ENpc.setParsedCamping(data: ParsedCamping) {
         .toTypedArray()
     camping.increaseWatchActorNumber = data.increaseWatchActorNumber
     camping.gunsToClean = data.gunsToClean
+    camping.additionalRationConsumption = data.additionalRationConsumption
     camping.watchSecondsRemaining = data.watchSecondsRemaining
     camping.cooking.knownRecipes = data.knownRecipes.toTypedArray()
     camping.currentRegion = data.currentRegion.name

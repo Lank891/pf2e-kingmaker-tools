@@ -849,11 +849,15 @@ class CampingSheet(
         actorMeals: List<MealChoice>,
         availableFood: FoodAmount,
         foodItems: FoodItems,
+        flatConsumption: FoodAmount
     ): FoodCost {
         val amount = actorMeals
             .map { it.cookingCost }
             .sum()
-        return buildFoodCost(amount, totalAmount = availableFood, items = foodItems)
+        
+        val amountWithFlat = amount + flatConsumption
+        
+        return buildFoodCost(amountWithFlat, totalAmount = availableFood, items = foodItems)
     }
 
     override fun _preparePartContext(
@@ -962,6 +966,7 @@ class CampingSheet(
                 actorMeals = parsedCookingChoices.meals,
                 foodItems = foodItems,
                 availableFood = totalFood,
+                flatConsumption = FoodAmount(rations = camping.additionalRationConsumption)
             ),
             partId = parent.partId,
             recipes = recipesContext,

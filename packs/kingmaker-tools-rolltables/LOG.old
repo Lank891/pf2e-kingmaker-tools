@@ -1,5 +1,3 @@
-2024/09/30-19:27:49.061 5d7c Log #1426: 0 ops saved to Table #1427 OK
-2024/09/30-19:27:49.063 5d7c Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-rolltables/001426.log: OK
-2024/09/30-19:27:49.065 5d7c Table #1406: 59 entries OK
-2024/09/30-19:27:49.070 5d7c Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-rolltables/MANIFEST-001425: OK
-2024/09/30-19:27:49.077 5d7c **** Repaired leveldb C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-rolltables; recovered 1 files; 9036 bytes. Some data may have been lost. ****
+2024/09/30-20:24:35.152 9b84 Recovering log #1429
+2024/09/30-20:24:35.158 9b84 Delete type=0 #1429
+2024/09/30-20:24:35.158 9b84 Delete type=3 #1428

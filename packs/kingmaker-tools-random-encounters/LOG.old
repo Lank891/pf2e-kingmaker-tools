@@ -1,5 +1,3 @@
-2024/09/30-19:27:49.120 81b0 Log #1530: 0 ops saved to Table #1531 OK
-2024/09/30-19:27:49.122 81b0 Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-random-encounters/001530.log: OK
-2024/09/30-19:27:49.124 81b0 Table #1510: 176 entries OK
-2024/09/30-19:27:49.129 81b0 Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-random-encounters/MANIFEST-001529: OK
-2024/09/30-19:27:49.135 81b0 **** Repaired leveldb C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-random-encounters; recovered 1 files; 24867 bytes. Some data may have been lost. ****
+2024/09/30-20:24:35.166 1e98 Recovering log #1533
+2024/09/30-20:24:35.173 1e98 Delete type=0 #1533
+2024/09/30-20:24:35.173 1e98 Delete type=3 #1532

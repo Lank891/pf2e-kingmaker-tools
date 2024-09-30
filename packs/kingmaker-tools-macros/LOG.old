@@ -1,5 +1,3 @@
-2024/09/30-19:27:49.169 1f7c Log #1451: 0 ops saved to Table #1452 OK
-2024/09/30-19:27:49.170 1f7c Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-macros/001451.log: OK
-2024/09/30-19:27:49.173 1f7c Table #1431: 22 entries OK
-2024/09/30-19:27:49.179 1f7c Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-macros/MANIFEST-001450: OK
-2024/09/30-19:27:49.187 1f7c **** Repaired leveldb C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-macros; recovered 1 files; 5404 bytes. Some data may have been lost. ****
+2024/09/30-20:24:35.181 8ce0 Recovering log #1454
+2024/09/30-20:24:35.188 8ce0 Delete type=0 #1454
+2024/09/30-20:24:35.188 8ce0 Delete type=3 #1453
