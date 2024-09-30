@@ -26,7 +26,7 @@ function abilityBoosts(level: number): KingdomFeature {
     return {
         level,
         name: 'Ability Boosts',
-        description: 'At 5th level and every 5 levels thereafter, you boost two different kingdom ability scores. You can use these ability boosts to increase your kingdom’s ability scores above 18. Boosting an ability score increases it by 2 if it starts out below 18, or by 1 if it’s already 18 or above.',
+        description: 'At 5th level and every 5 levels thereafter, you boost three different kingdom ability scores. You can use these ability boosts to increase your kingdom’s ability scores above 18. Boosting an ability score increases it by 2 if it starts out below 18, or by 1 if it’s already 18 or above.',
     };
 }
 
@@ -34,7 +34,7 @@ function settlementConstruction(level: number, type: string): KingdomFeature {
     return {
         level,
         name: `Settlement Construction (${type})`,
-        description: 'You can establish villages in your kingdom immediately. At 3rd level, you can expand villages into towns. At 9th level, you can expand towns into cities. expand towns into cities. And at 15th level, you can expand cities into metropolises. As villages grow into larger settlements, you not only gain more room to build, but the maximum item bonus you can gain from that settlement’s structures increases as well',
+        description: 'You can establish villages in your kingdom immediately. At 3rd level, you can expand villages into towns. At 9th level, you can expand towns into cities. expand towns into cities. And at 15th level, you can expand cities into metropolises. As villages grow into larger settlements, you not only gain more room to build, but the maximum item bonus you can gain from that settlement’s structures increases as well. Capital can have the amount of buildings as in the higher tier of the city.',
     };
 }
 
@@ -77,7 +77,7 @@ export const features: KingdomFeature[] = [
     },
     {
         level: 1,
-        name: 'Government',
+        name: 'Heartland',
         description: 'Your kingdom gains the benefits of your selected heartland',
     },
     {
