@@ -737,13 +737,13 @@ The check’s DC is either the group’s Negotiation DC (see sidebar) or your ki
             msg: `Not only do you fail to establish a Work Site, but you lose several workers to an accident, banditry, a vicious monster, or some other unforeseen occurrence. ${gainUnrest(1)}`,
         },
     },
-    'evangelize-the-dead': {
+    'evangelize-the-end': {
         oncePerRound: false,
         fortune: false,
         enabled: false,
         phase: 'leadership',
         dc: 'control',
-        title: 'Evangelize the Dead',
+        title: 'Evangelize the End',
         description: 'You spend time preaching the End Times. While your sermons certainly aren’t for everyone, your methods avoid deliberately antagonizing those who see hope in the world while simultaneously providing ease and calm to the more desperate among the kingdom’s citizens. Attempt a basic Folklore check to determine how effective your sermons are.',
         skills: simpleRank(['folklore']),
         criticalSuccess: {
@@ -933,7 +933,7 @@ The Cooperative Leadership Kingdom feat (page 531) increases the efficiency of t
         enabled: false,
         phase: 'region',
         dc: 'control',
-        title: 'Harvest Lily Pollen',
+        title: 'Harvest Azure Lily Pollen',
         description: 'You or a small group of trained herbalists or naturalists work to harvest and process @UUID[Compendium.pf2e.equipment-srd.Item.MvMa010Je10GN5dx]{Azure Lily Pollen} in hopes of creating a few doses of the poison (detailed on page 584). Attempt a DC 30 Agriculture check. You must then wait 1 Kingdom turn before attempting this activity again, to give the lilies time to recover.',
         skills: simpleRank(['agriculture'], 3),
         criticalSuccess: {
@@ -2017,7 +2017,7 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
         enabled: false,
         phase: 'leadership',
         dc: 25,
-        title: 'Restore the Temple',
+        title: 'Restore the Temple of the Elk',
         description: `You work with several worshippers of the temple's faith, gifted masons, and skilled laborers to restore the temple and once more consecrate it as a sacred place devoted to the worship of their god. ${loseRP('1d6')}, then attempt a DC 25 Folklore check.`,
         skills: simpleRank(['folklore']),
         criticalSuccess: {
@@ -2379,6 +2379,50 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
             }],
         },
     },
+	'cleanse-item': {
+		oncePerRound: false,
+        fortune: false,
+        enabled: true,
+		phase: 'leadership',
+		dc: 'custom',
+		title: 'Cleanse Item (HB)',
+		description: 'You can remove curses from an item using a successful Magic counteract check. Your counteract level is your (kingdom level / 2) rounded up and the DC is an incredibly hard (+10) DC based on the item\'s level. In addition, you need to pay luxuries and have access to specific structures to prepare the ritual based on the item\'s level: <br/>1-5: 1 Luxury, Shrine; <br/>6-10: 2 Luxuries, Temple; <br/>11-15: 4 Luxuries, Temple; <br/>16-20: 8 Luxuries, Cathedral.',
+		skills: simpleRank(['magic'], 1),
+		criticalSuccess: {
+            msg: `If the (item level / 2) is no more than your (counteract level + 3), the item is cleansed.`,
+        },
+        success: {
+            msg: `If the (item level / 2) is no more than your (counteract level + 1), the item is cleansed.`,
+        },
+        failure: {
+            msg: `If the (item level / 2) is no more than your (counteract level - 1), the item is cleansed.`,
+        },
+        criticalFailure: {
+            msg: `You couldn't cleanse the item.`,
+        },
+	},
+	'naval-support': {
+		oncePerRound: false,
+        fortune: false,
+        enabled: true,
+		phase: 'leadership',
+		dc: 'control',
+		title: 'Naval Support (HB)',
+		description: 'You use your fleet to ship materials or transport skilled builders and specialists to where they are needed most, to gain additional Region Activities this turn.',
+		skills: simpleRank(['boating']),
+		criticalSuccess: {
+            msg: `You gain 2 additional Region Activities.`,
+        },
+        success: {
+            msg: `You gain 1 additional Region Activity.`,
+        },
+        failure: {
+            msg: `You gain 1 additional region activity by investing additional funds. ${loseRP('2d6')}.`,
+        },
+        criticalFailure: {
+            msg: `You do not gain any region activities and ${loseRP('2d6')}.`,
+        },
+	}
 };
 
 interface CreateResourceButton {
