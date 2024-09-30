@@ -13,7 +13,7 @@ export function calculateHexXP(
 ): number {
     if (useVK) {
         if (kingdomSize < 10) {
-            return hexes * 100;
+            return hexes * 80;
         } else if (kingdomSize < 25) {
             return hexes * 50;
         } else if (kingdomSize < 50) {
@@ -46,11 +46,11 @@ export function calculateRpXP(
     let xp = 0;
     if (useVK) {
         if (kingdomLevel < 5) {
-            xp = rp * 10;
+            xp = rp * 8;
         } else if (kingdomLevel < 9) {
-            xp = rp * 7;
+            xp = rp * 6;
         } else if (kingdomLevel < 13) {
-            xp = rp * 5;
+            xp = rp * 4;
         } else if (kingdomLevel < 17) {
             xp = rp * 2;
         }
