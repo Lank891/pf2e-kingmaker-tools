@@ -1,0 +1,56 @@
+{
+    "skills": [
+        {
+            "dcType": "none",
+            "required": false,
+            "validateOnly": false,
+            "proficiency": "untrained",
+            "name": "any"
+        }
+    ],
+    "criticalFailure": {
+        "effectUuids": [],
+        "checkRandomEncounter": false,
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": "Lost 1 Influence Point"
+    },
+    "isLocked": false,
+    "name": "Influence Companion",
+    "success": {
+        "effectUuids": [],
+        "checkRandomEncounter": false,
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": "Gained 1 Influence Point"
+    },
+    "isHomebrew": true,
+    "effectUuids": [],
+    "modifyRandomEncounterDc": {
+        "day": 0,
+        "night": 0
+    },
+    "isSecret": false,
+    "criticalSuccess": {
+        "effectUuids": [],
+        "checkRandomEncounter": false,
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": "Gained 2 Influence Points"
+    },
+    "failure": {
+        "effectUuids": [],
+        "checkRandomEncounter": false,
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": "No influence gained"
+    }
+}

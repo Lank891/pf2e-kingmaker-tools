@@ -1,0 +1,51 @@
+{
+    "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.ODZNlkmpBByewUQW",
+    "isHomebrew": true,
+    "effectUuids": [],
+    "isLocked": false,
+    "skills": [
+        {
+            "dcType": "zone",
+            "proficiency": "untrained",
+            "name": "any"
+        }
+    ],
+    "isSecret": false,
+    "name": "Provide Aid",
+    "criticalFailure": {
+        "checkRandomEncounter": false,
+        "effectUuids": [],
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": ""
+    },
+    "criticalSuccess": {
+        "checkRandomEncounter": false,
+        "effectUuids": [],
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": "+1 circumstance bonus to the main activity's check, +3 if you are master, +4 if you are legendary."
+    },
+    "success": {
+        "checkRandomEncounter": false,
+        "effectUuids": [],
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": "+1 circumstance bonus to the main activity's check."
+    },
+    "failure": {
+        "checkRandomEncounter": false,
+        "effectUuids": [],
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": ""
+    }
+}

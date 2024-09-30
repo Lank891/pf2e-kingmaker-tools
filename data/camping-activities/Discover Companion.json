@@ -1,0 +1,56 @@
+{
+    "skills": [
+        {
+            "dcType": "none",
+            "required": false,
+            "validateOnly": false,
+            "proficiency": "untrained",
+            "name": "any"
+        }
+    ],
+    "criticalFailure": {
+        "effectUuids": [],
+        "checkRandomEncounter": false,
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": "Choose the resistance, weakness or the easiest influence skill. You learn fake information."
+    },
+    "isLocked": false,
+    "name": "Discover Companion",
+    "success": {
+        "effectUuids": [],
+        "checkRandomEncounter": false,
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": "Choose the resistance, weakness or the easiest influence skill. You learn the information."
+    },
+    "isHomebrew": true,
+    "effectUuids": [],
+    "modifyRandomEncounterDc": {
+        "day": 0,
+        "night": 0
+    },
+    "isSecret": true,
+    "criticalSuccess": {
+        "effectUuids": [],
+        "checkRandomEncounter": false,
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": "Choose two of the resistance, weakness or the easiest influence skill (can be taken twice). You learn the information."
+    },
+    "failure": {
+        "effectUuids": [],
+        "checkRandomEncounter": false,
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": "You learn no information."
+    }
+}

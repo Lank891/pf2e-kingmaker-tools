@@ -1,0 +1,50 @@
+{
+    "isHomebrew": true,
+    "effectUuids": [],
+    "isLocked": false,
+    "skills": [
+        {
+            "dcType": "zone",
+            "proficiency": "untrained",
+            "name": "any"
+        }
+    ],
+    "isSecret": false,
+    "name": "Resourceless Healing",
+    "criticalFailure": {
+        "checkRandomEncounter": false,
+        "effectUuids": [],
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": ""
+    },
+    "criticalSuccess": {
+        "checkRandomEncounter": false,
+        "effectUuids": [],
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": ""
+    },
+    "success": {
+        "checkRandomEncounter": false,
+        "effectUuids": [],
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": ""
+    },
+    "failure": {
+        "checkRandomEncounter": false,
+        "effectUuids": [],
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": ""
+    }
+}

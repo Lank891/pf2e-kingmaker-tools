@@ -2,7 +2,7 @@
   "name": "Camouflage Campsite",
   "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.mlLCjokti3RXAlUP",
   "isLocked": false,
-  "isSecret": true,
+  "isSecret": false,
   "isHomebrew": false,
   "skills": [
     {

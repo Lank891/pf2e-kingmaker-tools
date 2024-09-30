@@ -1,0 +1,56 @@
+{
+    "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F",
+    "isHomebrew": true,
+    "effectUuids": [
+        {
+            "target": "self",
+            "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.zliIP2agG0TVwKV4"
+        }
+    ],
+    "isLocked": false,
+    "skills": [
+        {
+            "dcType": "none",
+            "proficiency": "untrained",
+            "name": "any"
+        }
+    ],
+    "isSecret": false,
+    "name": "Relax",
+    "criticalFailure": {
+        "checkRandomEncounter": false,
+        "effectUuids": [],
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": ""
+    },
+    "criticalSuccess": {
+        "checkRandomEncounter": false,
+        "effectUuids": [],
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": ""
+    },
+    "success": {
+        "checkRandomEncounter": false,
+        "effectUuids": [],
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": ""
+    },
+    "failure": {
+        "checkRandomEncounter": false,
+        "effectUuids": [],
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "message": ""
+    }
+}
