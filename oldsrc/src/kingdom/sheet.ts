@@ -157,11 +157,20 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
         const unlockedActivities = new Set<string>([
             ...unlockedSettlementActivities,
         ]);
-        const hideActivities = kingdomData.activityBlacklist
+
+        let blacklistedActivities = kingdomData.activityBlacklist
             .map(activity => {
                 return {[activity]: true};
-            })
-            .reduce((a, b) => Object.assign(a, b), {});
+            });
+        if( !hasFeat(kingdomData, 'Insider Trading') ) {
+            blacklistedActivities.push( {'insider-trading': true} );
+        }
+
+        console.log(blacklistedActivities)
+
+        const hideActivities = blacklistedActivities.reduce((a, b) => Object.assign(a, b), {});
+        console.log(hideActivities)
+            
         const ignoreSkillRequirements = getBooleanSetting(this.game, 'kingdomIgnoreSkillRequirements');
         const activities = getKingdomActivitiesById(kingdomData.homebrewActivities);
         const enabledActivities = getPerformableActivities(

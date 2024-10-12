@@ -95,15 +95,11 @@ your settlements’ defenses.`,
         name: 'Insider Trading',
         level: 1,
         prerequisites: 'Trained in Industry',
-        text: `Your leading citizens share valuable business information with one another and with associates in
-other lands, and they hire one another’s workers to supply the labor they need to fuel their production. You gain a +1 circumstance bonus to Establish Work Site, Establish Trade Agreement, and Trade Commodities activities. In addition, gain 1 bonus Resource Die at the start of each Kingdom turn.`,
-        modifiers: [{
-            name: 'Insider Trading',
-            type: 'circumstance',
-            activities: ['establish-work-site-quarry', 'establish-work-site-lumber', 'establish-work-site-mine', 'establish-trade-agreement', 'trade-commodities'],
-            enabled: true,
-            value: 1,
-        }],
+        text: `You facilitate the collaboration of business leaders behind the scenes to arbitrarily manipulate supply and demand for certain goods within your kingdom and surrounding lands. 
+        As a Leadership activity, attempt an Industry control check. On a success, you gain +1 circumstance bonus to Establish Work Site, Establish Trade Agreement, and Trade Commodities for the remainder of the kingdom turn.
+        If the kingdom is master in Industry, the bonus increases to +2, or to +4 if it is legendary. 
+        On a critical success, you additionally gain a bonus Resource Die on your next kingdom turn. 
+        On a critical failure gain 1 Unrest and take a –2 circumstance penalty to those activities for the success effect for the remainder of the turn.`,
     },
     {
         automationNotes: 'You need to manually increase the ruin thresholds',

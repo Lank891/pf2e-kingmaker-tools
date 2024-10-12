@@ -2414,7 +2414,58 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
         criticalFailure: {
             msg: `You do not gain any region activities and ${loseRP('2d6')}.`,
         },
-	}
+	},
+    'insider-trading': {
+        oncePerRound: false,
+        fortune: false,
+        enabled: false,
+        phase: 'leadership',
+        dc: 'control',
+        title: 'Insider Trading (Feat, HB)',
+        description: 'You facilitate the collaboration of business leaders behind the scenes to arbitrarily manipulate supply and demand for certain goods within your kingdom and surrounding lands. Attempt an Industry control check.',
+        skills: simpleRank(['industry'], 1),
+        
+        criticalSuccess: {
+            msg: `You gain a +1 circumstance bonus to Establish Work Site, Establish Trade Agreement, and Trade Commodities for the remainder of the kingdom turn. This bonus increases to +2 if the kingdom is master in Industry, or +4 if it is legendary. ${createResourceButton({
+                value: '1',
+                turn: 'next',
+                type: 'resource-dice',
+            })} due to your excellent control over supply and demand.`,
+            modifiers: (kingdom: Kingdom) => [{
+                name: 'Insider Trading',
+                turns: 1,
+                type: 'circumstance',
+                activities: ['establish-work-site-quarry', 'establish-work-site-lumber', 'establish-work-site-mine', 'establish-trade-agreement', 'trade-commodities'],
+                enabled: true,
+                value: kingdom.skillRanks.industry == 4 ? 4 : (kingdom.skillRanks.industry == 3 ? 2 : 1),
+            }]
+        },
+        success: {
+            msg: `You gain a +1 circumstance bonus to Establish Work Site, Establish Trade Agreement, and Trade Commodities for the remainder of the kingdom turn. This bonus increases to +2 if the kingdom is master in Industry, or +4 if it is legendary.`,
+            modifiers: (kingdom: Kingdom) => [{
+                name: 'Insider Trading',
+                turns: 1,
+                type: 'circumstance',
+                activities: ['establish-work-site-quarry', 'establish-work-site-lumber', 'establish-work-site-mine', 'establish-trade-agreement', 'trade-commodities'],
+                enabled: true,
+                value: kingdom.skillRanks.industry == 4 ? 4 : (kingdom.skillRanks.industry == 3 ? 2 : 1),
+            }]
+        },
+        failure: {
+            msg: `You fail manipulating supply and demand.`
+        },
+        criticalFailure: {
+            msg: `Your attempts to manipulate the market are noticed and taken as bad faith dealing. ${gainUnrest(1)} and take a –2 circumstance penalty to the activities listed for the success effect for the remainder of the turn.`,
+            modifiers: () => [{
+                name: 'Insider Trading (Critical Failure)',
+                turns: 1,
+                type: 'circumstance',
+                activities: ['establish-work-site-quarry', 'establish-work-site-lumber', 'establish-work-site-mine', 'establish-trade-agreement', 'trade-commodities'],
+                enabled: true,
+                value: -2,
+            }]
+        }
+    }
 };
 
 interface CreateResourceButton {
