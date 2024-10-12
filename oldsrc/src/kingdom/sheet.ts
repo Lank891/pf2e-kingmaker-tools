@@ -1069,7 +1069,7 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
     }
 
     private calculateEventDC(turnsWithoutEvent: number): number {
-        return Math.max(1, 16 - (turnsWithoutEvent * 5));
+        return Math.max(1, 11 - (turnsWithoutEvent * 5));
     }
 
     private calculateCultEventDC(turnsWithoutEvent: number): number {

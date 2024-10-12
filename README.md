@@ -5,14 +5,15 @@ This module ships all OGL licensed rules to run the Kingdom, Camping and Weather
 **Documentation is included in a journal inside FoundryVTT!**
 
 ## Lank's Homebrew Changes
-- Changes V&K xp for new hexes and RP (they are smaller).
+- Changes V&K xp for new hexes, events, and RP (they are smaller).
 - Added kingdom activities from this repo homebrew propositions.
 - Added camping activities: Influence Companion, Discover Companion, Provide Aid, Relax, Resourceless Healing.
 - Capital of the kingdom can have more lots (which is not tracked) - reduced level to match max level of village/town/city even though there are more lots used, but increased consumption as it would be higher tier. Minimal influence of the capital is 1.
 - Removed non-V&K versions of buildings.
 - Changed some camping css to work with Pathfinder UI v3.
 - Added camping setting that adds flat amount of rations consumption.
-- Changed Unrest to have penalties at 1, 4, 8 and 12 instead of 1, 5, 10, 15. Anarchy starts at 16 inestead of 20. Anarchy with Endure Anarchy feat starts at 19 inestead of 24.
+- Changed Unrest to have penalties at 1, 4, 8 and 12 instead of 1, 5, 10, 15. Anarchy starts at 16 inestead of 20. Anarchy with Endure Anarchy feat starts at 19 inestead of 24. Ruin and losing hexes starts at 8 insetad of 10.
+- Event check starts at 11 rather than 16.
 
 ## Licensing
 

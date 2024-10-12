@@ -66,11 +66,11 @@ export function calculateEventXP(modifier: number): number {
         '-3': 15,
         '-2': 20,
         '-1': 30,
-        '0': 40,
-        '1': 60,
-        '2': 80,
-        '3': 120,
-        '4': 160,
+        '0': 30,
+        '1': 30,
+        '2': 40,
+        '3': 60,
+        '4': 80,
     };
     const key = `${modifier}`;
     if (key in xp) {
