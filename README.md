@@ -15,6 +15,7 @@ This module ships all OGL licensed rules to run the Kingdom, Camping and Weather
 - Changed Unrest to have penalties at 1, 4, 8 and 12 instead of 1, 5, 10, 15. Anarchy starts at 16 inestead of 20. Anarchy with Endure Anarchy feat starts at 19 inestead of 24. Ruin and losing hexes starts at 8 insetad of 10.
 - Event check starts at 11 rather than 16.
 - Kingdom feats each level instead of once per 2 levels, slot for 1st-level feat.
+- Unified Creative and Supernatural solution to have the same downsides. Both are decided before rolling the check and better result is used. Creative solution rolls the same skill but second roll has +2 circumstance bonus. Supernatural solution rolls Magic, but does not add item bonuses unless the original activity could be rolled with Magic.
 
 ## Licensing
 

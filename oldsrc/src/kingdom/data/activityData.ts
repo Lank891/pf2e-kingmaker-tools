@@ -81,7 +81,7 @@ const activityData: Record<string, ActivityContent> = {
         enabled: true,
         phase: 'region',
         dc: 'control',
-        description: `<p>You order your kingdom’s engineers to construct a network of robust roads through the hex. Travel along roads uses a terrain type one step better than the surrounding terrain; for example, roads through forest hexes—normally difficult terrain—allow travel as if it were open terrain.</p>
+        description: `<p>You order your kingdom’s engineers to construct a network of robust roads through the hex. Travel along roads is treated as if it were open terrain.</p>
 <p>Spend RP as determined by the hex’s most inhospitable terrain (if the hex includes any rivers that cross the hex from one hex side to any other, you must spend double the normal RP cost to also build bridges; this adds the Bridge structure to that hex):</p>
 <ul>
 <li><b>Mountains</b>: ${loseRP(12)}</li>
@@ -399,10 +399,10 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
         phase: 'leadership',
         dc: 'control',
         title: 'Creative Solution',
-        description: 'You work with your kingdom’s scholars, thinkers, and practitioners of magical and mundane experimentation to come up with new ways to resolve issues when business as usual is just not working. Attempt a basic check.',
+        description: 'You work with your kingdom’s scholars, thinkers, and practitioners of magical and mundane experimentation to come up with new ways to resolve issues when business as usual is just not working. Attempt a basic check.<br/><br/><b>Creative Solution:</b><p>You can decide to use Creative Solution before attemptin a Kingdom skil check. Attempt the same check second time, but with +2 circumstance bonus, and take whichever of the two results you prefer. This is a fortune effect. If you don’t use your Creative Solution by the end of this Kingdom turn, this benefit ends and you gain 10XP instead.</p>',
         skills: simpleRank(['scholarship']),
         criticalSuccess: {
-            msg: `You can call upon the solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('creative-solution')}. Do so when a Kingdom skill check is rolled, but before you learn the result. Immediately reroll that check with a +2 circumstance bonus; you must take the new result. If you don’t use your Creative Solution by the end of this turn, you lose this benefit and gain 10XP instead.`,
+            msg: `You can call upon the solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('creative-solution')}.`,
             modifiers: () => [{
                 turns: 1,
                 enabled: false,
@@ -413,7 +413,7 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
             }],
         },
         success: {
-            msg: `You can call upon the solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('creative-solution')}. Do so when a Kingdom skill check is rolled, but before you learn the result. Immediately reroll that check with a +2 circumstance bonus; you must take the new result. If you don’t use your Creative Solution by the end of this turn, you lose this benefit and gain 10XP instead. In addition, ${loseRP('1d4')} to research the solution. This cost is paid now, whether or not you use your Creative Solution.`,
+            msg: `You can call upon the solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('creative-solution')}. In addition, ${loseRolledRD(1)} to research the solution. This cost is paid now, whether or not you use your Creative Solution.`,
             modifiers: () => [{
                 turns: 1,
                 enabled: false,
@@ -424,18 +424,10 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
             }],
         },
         failure: {
-            msg: `Your attempt at researching is a failure and you ${loseRP('2d6')}. It provides no advantage.`,
+            msg: `Your attempt at researching is a failure and you ${loseRolledRD(2)}. It provides no advantage.`,
         },
         criticalFailure: {
-            msg: `Your attempt at researching is a failure and you ${loseRP('2d6')}. It provides no advantage. In addition, your scholars and thinkers are so frustrated that you take a –1 circumstance penalty to Culture-based checks until the end of the next Kingdom turn.`,
-            modifiers: () => [{
-                turns: 2,
-                enabled: true,
-                value: -1,
-                name: 'Creative Solution: Critical Failure',
-                type: 'circumstance',
-                abilities: ['culture'],
-            }],
+            msg: `Your attempt at researching is a failure and you ${loseRolledRD(2)}. It provides no advantage. In addition, your scholars and thinkers are so frustrated that you cannot attempt a Creative Solution again for 2 Kingdom turns.`,
         },
         special: 'You cannot influence a check with Supernatural Solution and Creative Solution simultaneously.',
     },
@@ -2123,21 +2115,21 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
         phase: 'leadership',
         dc: 'control',
         title: 'Supernatural Solution',
-        description: 'Your spellcasters try to resolve issues when mundane solutions just aren’t enough. Attempt a basic check.',
+        description: 'Your spellcasters try to resolve issues when mundane solutions just aren’t enough. Attempt a basic check.<br/><br/><b>Supernatural Solution:</b><p>You can decide to use Supernatural Solution before attemptin a Kingdom skil check. Attempt the Magic check against the same DC but without any item bonuses unless original roll could be made with Magic, and take whichever of the two results you prefer. This is a fortune effect. If you don’t use your Supernatural Solution by the end of this Kingdom turn, this benefit ends and you gain 10XP instead.</p>',
         oncePerRound: false,
         fortune: true,
         skills: simpleRank(['magic']),
         criticalSuccess: {
-            msg: `You can call upon your spellcasters’ supernatural solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('supernatural-solution')}. Do so just before a Kingdom skill check is rolled (by yourself or any other PC). Attempt a Magic check against the same DC in addition to the Kingdom skill check, and take whichever of the two results you prefer. If you don’t use your Supernatural Solution by the end of this Kingdom turn, this benefit ends and you gain 10XP instead.`,
+            msg: `You can call upon your spellcasters’ supernatural solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('supernatural-solution')}.`,
         },
         success: {
-            msg: `You can call upon your spellcasters’ supernatural solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('supernatural-solution')}. Do so just before a Kingdom skill check is rolled (by yourself or any other PC). Attempt a Magic check against the same DC in addition to the Kingdom skill check, and take whichever of the two results you prefer. If you don’t use your Supernatural Solution by the end of this Kingdom turn, this benefit ends and you gain 10XP instead. However, you ${loseRP('1d4')} to research the solution. This cost is paid now, whether or not you use your supernatural solution.`,
+            msg: `You can call upon your spellcasters’ supernatural solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('supernatural-solution')}. However, you ${loseRolledRD(1)} to research the solution. This cost is paid now, whether or not you use your supernatural solution.`,
         },
         failure: {
-            msg: `Your attempt at researching a supernatural solution costs additional RP to research, but is ultimately a failure, providing no advantage. ${loseRP('2d6')}`,
+            msg: `Your attempt at researching a supernatural solution costs additional RP to research, but is ultimately a failure, providing no advantage. ${loseRolledRD(2)}`,
         },
         criticalFailure: {
-            msg: `Your attempt at researching a supernatural solution costs additional RP to research, but is ultimately a failure, providing no advantage. ${loseRP('2d6')}. In addition, your spellcasters’ resources and morale are impacted such that you cannot attempt a Supernatural Solution again for 2 Kingdom turns.`,
+            msg: `Your attempt at researching a supernatural solution costs additional RP to research, but is ultimately a failure, providing no advantage. ${loseRolledRD(2)}. In addition, your spellcasters’ resources and morale are impacted such that you cannot attempt a Supernatural Solution again for 2 Kingdom turns.`,
         },
         special: 'You cannot influence a check with Supernatural Solution and Creative Solution simultaneously.',
     },

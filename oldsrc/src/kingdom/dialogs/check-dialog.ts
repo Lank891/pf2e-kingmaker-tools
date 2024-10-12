@@ -262,16 +262,10 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
     }
 
     shouldDisableAssurance(kingdom: Kingdom, skill: "agriculture" | "arts" | "boating" | "defense" | "engineering" | "exploration" | "folklore" | "industry" | "intrigue" | "magic" | "politics" | "scholarship" | "statecraft" | "trade" | "warfare" | "wilderness") : boolean {
-        console.log(skill);
         const capitalizedSkillName = capitalize(skill);
-        console.log(capitalizedSkillName);
-
         const assuranceName = `Kingdom Assurance (${capitalizedSkillName})`;
-        console.log(assuranceName);
 
         const hasAssuranceFeat = hasFeat(kingdom, assuranceName);
-        console.log(hasAssuranceFeat);
-
         return !hasAssuranceFeat;
     }
 
