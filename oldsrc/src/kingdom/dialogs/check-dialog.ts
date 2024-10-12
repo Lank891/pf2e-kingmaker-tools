@@ -257,7 +257,22 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
             rollModeChoices: rollModeChoices,
             phases: toLabelAndValue([...allKingdomPhases], {capitalizeLabel: true}),
             overrides: toLabelAndValue(['enabled', 'disabled'], {emptyChoice: '-', capitalizeLabel: true}),
+            assuranceDisabled: this.shouldDisableAssurance(this.kingdom, this.selectedSkill)
         };
+    }
+
+    shouldDisableAssurance(kingdom: Kingdom, skill: "agriculture" | "arts" | "boating" | "defense" | "engineering" | "exploration" | "folklore" | "industry" | "intrigue" | "magic" | "politics" | "scholarship" | "statecraft" | "trade" | "warfare" | "wilderness") : boolean {
+        console.log(skill);
+        const capitalizedSkillName = capitalize(skill);
+        console.log(capitalizedSkillName);
+
+        const assuranceName = `Kingdom Assurance (${capitalizedSkillName})`;
+        console.log(assuranceName);
+
+        const hasAssuranceFeat = hasFeat(kingdom, assuranceName);
+        console.log(hasAssuranceFeat);
+
+        return !hasAssuranceFeat;
     }
 
     override activateListeners(html: JQuery): void {

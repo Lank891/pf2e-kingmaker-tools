@@ -121,7 +121,9 @@
                     data-skill="{{selectedSkill}}"
                     data-modifier-breakdown="{{modifierBreakdown}}"
                     {{#if activity}}data-activity="{{activity}}"{{/if}}
-                    data-dc="{{dc}}">
+                    data-dc="{{dc}}"
+                    {{#if assuranceDisabled}}disabled{{/if}}
+                    >
                 Assurance {{modifiers.assurance}} <i class="fa-solid fa-dice-d20"></i></button>
             <button type="button" id="km-roll-skill"
                     {{#if activity}}data-activity="{{activity}}"{{/if}}
