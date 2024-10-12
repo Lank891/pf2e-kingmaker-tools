@@ -843,7 +843,7 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
                 `,
             });
         }
-        if (unrest >= 10) {
+        if (unrest >= 8) {
             const ruinRoll = await (new Roll('1d10').roll());
             await ruinRoll.toMessage({flavor: 'Gaining points to Ruin (distribute as you wish)'});
             const roll = await (new Roll('1d20').roll());
@@ -1079,7 +1079,7 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
     private calculateAnarchy(feats: Feat[], bonusFeats: BonusFeat[]): number {
         const hasEndureAnarchy = feats.some(f => f.id === 'Endure Anarchy') ||
             bonusFeats.some(f => f.id === 'Endure Anarchy');
-        return hasEndureAnarchy ? 24 : 20;
+        return hasEndureAnarchy ? 19 : 16;
     }
 
     private async payConsumption(): Promise<void> {

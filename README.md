@@ -12,6 +12,7 @@ This module ships all OGL licensed rules to run the Kingdom, Camping and Weather
 - Removed non-V&K versions of buildings.
 - Changed some camping css to work with Pathfinder UI v3.
 - Added camping setting that adds flat amount of rations consumption.
+- Changed Unrest to have penalties at 1, 4, 8 and 12 instead of 1, 5, 10, 15. Anarchy starts at 16 inestead of 20. Anarchy with Endure Anarchy feat starts at 19 inestead of 24.
 
 ## Licensing
 
