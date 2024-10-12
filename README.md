@@ -14,6 +14,7 @@ This module ships all OGL licensed rules to run the Kingdom, Camping and Weather
 - Added camping setting that adds flat amount of rations consumption.
 - Changed Unrest to have penalties at 1, 4, 8 and 12 instead of 1, 5, 10, 15. Anarchy starts at 16 inestead of 20. Anarchy with Endure Anarchy feat starts at 19 inestead of 24. Ruin and losing hexes starts at 8 insetad of 10.
 - Event check starts at 11 rather than 16.
+- Kingdom feats each level instead of once per 2 levels, slot for 1st-level feat.
 
 ## Licensing
 

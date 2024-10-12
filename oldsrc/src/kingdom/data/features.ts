@@ -10,7 +10,7 @@ function kingdomFeat(level: number): KingdomFeature {
     return {
         level,
         name: 'Kingdom Feat',
-        description: 'At 2nd level, and then every 2 levels thereafter, the kingdom gains a Kingdom feat.',
+        description: 'At 2nd level, and then every level thereafter, the kingdom gains a Kingdom feat.',
     };
 }
 
@@ -96,6 +96,7 @@ export const features: KingdomFeature[] = [
     // 3
     settlementConstruction(3, 'Town'),
     skillIncrease(3),
+    kingdomFeat(3),
     // 4
     expansionExpert(4, 2),
     {
@@ -108,10 +109,12 @@ export const features: KingdomFeature[] = [
     abilityBoosts(5),
     ruinResistance(5),
     skillIncrease(5),
+    kingdomFeat(5),
     // 6
     kingdomFeat(6),
     // 7
     skillIncrease(7),
+    kingdomFeat(7),
     // 8
     experiencedLeadership(8, 2),
     kingdomFeat(8),
@@ -120,6 +123,7 @@ export const features: KingdomFeature[] = [
     expansionExpert(9, 3),
     settlementConstruction(9, 'City'),
     skillIncrease(9),
+    kingdomFeat(9),
     // 10
     abilityBoosts(10),
     kingdomFeat(10),
@@ -131,6 +135,7 @@ export const features: KingdomFeature[] = [
     // 11
     ruinResistance(11),
     skillIncrease(11),
+    kingdomFeat(11),
     // 12
     {
         level: 12,
@@ -140,6 +145,7 @@ export const features: KingdomFeature[] = [
     kingdomFeat(12),
     // 13
     skillIncrease(13),
+    kingdomFeat(13),
     // 14
     kingdomFeat(14),
     ruinResistance(14),
@@ -147,16 +153,19 @@ export const features: KingdomFeature[] = [
     abilityBoosts(15),
     settlementConstruction(15, 'Metropolis'),
     skillIncrease(15),
+    kingdomFeat(15),
     // 16
     experiencedLeadership(16, 3),
     kingdomFeat(16),
     // 17
     ruinResistance(17),
     skillIncrease(17),
+    kingdomFeat(17),
     // 18
     kingdomFeat(18),
     // 19
     skillIncrease(19),
+    kingdomFeat(20),
     // 20
     abilityBoosts(20),
     {

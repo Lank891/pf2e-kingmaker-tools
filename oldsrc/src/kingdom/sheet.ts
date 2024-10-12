@@ -1035,7 +1035,7 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
         const levelFeats = [];
         const takenFeatsByLevel = Object.fromEntries(feats.map(feat => [feat.level, feat]));
         const noFeat = allFeatsByName['-'];
-        for (let featLevel = 2; featLevel <= kingdomLevel; featLevel += 2) {
+        for (let featLevel = 1; featLevel <= kingdomLevel; featLevel += 1) {
             const existingFeat = takenFeatsByLevel[featLevel];
             if (existingFeat && existingFeat.id in allFeatsByName) {
                 levelFeats.push({...allFeatsByName[existingFeat.id], takenAt: featLevel});
