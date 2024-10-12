@@ -1878,7 +1878,7 @@ The skill used to Repair Reputation depends on which Ruin total you wish to redu
     'request-foreign-aid': {
         oncePerRound: false,
         fortune: false,
-        enabled: true,
+        enabled: false,
         phase: 'leadership',
         dc: 'custom',
         title: 'Request Foreign Aid',
@@ -1921,15 +1921,15 @@ The skill used to Repair Reputation depends on which Ruin total you wish to redu
     'request-foreign-aid-vk': {
         oncePerRound: false,
         fortune: false,
-        enabled: false,
+        enabled: true,
         phase: 'leadership',
         dc: 'custom',
-        title: 'Request Foreign Aid (V&K)',
-        description: 'When disaster strikes, you send out a call for help to another nation with whom you have diplomatic relations. The DC of this check starts at the other group’s Negotiation DC +2, but every subsequent Kingdom turn you Request Foreign Aid from the same group, the DC increases by 2. Every Kingdom turn that passes without Requesting Foreign Aid from that Group reduces the DC by 1 (until you reach the other group’s Negotiation DC +2). You may only attempt to request Foreign Aid with a given group once per Kingdom turn regardless of the number of leaders pursuing activities.',
+        title: 'Request Foreign Aid (V&K, HB)',
+        description: 'When disaster strikes, you send out a call for help to another nation with whom you have diplomatic relations. The DC of this check starts at the other group’s Negotiation DC +2, but every subsequent Kingdom turn you Request Foreign Aid from the same group, the DC increases by 2. Every Kingdom turn that passes without Requesting Foreign Aid from that Group reduces the DC by 1 (until you reach the other group’s Negotiation DC +2). You may only attempt to request Foreign Aid with a given group once per Kingdom turn regardless of the number of leaders pursuing activities.<br/>Using Request Foreign Aid too often may result in worsening diplomacy relations with multiple groups or result in other special negative effects at GM\'s discretion.',
         requirement: 'You have diplomatic relations with the group you are requesting aid from.',
         skills: simpleRank(['statecraft'], 1),
         criticalSuccess: {
-            msg: `Your ally’s aid grants a +4 circumstance bonus to any one Kingdom skill check attempted during the remainder of this Kingdom turn. You can choose to apply this bonus to any Kingdom skill check after the die is rolled, but must do so before the result is known. In addition, ${gainRolledRD(2)}; this RP does not accrue into XP at the end of the turn if you don’t spend it.`,
+            msg: `Your ally’s aid grants a +4 circumstance bonus to any one Kingdom skill check attempted during the remainder of this Kingdom turn and ${gainRolledRD(1)}, or ${gainRolledRD(3)}; this RP does not accrue into XP at the end of the turn if you don’t spend it.`,
             modifiers: () => [{
                 turns: 1,
                 consumeId: '',
@@ -1940,7 +1940,7 @@ The skill used to Repair Reputation depends on which Ruin total you wish to redu
             }],
         },
         success: {
-            msg: `Your ally’s aid grants you either a +2 circumstance bonus to any one Kingdom skill check attempted during the remainder of this Kingdom turn or ${gainRolledRD(1)}. This RP does not accrue into XP at the end of the turn if you don’t spend it. You can choose to apply the bonus to any Kingdom skill check after the die is rolled, but must do so before the result is known.`,
+            msg: `Your ally’s aid grants you either a +2 circumstance bonus to any one Kingdom skill check attempted during the remainder of this Kingdom turn or ${gainRolledRD(1)}. This RP does not accrue into XP at the end of the turn if you don’t spend it.`,
             modifiers: () => [{
                 turns: 1,
                 consumeId: '',
@@ -2336,10 +2336,10 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
     'take-charge': {
         oncePerRound: false,
         fortune: false,
-        enabled: false,
+        enabled: true,
         phase: 'leadership',
         dc: 'control',
-        title: 'Take Charge (V&K)',
+        title: 'Take Charge (V&K, HB)',
         description: 'You spend some time getting directly involved in helping your kingdom. Choose a skill that your Kingdom is at least Trained in, then attempt a basic check. You can never use the same skill for this activity twice in the same Kingdom turn.',
         skills: simpleRank([...allSkills], 1),
         criticalSuccess: {
