@@ -258,6 +258,34 @@ Locks attempt made in this hex;
 Critical Failure The river remains non-navigable and the
 spent RP is lost`,
     },
+    {
+        name: 'Mage Corps',
+        level: 2,
+        category: "magic" as (Skill | 'general'),
+        prerequisites: 'Expert in Magic',
+        automationNotes: 'No automation for Armies',
+        text: `Some of your kingdom’s mages are studied in the
+application of war magics. You can add Mage Corps
+special units to your armies.
+
+The Mage Corps special unit allows to use 2-action War Magic activity that deals damage to up to 3 armies 
+or grants to their army temporary tactic that the army meets prerequicite for: Aerial Batalion, Aquatic Batalion, Darkvision or Flaming Shot.
+
+War Magic can be used once per encounter, twice if your kingdom is legendatry in Magic.`
+    },
+    {
+        name: 'Beast Mounts',
+        level: 1,
+        category: 'agriculture' as (Skill | 'general'),
+        prerequisites: 'Trained in Agriculture',
+        automationNotes: 'No automation for Armies',
+        text: `Your ranchers are exceptionally talented, capable of
+taming and raising wilder animals, such as bears, lions,
+or wolves. When tamed, these beasts can serve as mounts
+for the armies. You can add Bestial Mounts special units to your cavalry.
+
+Bestial Mounts special unit grants army either Varied Weapons tactic, or +2 status bonus to melee attacks rolls (chosen when special unit is recruited).`
+    },
 ]
 .sort((featA, featB) => featA.name.toLowerCase().localeCompare(featB.name.toLowerCase())) // Sort by name
 .sort((featA, featB) => featA.level - featB.level) // Then by level
