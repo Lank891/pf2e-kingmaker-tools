@@ -293,6 +293,26 @@ for the armies. You can add Bestial Mounts special units to your cavalry.
 
 Bestial Mounts special unit grants army either Varied Weapons tactic, or +2 status bonus to melee attacks rolls (chosen when special unit is recruited).`
     },
+    {
+        name: 'Beasts of Burden',
+        level: 1,
+        category: 'agriculture' as (Skill | 'general'),
+        prerequisites: 'Trained in Agriculture',
+        text: `Your people use domesticated animals like horses, oxen,
+and the like to make their work easier. With animals
+serving as transport for people and goods, powering mills
+and towing plows, the kingdom gains a +1 circumstance
+bonus to Agriculture, Engineering, and Wilderness
+checks; if your kingdom is a master in Agriculture, this
+bonus increases to +2.`,
+        modifiers: (kindgom : Kingdom) => [{
+            name: 'Beasts of Burden',
+            type: 'circumstance',
+            skills: ["agriculture", "engineering", "wilderness"],
+            value: kindgom.skillRanks.agriculture >= 3 ? 2 : 1,
+            enabled: true
+        } as Modifier],
+    }
 ]
 .sort((featA, featB) => featA.name.toLowerCase().localeCompare(featB.name.toLowerCase())) // Sort by name
 .sort((featA, featB) => featA.level - featB.level) // Then by level
