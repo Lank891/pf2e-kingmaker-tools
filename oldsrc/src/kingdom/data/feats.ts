@@ -257,11 +257,11 @@ do not need to pay the RP cost for the next Channel
 Locks attempt made in this hex;
 Critical Failure The river remains non-navigable and the
 spent RP is lost`,
-        modifiers: (kindgom : Kingdom) => [{
+        modifiers: (kingdom : Kingdom) => [{
             name: 'Boating bonus',
             type: 'circumstance',
             activities: ['channel-locks'],
-            value: kindgom.skillRanks.boating - 1,
+            value: kingdom.skillRanks.boating - 1,
             enabled: true
         } as Modifier],
     },
@@ -305,11 +305,30 @@ and towing plows, the kingdom gains a +1 circumstance
 bonus to Agriculture, Engineering, and Wilderness
 checks; if your kingdom is a master in Agriculture, this
 bonus increases to +2.`,
-        modifiers: (kindgom : Kingdom) => [{
+        modifiers: (kingdom : Kingdom) => [{
             name: 'Beasts of Burden',
             type: 'circumstance',
             skills: ["agriculture", "engineering", "wilderness"],
-            value: kindgom.skillRanks.agriculture >= 3 ? 2 : 1,
+            value: kingdom.skillRanks.agriculture >= 3 ? 2 : 1,
+            enabled: true
+        } as Modifier],
+    },
+    {
+        name: 'Dedicated Builders',
+        level: 1,
+        category: 'engineering' as (Skill | 'general'),
+        prerequisites: 'Trained in Engineering',
+        text: `Expansion and upgrades to structures and infrastructure
+are a constant feature of your people’s lives. Dedicated
+builders grant the kingdom a +2 circumstance bonus to
+all attempts to Build a Structure. If the kingdom is at least
+master in Engineering, this bonus increases to +3, or to
++4 if the kingdom is legendary in Engineering.`,
+        modifiers: (kingdom : Kingdom) => [{
+            name: 'Dedicated Builders',
+            type: 'circumstance',
+            activities: ['build-structure'],
+            value: kingdom.skillRanks.engineering == 4 ? 4 : (kingdom.skillRanks.engineering == 3 ? 3 : 2),
             enabled: true
         } as Modifier],
     }
