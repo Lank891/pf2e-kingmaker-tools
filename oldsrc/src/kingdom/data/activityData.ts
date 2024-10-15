@@ -2500,6 +2500,56 @@ You have a +1circumstance bonus to this check; if the kingdom is at least master
         criticalFailure: {
             msg: `The river remains non-navigable and the spent RP is lost.`
         }
+    },
+    'smuggler-network': {
+        oncePerRound: false,
+        fortune: false,
+        enabled: true,
+        requiredFeat: 'Smuggler Network',
+        phase: 'leadership',
+        dc: 'control',
+        title: 'Smuggler Network (Feat, HB)',
+        description: `<b>Requirements</b> You have at least one trade agreement.<br/>
+        Covert agents within your kingdom use established trade
+routes to mask the smuggling and sale of illicit goods.
+Choose a group with which you have a trade agreement
+and ${loseRP(1)}, then attempt an Intrigue control check.
+Regardless of the result, the target becomes immune to
+further Smuggler Network attempts until the start of the
+next kingdom turn.<br/>
+<b>Special</b> If targeting a group of higher level than your
+kingdom, reduce your degree of success by one step. If
+you attempt to target the same group on subsequent turns,
+the DC increases by 1 for each subsequent attempt; the
+DC returns to normal after a turn passes without using
+this activity on the target.`,
+        skills: simpleRank(['intrigue'], 1),
+
+        criticalSuccess: {
+            msg: `${createResourceButton({
+                value: '1',
+                turn: 'next',
+                type: 'resource-dice',
+                multiple: false,
+            })} and 1 Commodity of your choice next turn (choose now).`
+        },
+        success: {
+            msg: `${createResourceButton({
+                value: '1',
+                turn: 'next',
+                type: 'resource-dice',
+                multiple: false,
+            })} or 1 Commodity of your choice next turn (choose now)`
+        },
+        failure: {
+            msg: `Your smugglers weren't able to gain you any goods.`
+        },
+        criticalFailure: {
+            msg: `Your smugglers are caught and never
+return! ${gainUnrest('1d6')}, then attempt a @Check[flat|dc:11|showDc:all]; on a failure, the target ends its trade agreement
+with you, and ends its diplomatic relations as well on a
+critical failure.`
+        }
     }
 };
 

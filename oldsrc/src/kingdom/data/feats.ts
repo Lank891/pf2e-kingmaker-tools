@@ -105,6 +105,17 @@ your settlements’ defenses.`,
         On a critical success, you additionally gain a bonus Resource Die on your next kingdom turn. 
         On a critical failure gain 1 Unrest and take a –2 circumstance penalty to those activities for the success effect for the remainder of the turn.`,
     },
+    {
+        name: 'Smuggler Network',
+        level: 1,
+        category: 'intrigue' as (Skill | 'general'),
+        prerequisites: 'Trained in Intrigue',
+        text: `You try to use established trade rotues to mask the smuggling and sale of illicit goods. 
+        As a Leadership activity, choose a group you have a trade agreement with, spend 1 RP and attempt an Intrigue control check. You cannot choose the same group twice during the same turn.
+        On a success, at the start of your next kingdom turn, you gain either 1 bonus Resource Die or 1 commodity of any type. 
+        On a critical success, you gain both. On a critical failure, you gain 1d6 Unrest and attempt DC 11 flat check - on a failure the trade agreement ends, on a critical failure diplomatic relations ends as well.
+        Targeting the same group in subsequent turns increases DC by 1 for each turn, targeting group of a higher level reduces your degree of success by one step.`
+    },
     /*{
         automationNotes: 'You need to manually increase the ruin thresholds',
         name: 'Muddle Through',
