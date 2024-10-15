@@ -1,10 +1,11 @@
 import {capitalize} from '../../utils';
-import {allSkills} from './skills';
+import {allSkills, Skill} from './skills';
 import {Modifier} from '../modifiers';
 
 export interface KingdomFeat {
     name: string;
     level: number;
+    category: Skill | 'general'
     text: string;
     prerequisites?: string;
     automationNotes?: string;
@@ -26,6 +27,7 @@ export const allFeats: KingdomFeat[] = [
     {
         name: '-',
         level: 0,
+        category: "general" as (Skill | 'general'),
         text: '',
     },
     /*{
@@ -94,6 +96,7 @@ your settlements’ defenses.`,
     {
         name: 'Insider Trading',
         level: 1,
+        category: "industry" as (Skill | 'general'),
         prerequisites: 'Trained in Industry',
         text: `You facilitate the collaboration of business leaders behind the scenes to arbitrarily manipulate supply and demand for certain goods within your kingdom and surrounding lands. 
         As a Leadership activity, attempt an Industry control check. On a success, you gain +1 circumstance bonus to Establish Work Site, Establish Trade Agreement, and Trade Commodities for the remainder of the kingdom turn.
@@ -151,6 +154,7 @@ far off track. Once per Kingdom turn when you roll a critical failure on a Kingd
         automationNotes: 'You need to manually increase the skill proficiency',
         name: 'Skill Training',
         level: 1,
+        category: "general" as (Skill | 'general'),
         text: `Your kingdom receives the trained proficiency rank in a Kingdom skill of your choice. You can select this feat
 multiple times, choosing a new skill each time. If taken at 6th level or higher, you may choose trained skill instead and your kingdom becomes
 expert in it. It taken at 12th level or higher - expert may become master instead.`,
@@ -159,6 +163,7 @@ expert in it. It taken at 12th level or higher - expert may become master instea
         automationNotes: 'Decreasing Unrest is not automated',
         name: 'Endure Anarchy',
         level: 3,
+        category: "general" as (Skill | 'general'),
         prerequisites: 'Loyalty 14',
         text: 'Your kingdom holds together even in the midst of extreme peril. If your kingdom’s Unrest is 6 or higher and you use a Quell Unrest activity, decrease the Unrest by an additional 1. You do not fall into anarchy unless your kingdom’s Unrest reaches 24',
     },
@@ -172,6 +177,7 @@ times of upheaval. Your kingdom gains a +2 circumstance bonus to all Culture-bas
     ...generateForAllSkills({
         name: 'Kingdom Assurance',
         level: 1,
+        category: "general" as (Skill | 'general'),
         text: `Even when things go poorly in other areas, you can count on consistency in carrying out kingdom activities
 with a chosen skill. Choose one Kingdom skill in which your kingdom is trained. Once per Kingdom turn, when you would attempt a skill check for that skill, you can forgo rolling and instead take a result equal to 10 + your proficiency bonus; do not apply any other bonuses, penalties, or modifiers to this result. Special You can select this feat multiple times. Each time, choose a different skill and gain the benefits of this feat for that skill.`,
     }),
@@ -221,6 +227,7 @@ a Kingdom turn in which you are forced to spend RP as the result of a failed ski
         automationNotes: 'First time you get luxuries is not automated',
         name: 'Quality of Life',
         level: 7,
+        category: "general" as (Skill | 'general'),
         text: 'Your kingdom’s robust economy makes the creature comforts of civilization more readily available to all, and even finer luxuries are more easily had. The first time you gain Luxury Commodities in a Kingdom turn, increase the total gained by 1. All of your settlements are treated as 1 level higher than their actual level for the purposes of determining what sorts of magic items might be offered for sale at their markets and shops.',
     },
     /*{
@@ -232,6 +239,7 @@ a Kingdom turn in which you are forced to spend RP as the result of a failed ski
     {
         name: 'Channel Locks',
         level: 2,
+        category: "boating" as (Skill | 'general'),
         automationNotes: 'Circumstance bonus must be added manually',
         prerequisites: 'Expert in Boating, Trained in Engineering',
         text: `Your people are skilled in modifying or coping with
@@ -250,7 +258,40 @@ Locks attempt made in this hex;
 Critical Failure The river remains non-navigable and the
 spent RP is lost`,
     },
-];
+]
+.sort((featA, featB) => featA.name.toLowerCase().localeCompare(featB.name.toLowerCase())) // Sort by name
+.sort((featA, featB) => featA.level - featB.level) // Then by level
+.sort((featA, featB) => {   // Then move it such that we have all normal feats, then skill trainings, then assurance
+    const a = featA.name.toLowerCase();
+    const b = featB.name.toLowerCase();
+
+    const aIsSkillTraining = a.startsWith('skill training');
+    const aIsKingdomAssurance = a.startsWith('kingdom assurance');
+    const aIsNormal = !aIsSkillTraining && !aIsKingdomAssurance;
+
+    const bIsSkillTraining = b.startsWith('skill training');
+    const bIsKingdomAssurance = b.startsWith('kingdom assurance');
+    const bIsNormal = !bIsSkillTraining && !bIsKingdomAssurance;
+
+    if(aIsKingdomAssurance && bIsKingdomAssurance) // 2x assurrance = we don't touch
+        return 0;
+    if(aIsKingdomAssurance) // a is assurance = a is after b
+        return 1;
+    if(bIsKingdomAssurance) // b is assurance = b is after a
+        return -1;
+
+    // At this point no assurance
+
+    if(aIsSkillTraining && bIsSkillTraining) // 2x skill training = we don't touch
+        return 0;
+    if(aIsSkillTraining) // a is skill training = a is after b
+        return 1;
+    if(bIsSkillTraining) // b is skill training = b is after a
+        return -1;
+
+    // At this point no assurance and no skill training = we don't touch
+    return 0;
+});
 
 export const allFeatsByName = Object.fromEntries((allFeats)
     .map((feat) => [feat.name, feat]));
