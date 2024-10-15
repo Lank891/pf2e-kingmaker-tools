@@ -269,7 +269,7 @@ export function calculateModifiers(modifiers: Modifier[]): ModifierTotals {
 /**
  * Add modifiers from feats or other rules
  */
-export function createActiveSettlementModifiers(
+export function createActiveOtherModifiers(
     kingdom: Kingdom,
     activeSettlement: Settlement | undefined,
     activeSettlementStructureResult: ActiveSettlementStructureResult | undefined,
@@ -278,7 +278,7 @@ export function createActiveSettlementModifiers(
     const levelData = getLevelData(kingdom.level);
     const feats = new Set([...kingdom.feats.map(f => f.id), ...kingdom.bonusFeats.map(f => f.id)]);
     const result: Modifier[] = Array.from(feats)
-        .flatMap(feat => allFeatsByName[feat]?.modifiers ?? []);
+        .flatMap(feat => allFeatsByName[feat]?.modifiers?.(kingdom) ?? []);
     kingdom.modifiers.forEach(modifier => result.push(modifier));
     const isSecondaryTerritory = activeSettlement?.secondaryTerritory;
     if (settlementsWithoutLandBorders > 0) {

@@ -64,7 +64,7 @@ import {CheckDialog} from './dialogs/check-dialog';
 import {Skill} from './data/skills';
 import {showHelpDialog} from './dialogs/show-help-dialog';
 import {showSettlement} from './dialogs/settlement';
-import {createActiveSettlementModifiers, getUntrainedProficiencyMode, Modifier, modifierToLabel} from './modifiers';
+import {createActiveOtherModifiers, getUntrainedProficiencyMode, Modifier, modifierToLabel} from './modifiers';
 import {addEffectDialog} from './dialogs/add-effect-dialog';
 import {getKingdom, saveKingdom} from './storage';
 import {gainFame, getCapacity, getConsumption} from './kingdom-utils';
@@ -247,7 +247,7 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
                 kingdomLevel: kingdomData.level,
                 untrainedProficiencyMode: getUntrainedProficiencyMode(this.game),
                 skillItemBonuses: activeSettlementStructureResult?.merged?.skillBonuses,
-                additionalModifiers: createActiveSettlementModifiers(
+                additionalModifiers: createActiveOtherModifiers(
                     kingdomData,
                     activeSettlement?.settlement,
                     activeSettlementStructureResult,

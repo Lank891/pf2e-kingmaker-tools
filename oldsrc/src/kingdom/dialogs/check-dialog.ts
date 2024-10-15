@@ -1,7 +1,7 @@
 import {KingdomFeat} from '../data/feats';
 import {
     calculateModifiers,
-    createActiveSettlementModifiers,
+    createActiveOtherModifiers,
     getUntrainedProficiencyMode,
     Modifier,
     ModifierTotal,
@@ -174,7 +174,7 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
         const activeSettlement = getSettlement(this.game, this.kingdom, this.kingdom.activeSettlement);
         const activities = getKingdomActivitiesById(this.kingdom.homebrewActivities);
         const applicableSkills = this.type === 'skill' ? [this.skill!] : this.getActivitySkills(this.kingdom.skillRanks, activities);
-        const additionalModifiers: Modifier[] = createActiveSettlementModifiers(
+        const additionalModifiers: Modifier[] = createActiveOtherModifiers(
             this.kingdom,
             activeSettlement?.settlement,
             activeSettlementStructureResult,

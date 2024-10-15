@@ -1,6 +1,7 @@
 import {capitalize} from '../../utils';
 import {allSkills, Skill} from './skills';
 import {Modifier} from '../modifiers';
+import { Kingdom } from './kingdom';
 
 export interface KingdomFeat {
     name: string;
@@ -9,7 +10,7 @@ export interface KingdomFeat {
     text: string;
     prerequisites?: string;
     automationNotes?: string;
-    modifiers?: Modifier[];
+    modifiers?: (kingdom: Kingdom) => Modifier[];
 }
 
 
@@ -240,7 +241,6 @@ a Kingdom turn in which you are forced to spend RP as the result of a failed ski
         name: 'Channel Locks',
         level: 2,
         category: "boating" as (Skill | 'general'),
-        automationNotes: 'Circumstance bonus must be added manually',
         prerequisites: 'Expert in Boating, Trained in Engineering',
         text: `Your people are skilled in modifying or coping with
 difficult terrain features, such as using channel locks for
@@ -257,6 +257,13 @@ do not need to pay the RP cost for the next Channel
 Locks attempt made in this hex;
 Critical Failure The river remains non-navigable and the
 spent RP is lost`,
+        modifiers: (kindgom : Kingdom) => [{
+            name: 'Boating bonus',
+            type: 'circumstance',
+            activities: ['channel-locks'],
+            value: kindgom.skillRanks.boating - 1,
+            enabled: true
+        } as Modifier],
     },
     {
         name: 'Mage Corps',
