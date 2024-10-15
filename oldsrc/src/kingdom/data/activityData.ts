@@ -41,6 +41,7 @@ export interface ActivityContent extends ActivityResults {
     fortune: boolean;
     oncePerRound: boolean;
     hint?: string;
+    requiredFeat?: string;
 }
 
 export interface KingdomActivity extends ActivityContent {
@@ -2423,7 +2424,8 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
     'insider-trading': {
         oncePerRound: false,
         fortune: false,
-        enabled: false,
+        enabled: true,
+        requiredFeat: 'Insider Trading',
         phase: 'leadership',
         dc: 'control',
         title: 'Insider Trading (Feat, HB)',
@@ -2469,6 +2471,34 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
                 enabled: true,
                 value: -2,
             }]
+        }
+    },
+    'channel-locks': {
+        oncePerRound: false,
+        fortune: false,
+        enabled: true,
+        requiredFeat: 'Channel Locks',
+        phase: 'region',
+        dc: 'control',
+        title: 'Channel Locks (Feat, HB)',
+        description: `Your people are skilled in modifying or coping with difficult terrain features, such as using channel locks for steep elevation changes or rocky rapids. 
+<br/>    
+Choose a nonnavigable river within your kingdom, then ${loseRP(2)} and attempt an Engineering control check. 
+<br/>
+You have a +1circumstance bonus to this check; if the kingdom is at least master in Boating, this bonus increases to +2, or to +3 if it is legendary in Boating.`,
+        skills: simpleRank(['engineering'], 1),
+
+        criticalSuccess: {
+            msg: `The target river becomes navigable, and your efficiency allows you to regain some resources. ${gainRP(1)}`
+        },
+        success: {
+            msg: `The target river becomes navigable.`
+        },
+        failure: {
+            msg: `The river remains non-navigable; however, your next attempt to Channel Locks made in this hex does not cost any RP.`
+        },
+        criticalFailure: {
+            msg: `The river remains non-navigable and the spent RP is lost.`
         }
     }
 };

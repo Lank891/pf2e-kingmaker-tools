@@ -229,6 +229,27 @@ a Kingdom turn in which you are forced to spend RP as the result of a failed ski
         level: 11,
         text: 'Your kingdom’s reputation has spread far and wide, bringing in visitors to behold the spectacle of your greatness and pay their respects. Whenever you achieve a critical success on any Kingdom skill check during the Activity phase of a Kingdom turn, gain 1 bonus Resource Die at the start of your next Kingdom turn.',
     },*/
+    {
+        name: 'Channel Locks',
+        level: 2,
+        automationNotes: 'Circumstance bonus must be added manually',
+        prerequisites: 'Expert in Boating, Trained in Engineering',
+        text: `Your people are skilled in modifying or coping with
+difficult terrain features, such as using channel locks for
+steep elevation changes or rocky rapids. Choose a nonnavigable river within your kingdom, then spend 2 RP
+and attempt an Engineering control check. You have a +1
+circumstance bonus to this check; if the kingdom is at
+least master in Boating, this bonus increases to +2, or to
++3 if it is legendary in Boating;
+
+Critical Success As success, and you regain 1 RP;
+Success The target river becomes navigable;
+Failure The river remains non-navigable; however, you
+do not need to pay the RP cost for the next Channel
+Locks attempt made in this hex;
+Critical Failure The river remains non-navigable and the
+spent RP is lost`,
+    },
 ];
 
 export const allFeatsByName = Object.fromEntries((allFeats)

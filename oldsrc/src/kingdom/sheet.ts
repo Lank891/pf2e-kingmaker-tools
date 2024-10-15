@@ -157,20 +157,19 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
         const unlockedActivities = new Set<string>([
             ...unlockedSettlementActivities,
         ]);
-
-        let blacklistedActivities = kingdomData.activityBlacklist
-            .map(activity => {
-                return {[activity]: true};
-            });
-        if( !hasFeat(kingdomData, 'Insider Trading') ) {
-            blacklistedActivities.push( {'insider-trading': true} );
-        }
-
-        console.log(blacklistedActivities)
-
-        const hideActivities = blacklistedActivities.reduce((a, b) => Object.assign(a, b), {});
-        console.log(hideActivities)
             
+        
+        const currentSceneId = getCurrentScene(this.game)?.id;
+        const canAddSettlement = kingdomData.settlements.find(settlement => settlement.sceneId === currentSceneId) === undefined;
+        const canAddRealm = isNonNullable(currentSceneId) && currentSceneId !== kingdomData.realmSceneId;
+        const structureStackMode = getStructureStackMode(this.game);
+        const automateResources = automateResourceMode !== 'manual';
+        const showAddRealmButton = isGM && automateResourceMode === 'tileBased';
+        const showRealmData = automateResourceMode === 'kingmaker'
+            || automateResourceMode === 'manual'
+            || (isNonNullable(kingdomData.realmSceneId) && this.game.scenes?.find(s => s.id === kingdomData.realmSceneId) !== undefined);
+        
+
         const ignoreSkillRequirements = getBooleanSetting(this.game, 'kingdomIgnoreSkillRequirements');
         const activities = getKingdomActivitiesById(kingdomData.homebrewActivities);
         const enabledActivities = getPerformableActivities(
@@ -181,15 +180,18 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
             activities,
         );
         const groupedActivities = groupKingdomActivities(activities);
-        const currentSceneId = getCurrentScene(this.game)?.id;
-        const canAddSettlement = kingdomData.settlements.find(settlement => settlement.sceneId === currentSceneId) === undefined;
-        const canAddRealm = isNonNullable(currentSceneId) && currentSceneId !== kingdomData.realmSceneId;
-        const structureStackMode = getStructureStackMode(this.game);
-        const automateResources = automateResourceMode !== 'manual';
-        const showAddRealmButton = isGM && automateResourceMode === 'tileBased';
-        const showRealmData = automateResourceMode === 'kingmaker'
-            || automateResourceMode === 'manual'
-            || (isNonNullable(kingdomData.realmSceneId) && this.game.scenes?.find(s => s.id === kingdomData.realmSceneId) !== undefined);
+        let blacklistedActivities = kingdomData.activityBlacklist
+            .map(activity => {
+                return {[activity]: true};
+            });
+        Object.keys(activities).forEach((activityId) => {
+            const activity = activities[activityId];
+            if(activity.requiredFeat && !hasFeat(kingdomData, activity.requiredFeat)) {
+                blacklistedActivities.push( {[activityId]: true} );
+            }
+        })
+        const hideActivities = blacklistedActivities.reduce((a, b) => Object.assign(a, b), {});
+
         console.log(kingdomData);
         return {
             notes: {
