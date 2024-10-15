@@ -17,6 +17,7 @@ This module ships all OGL licensed rules to run the Kingdom, Camping and Weather
 - Kingdom feats each level instead of once per 2 levels, slot for 1st-level feat.
 - Unified Creative and Supernatural solution to have the same downsides. Both are decided before rolling the check and better result is used. Creative solution rolls the same skill but second roll has +2 circumstance bonus. Supernatural solution rolls Magic, but does not add item bonuses unless the original activity could be rolled with Magic.
 - Some feats are different than in original rules and there are more of them, including some activities related to those feats. Only relevant in my campaign will be done.
+- Changed some kingdom activities to better match homebrew I'm using.
 
 ## Licensing
 

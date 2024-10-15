@@ -522,13 +522,15 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
         title: 'Deploy Army',
         description: `The army moves through your kingdom or beyond. Since this travel occurs over the course of the entire month that preceded the Kingdom turn, the ground an army covers when it deploys can be quite extensive. You can Deploy an Army with an Exploration, Boating, or Magic check.
 
-When you use an Exploration check, choose a location within 20 hexes of the army’s current hex. If the army’s starting point and ending point are connected by a road, increase the result one degree of success. Count roadless hexes that contain swamps or mountains, or each hex where you must cross a river or lake without the aid of a bridge, as two hexes. You can issue orders to force march. Doing so grants a +4 circumstance bonus on the check, but causes the army to increase its weary condition by 1 (or by 2, if you fail the check).
+When you use an Exploration check, choose a location within 20 hexes of the army’s current hex. You can issue orders to force march. Doing so grants a +4 circumstance bonus on the check, but causes the army to increase its weary condition by 2.
 
-When you use a Boating check, the army’s starting point and ending point must be connected by a body of water; choose any location within 20 hexes along this route.
+When you use a Boating check, the army’s starting point and ending point must be connected by a navigable body of water; choose any location within 20 hexes along this route.
 
-You must be at least master in Magic to attempt a Magic check. When you do so, choose any location within 30 hexes of the army’s current hex, then roll your check. If the army’s deployment causes it to cross your kingdom’s border, the DC increases by 5. If the army’s deployment causes it to cross an enemy kingdom’s border, the DC instead increases by 10.`,
+You must be at least master in Magic to attempt a Magic check. When you do so, choose any location within 20 hexes of the army’s current hex, then roll your check. 
+
+If the army’s deployment causes it to cross your kingdom’s border, the DC increases by 5. If the army’s deployment causes it to cross an enemy kingdom’s border, the DC instead increases by 10.`,
         skills: {
-            warfare: 0,
+            exploration: 0,
             boating: 0,
             magic: 3,
         },
@@ -608,14 +610,15 @@ You must be at least master in Magic to attempt a Magic check. When you do so, c
         phase: 'leadership',
         dc: 'custom',
         title: 'Establish Trade Agreement',
-        description: `You send a band of merchants out to establish a trade agreement between your kingdom and a group with whom you’ve established diplomatic relations. If a navigable river connects your kingdom with the other group’s territory, you can attempt a Boating check to Establish the Trade Agreement. If your kingdom’s proficiency rank in Magic is Master or higher, you can attempt a Magic check. Otherwise, attempt a Trade check.
+        description: `You send a band of merchants out to establish a trade agreement between your kingdom and a group with whom you’ve established diplomatic relations. If a navigable river connects your kingdom with the other group’s territory, you can attempt a Boating check to Establish the Trade Agreement. Otherwise, attempt a Trade check.
 
-The check’s DC is either the group’s Negotiation DC (see sidebar) or your kingdom’s Control DC, whichever is higher.`,
+The check’s DC is either the group’s Negotiation DC (see sidebar) or your kingdom’s Control DC, whichever is higher.
+
+If you are using boating and a navigable river connects not only your kingdom but a settlement of your kingdom with the other group's teritory, you gain +3 circumstance bonus to the roll. If you are using trade and a road connects your settlment with the other group's teritory, you gain the same bonus.`,
         requirement: 'You have diplomatic relations with the group you wish to establish an agreement with.',
         skills: {
             boating: 0,
-            trade: 0,
-            magic: 3,
+            trade: 0
         },
         criticalSuccess: {
             msg: `You successfully establish a trade agreement with your target, and your merchants return with gifts! ${gainRolledRD(2)}`,
@@ -1216,7 +1219,7 @@ The Cooperative Leadership Kingdom feat (page 531) increases the efficiency of t
             msg: 'You gain no advantage in the battle.',
         },
         criticalFailure: {
-            msg: 'Not only do you fail to gain advantage, but the enemy forces have anticipated the attack. Enemy armies in this hex at the time of the Offensive',
+            msg: 'Not only do you fail to gain advantage, but the enemy forces have anticipated the attack. Your armies take -2 circumstance penalty on their initiative checks,',
         },
     },
     'outfit-army': {
@@ -1226,12 +1229,14 @@ The Cooperative Leadership Kingdom feat (page 531) increases the efficiency of t
         phase: 'army',
         dc: 'control',
         title: 'Outfit Army',
-        description: `You provide your army with better gear. Choose what sort of gear you wish to provide your army with from the list beginning on page 67. The level of the gear chosen must be equal to or less than the army’s level. If you’re crafting or purchasing gear, the level of the gear chosen must be equal to or less than your kingdom level. If you’re distributing resources gained from battle, the level of the gear chosen must be equal to or less than the highest level of an enemy army defeated in that battle. 
+        description: `You provide your army with better gear. Choose what sort of gear you wish to provide your army with from the list beginning on page 67. The level of the gear chosen must be equal to or less than the army’s level. If you’re purchasing gear, the level of the gear chosen must be equal to or less than level of items that can be bought in the city thr army is stationing in. If you are crafting gear, the level of the gear chosen must be equal to or less than level of the city the army is stationing in. If you’re distributing resources gained from battle, GM decides what is available. 
 
 If you’re purchasing the gear, this activity requires a basic Trade check and costs the standard amount of RP for the gear; you cannot purchase magic gear unless your kingdom is at least expert rank in Magic. 
 
+If you’re crafting gear, this activity require a basic Engineering check and costs the standard amount of RP for the gear, reduced by 25% on a critical success; you cannot craft magic gear unless your kingdom is at least expert rank in Magic.
+
 If you’re distributing gear gained from battle, this activity requires a basic Warfare check and does not cost RP.`,
-        skills: simpleRank(['trade', 'warfare']),
+        skills: simpleRank(['engineering', 'trade', 'warfare']),
         criticalSuccess: {
             msg: 'The gear proved particularly easy to outfit, and the army becomes efficient.',
         },
@@ -1242,7 +1247,7 @@ If you’re distributing gear gained from battle, this activity requires a basic
             msg: 'The gear proves to be unusable and the attempt to outfit the army fails. If you spent RP on the check, it is refunded.',
         },
         criticalFailure: {
-            msg: 'The gear proves to be unusable and the attempt to outfit the army fails.',
+            msg: 'The gear proves to be unusable and the attempt to outfit the army fails. If the gear was distributed from the battle, your army gains Weary condition or increases its value by 1.',
         },
     },
     'pledge-of-fealty': {
@@ -2251,10 +2256,10 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
         description: 'You train an army in the use of a tactic. Choose one of the tactics from those listed starting on page 68, then attempt a Scholarship or Warfare check against the tactic’s Training DC. If your army has already learned its maximum number of tactics, the newly learned tactic replaces a previously learned tactic of your choice. ',
         skills: simpleRank(['scholarship', 'warfare']),
         criticalSuccess: {
-            msg: 'The army learns the tactic and then becomes efficient.',
+            msg: 'The army learns the tactic and then becomes efficient. If the army is below the level of your kingdom, its level is increased by 1.',
         },
         success: {
-            msg: 'The army learns the tactic.',
+            msg: 'The army learns the tactic. If the army is below the level of your kingdom, its level is increased by 1.',
         },
         failure: {
             msg: 'The army fails to learn the tactic.',
