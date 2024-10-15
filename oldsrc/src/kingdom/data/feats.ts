@@ -28,7 +28,7 @@ export const allFeats: KingdomFeat[] = [
         level: 0,
         text: '',
     },
-    {
+    /*{
         automationNotes: 'Vacancy role penalty removal is not automated',
         name: 'Civil Service',
         level: 1,
@@ -41,16 +41,16 @@ select this feat, choose one leadership role; that role is now supported by your
             type: 'circumstance',
             activities: ['new-leadership'],
         }],
-    },
-    {
+    },*/
+    /*{
         name: 'Cooperative Leadership',
         level: 1,
         text: `Your leaders are skilled at working with one another. When a leader uses the Focused Attention kingdom
 activity to aid another leader’s kingdom check, the circumstance bonus granted by a success is increased to +3.
 At 11th level, your leaders’ collaborative style leads them to ever greater successes when they work together. When a leader uses the Focused Attention kingdom activity to aid another leader’s check, treat a critical failure on the aided check as a failure. If your kingdom has at least the expert rank in the skill used in the aided check, treat a failure on the check as a success. (This
 does not allow you to ever improve a critical failure to a success.)`,
-    },
-    {
+    },*/
+    /*{
         name: 'Crush Dissent',
         level: 1,
         prerequisites: 'Trained in Warfare',
@@ -63,8 +63,8 @@ turn when you gain Unrest, you can attempt to crush the dissent by attempting a 
             type: 'circumstance',
             phases: ['event'],
         }],
-    },
-    {
+    },*/
+    /*{
         name: 'Fortified Fiefs',
         level: 1,
         prerequisites: 'Trained in Defense',
@@ -90,7 +90,7 @@ your settlements’ defenses.`,
             enabled: false,
             value: 1,
         }],
-    },
+    },*/
     {
         name: 'Insider Trading',
         level: 1,
@@ -101,14 +101,14 @@ your settlements’ defenses.`,
         On a critical success, you additionally gain a bonus Resource Die on your next kingdom turn. 
         On a critical failure gain 1 Unrest and take a –2 circumstance penalty to those activities for the success effect for the remainder of the turn.`,
     },
-    {
+    /*{
         automationNotes: 'You need to manually increase the ruin thresholds',
         name: 'Muddle Through',
         level: 1,
         prerequisites: 'Trained in Wilderness',
         text: 'Your people are independent-minded and take care of the small things around the kingdom, not letting them pile up into bigger problems. Increase two of your Ruin thresholds by 1 and one of them by 2.',
-    },
-    {
+    },*/
+    /*{
         automationNotes: 'Hire Adventurers RP reduction is not implemented',
         name: 'Practical Magic',
         level: 1,
@@ -122,8 +122,8 @@ life easier. You gain a +1 circumstance bonus to Magic checks, and you can use M
             enabled: true,
             value: 1,
         }],
-    },
-    {
+    },*/
+    /*{
         automationNotes: 'Hire Adventurers RP reduction is not implemented',
         name: 'Practical Magic (V&K)',
         level: 1,
@@ -137,52 +137,53 @@ life easier. You gain a +1 circumstance bonus to Magic checks, and if you have E
             enabled: true,
             value: 1,
         }],
-    },
-    {
+    },*/
+    /*{
         automationNotes: 'Nothing automated',
         name: 'Pull Together',
         level: 1,
         prerequisites: 'Trained in Politics',
         text: `Your people are very reliable, and their swift decision‑making keeps most projects from getting too
 far off track. Once per Kingdom turn when you roll a critical failure on a Kingdom skill check, attempt a DC 11 flat check. If this succeeds, your citizens heed the call to put in extra work to mitigate the disaster; treat the Kingdom skill check result as failure instead. The DC of this flat check increases by 5 each time you subsequently use it, but it decreases by 1 (to a minimum of 11) for each Kingdom turn that passes when you do not use it.`,
-    },
+    },*/
     ...generateForAllSkills({
         // not automated: choose skill
         automationNotes: 'You need to manually increase the skill proficiency',
         name: 'Skill Training',
         level: 1,
         text: `Your kingdom receives the trained proficiency rank in a Kingdom skill of your choice. You can select this feat
-multiple times, choosing a new skill each time.`,
+multiple times, choosing a new skill each time. If taken at 6th level or higher, you may choose trained skill instead and your kingdom becomes
+expert in it. It taken at 12th level or higher - expert may become master instead.`,
     }),
     {
-        automationNotes: 'If your kingdom’s Unrest is 6 or higher and you use a kingdom activity that decreases Unrest, decrease the Unrest by an additional 1 is not automated.',
+        automationNotes: 'Decreasing Unrest is not automated',
         name: 'Endure Anarchy',
         level: 3,
         prerequisites: 'Loyalty 14',
-        text: 'Your kingdom holds together even in the midst of extreme peril. If your kingdom’s Unrest is 6 or higher and you use a kingdom activity that decreases Unrest, decrease the Unrest by an additional 1. You do not fall into anarchy unless your kingdom’s Unrest reaches 24',
+        text: 'Your kingdom holds together even in the midst of extreme peril. If your kingdom’s Unrest is 6 or higher and you use a Quell Unrest activity, decrease the Unrest by an additional 1. You do not fall into anarchy unless your kingdom’s Unrest reaches 24',
     },
-    {
+    /*{
         name: 'Inspiring Entertainment',
         level: 3,
         prerequisites: 'Culture 14',
         text: `Your kingdom’s artists and entertainers are talented and prolific, and there’s never a shortage of new plays, operas, novels, music, sculptures, paintings, or other forms of distraction to entertain the citizens, even during
 times of upheaval. Your kingdom gains a +2 circumstance bonus to all Culture-based skill checks whenever your kingdom has at least 1 Unrest.`,
-    },
+    },*/
     ...generateForAllSkills({
         name: 'Kingdom Assurance',
         level: 1,
         text: `Even when things go poorly in other areas, you can count on consistency in carrying out kingdom activities
 with a chosen skill. Choose one Kingdom skill in which your kingdom is trained. Once per Kingdom turn, when you would attempt a skill check for that skill, you can forgo rolling and instead take a result equal to 10 + your proficiency bonus; do not apply any other bonuses, penalties, or modifiers to this result. Special You can select this feat multiple times. Each time, choose a different skill and gain the benefits of this feat for that skill.`,
     }),
-    {
+    /*{
         automationNotes: 'Not automated',
         name: 'Liquidate Resources',
         level: 3,
         prerequisites: 'Economy 14',
         text: `Your kingdom’s economy can liquidate resources in an emergency when funding runs out. The first time during
 a Kingdom turn in which you are forced to spend RP as the result of a failed skill check or a dangerous event, and that expense reduces you to 0 RP, you may instead reduce your RP to 1 and treat the expense as if it were paid in full. At the start of your next Kingdom turn, roll 4 fewer Resource Dice than normal.`,
-    },
-    {
+    },*/
+    /*{
         name: 'Quick Recovery',
         level: 3,
         prerequisites: 'Stability 14',
@@ -194,8 +195,8 @@ a Kingdom turn in which you are forced to spend RP as the result of a failed ski
             phases: ['event'],
             value: 4,
         }],
-    },
-    {
+    },*/
+    /*{
         automationNotes: 'Re-rolling a failure or crit failure for 2 RP is not automated',
         name: 'Free and Fair',
         level: 7,
@@ -227,7 +228,7 @@ a Kingdom turn in which you are forced to spend RP as the result of a failed ski
         name: 'Fame and Fortune',
         level: 11,
         text: 'Your kingdom’s reputation has spread far and wide, bringing in visitors to behold the spectacle of your greatness and pay their respects. Whenever you achieve a critical success on any Kingdom skill check during the Activity phase of a Kingdom turn, gain 1 bonus Resource Die at the start of your next Kingdom turn.',
-    },
+    },*/
 ];
 
 export const allFeatsByName = Object.fromEntries((allFeats)
