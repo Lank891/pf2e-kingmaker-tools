@@ -1319,7 +1319,7 @@ You can attempt this skill check with Intrigue, Statecraft, or Warfare; however,
         },
     },
     'process-hidden-fees': {
-        oncePerRound: false,
+        oncePerRound: true,
         fortune: false,
         enabled: false,
         phase: 'leadership',
