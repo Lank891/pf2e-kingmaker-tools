@@ -192,7 +192,6 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
         })
         const hideActivities = blacklistedActivities.reduce((a, b) => Object.assign(a, b), {});
 
-        console.log(kingdomData);
         return {
             notes: {
                 gm: await TextEditor.enrichHTML(kingdomData.notes.gm),

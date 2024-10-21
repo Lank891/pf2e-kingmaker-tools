@@ -38,22 +38,25 @@
             <button type="button" class="show-help" data-help="collect-taxes"
                     {{#if (lookup hideActivities 'collect-taxes')}}hidden{{/if}}><i class="fa-solid fa-question"></i>
             </button>
-            <button type="button" id="km-reduce-unrest">Reduce Unrest</button>
+            <button type="button" id="km-reduce-unrest">or Reduce Unrest</button>
+            <button type="button" class="show-help" data-help="collect-taxes" title="DC11 Flat check to reduce unrest by 1" disabled><i class="fa-solid fa-question"></i>
+            </button>
         </div>
     </li>
     <li {{#if (lookup hideActivities 'improve-lifestyle')}}hidden{{/if}}>
-        <div class="activity-help">
-            <button type="button" class="kingdom-activity" data-activity="improve-lifestyle">Improve Lifestyle
-                (optional)
+        <div class="activity-choice activity-help" >
+            <button type="button" class="kingdom-activity" data-activity="improve-lifestyle" {{#if (lookup hideActivities 'improve-lifestyle')}}hidden{{/if}} >
+                Improve Lifestyle (optional)
             </button>
-            <button type="button" class="show-help" data-help="improve-lifestyle"><i class="fa-solid fa-question"></i>
+            <button type="button" class="show-help" data-help="improve-lifestyle" {{#if (lookup hideActivities 'improve-lifestyle')}}hidden{{/if}}>
+                <i class="fa-solid fa-question"></i>
             </button>
-        </div>
-    </li>
-    <li {{#if (lookup hideActivities 'tap-treasury')}}hidden{{/if}}>
-        <div class="activity-help">
-            <button type="button" class="kingdom-activity" data-activity="tap-treasury">Tap Treasury (optional)</button>
-            <button type="button" class="show-help" data-help="tap-treasury"><i class="fa-solid fa-question"></i>
+
+            <button type="button" class="kingdom-activity" data-activity="tap-treasury" {{#if (lookup hideActivities 'tap-treasury')}}hidden{{/if}} >
+                or Tap Treasury (optional)
+            </button>
+            <button type="button" class="show-help" data-help="tap-treasury" {{#if (lookup hideActivities 'tap-treasury')}}hidden{{/if}}>
+                <i class="fa-solid fa-question"></i>
             </button>
         </div>
     </li>
