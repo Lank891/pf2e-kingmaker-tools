@@ -244,12 +244,14 @@ private suspend fun beginRest(
         gunsToClean = camping.gunsToClean,
         increaseActorsKeepingWatch = camping.increaseWatchActorNumber,
     )
+
     val randomEncounterAt = findRandomEncounterAt(
         game = game,
         campingActor = campingActor,
         camping = camping,
         watchDurationSeconds = watchDurationSeconds,
     )
+
     if (randomEncounterAt != null) {
         watchers
             .filterIsInstance<PF2ECharacter>()
@@ -260,8 +262,9 @@ private suspend fun beginRest(
                 attribute = Perception,
                 dc = askDc("Enemy Stealth"),
             )
+            
         game.time.advance(randomEncounterAt).await()
-        camping.watchSecondsRemaining = randomEncounterAt
+        camping.watchSecondsRemaining = watchDurationSeconds - randomEncounterAt
         campingActor.setCamping(camping)
     } else {
         camping.watchSecondsRemaining = watchDurationSeconds
