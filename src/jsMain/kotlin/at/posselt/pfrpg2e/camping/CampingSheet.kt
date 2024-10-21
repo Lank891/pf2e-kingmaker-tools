@@ -414,6 +414,7 @@ class CampingSheet(
     private suspend fun consumeRations() {
         // the following lines should all be non-null if everything went right
         val camping = actor.getCamping()
+
         checkNotNull(camping) { "Could not find camping data on actor ${actor.uuid}" }
         val parsed = camping.findCookingChoices(
             charactersInCampByUuid = camping.getActorsInCamp()
@@ -422,10 +423,14 @@ class CampingSheet(
             recipesByName = camping.getAllRecipes()
                 .associateBy { it.name },
         )
+
+        val flatConsumption = FoodAmount(rations = camping.additionalRationConsumption)
+
         val rations = parsed.meals
             .filterIsInstance<MealChoice.Rations>()
             .map { it.cookingCost }
-            .sum()
+            .sum() + flatConsumption
+
         reduceFoodBy(
             actors = camping.getActorsCarryingFood(game),
             foodAmount = rations,
