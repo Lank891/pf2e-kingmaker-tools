@@ -95,7 +95,7 @@ const activityData: Record<string, ActivityContent> = {
         requirement: 'The hex in which you seek to build roads must be claimed by your kingdom.',
         skills: simpleRank(['engineering']),
         criticalSuccess: {
-            msg: 'You build roads into the target hex and, if possible, one adjacent claimed hex that doesn’t yet have roads and whose terrain features are at least as hospitable as those of the target hex',
+            msg: 'You build roads into the target hex and, if possible, one adjacent claimed hex that doesn’t yet have roads and whose terrain features are at least as hospitable as those of the target hex. If chosen hex has river, spend the amount of resources proper for given terrain type to do it, and it automatically gains a bridge.',
         },
         success: {
             msg: 'You build roads in the hex.',
@@ -403,26 +403,10 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
         description: 'You work with your kingdom’s scholars, thinkers, and practitioners of magical and mundane experimentation to come up with new ways to resolve issues when business as usual is just not working. Attempt a basic check.<br/><br/><b>Creative Solution:</b><p>You can decide to use Creative Solution before attemptin a Kingdom skil check. Attempt the same check second time, but with +2 circumstance bonus, and take whichever of the two results you prefer. This is a fortune effect. If you don’t use your Creative Solution by the end of this Kingdom turn, this benefit ends and you gain 10XP instead.</p>',
         skills: simpleRank(['scholarship']),
         criticalSuccess: {
-            msg: `You can call upon the solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('creative-solution')}.`,
-            modifiers: () => [{
-                turns: 1,
-                enabled: false,
-                value: 2,
-                name: 'Creative Solution: Critical Success',
-                type: 'circumstance',
-                consumeId: '',
-            }],
+            msg: `You can call upon the solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('creative-solution')}.`
         },
         success: {
-            msg: `You can call upon the solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('creative-solution')}. In addition, ${loseRolledRD(1)} to research the solution. This cost is paid now, whether or not you use your Creative Solution.`,
-            modifiers: () => [{
-                turns: 1,
-                enabled: false,
-                value: 2,
-                name: 'Creative Solution: Success',
-                type: 'circumstance',
-                consumeId: '',
-            }],
+            msg: `You can call upon the solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('creative-solution')}. In addition, ${loseRolledRD(1)} to research the solution. This cost is paid now, whether or not you use your Creative Solution.`
         },
         failure: {
             msg: `Your attempt at researching is a failure and you ${loseRolledRD(2)}. It provides no advantage.`,
@@ -975,10 +959,18 @@ The Cooperative Leadership Kingdom feat (page 531) increases the efficiency of t
         phase: 'leadership',
         dc: 'custom',
         title: 'Hire Adventurers',
-        description: `While the PCs can strike out themselves to deal with ongoing events, it’s often more efficient to Hire Adventurers. When you Hire Adventurers to help end an ongoing event, the DC is equal to your Control DC adjusted by the event’s level modifier. ${loseRolledRD(1)} each time you attempt this activity.`,
+        description: `While the PCs can strike out themselves to deal or help with ongoing events, it’s often more efficient to Hire Adventurers. When you Hire Adventurers to help end an ongoing event, the DC is equal to your Control DC adjusted by the event’s level modifier. ${loseRolledRD(1)} each time you attempt this activity.`,
         skills: simpleRank(['exploration']),
         criticalSuccess: {
-            msg: 'You end the continuous event.',
+            msg: 'You end the continuous event. For beneficial events, adventurers assured that the worst outcom is not possible. You gain +2 circumstance bonus to resolve the event during the next Event phase, and if you get critical failure, you get failure instead.',
+            modifiers: () => [{
+                turns: 2,
+                enabled: false,
+                phases: ['event'],
+                value: 2,
+                name: 'Hire Adventurers: Success',
+                type: 'circumstance',
+            }],
         },
         success: {
             msg: 'The continuous event doesn’t end, but you gain a +2 circumstance bonus to resolve the event during the next Event phase.',
@@ -992,10 +984,10 @@ The Cooperative Leadership Kingdom feat (page 531) increases the efficiency of t
             }],
         },
         failure: {
-            msg: 'You fail to end the continuous event. If you try to end the continuous event again, the cost in RP increases to 2 Resource Dice.',
+            msg: 'You fail to end the dangerous continuous event or exploit the benefitial. Next adventurers that will be hired will cost 2 Resource Dice instead of 1.',
         },
         criticalFailure: {
-            msg: 'You fail to end the continuous event. If you try to end the continuous event again, the cost in RP increases to 2 Resource Dice. In addition, word spreads quickly through the region—you can no longer attempt to end this continuous event by Hiring Adventurers.',
+            msg: 'You fail to end the continuous event.  Next adventurers that will be hired will cost 2 Resource Dice instead of 1. In addition, word spreads quickly through the region—you can no longer attempt to end this continuous event by Hiring Adventurers. For beneficial events, the event immediately ends as adventurers messed up.',
         },
     },
     'improve-lifestyle': {
@@ -1976,7 +1968,7 @@ The skill used to Repair Reputation depends on which Ruin total you wish to redu
         title: 'Rest and Relax',
         description: `Working non-stop can burn out even the most devoted and dedicated individual. As such, it’s important to take time for yourself, and thus set a good example for the nation.
 
-You take time to relax, and you extend the chance to unwind to your citizens as well. The Kingdom skill you use to determine the effectiveness of your time off depends on how you want to spend it: Use a basic Arts check to spend the time engaged in entertainment or the pursuit of a hobby. Use a basic Boating check to enjoy trips on the lakes and rivers of your kingdom. Use a basic Scholarship check to spend the time reading or studying a topic of personal interest beyond your daily duties. Use a basic Trade check to spend your time shopping or feasting. Use a basic Wilderness check to get away from the bustle and relax in the countryside. If your kingdom Rested and Relaxed the previous Kingdom turn, the DC increases by 4, as your kingdom’s production and output hasn’t had a chance to catch up to all those vacation days.`,
+You take time to relax, and you extend the chance to unwind to your citizens as well. The Kingdom skill you use to determine the effectiveness of your time off depends on how you want to spend it: Use a basic Arts check to spend the time engaged in entertainment or the pursuit of a hobby. Use a basic Boating check to enjoy trips on the lakes and rivers of your kingdom. Use a basic Scholarship check to spend the time reading or studying a topic of personal interest beyond your daily duties. Use a basic Trade check to spend your time shopping or feasting. Use a basic Wilderness check to get away from the bustle and relax in the countryside. If your kingdom Rested and Relaxed this or previous Kingdom turn, the DC increases by 4, as your kingdom’s production and output hasn’t had a chance to catch up to all those vacation days.`,
         skills: simpleRank(['arts', 'boating', 'scholarship', 'trade', 'wilderness']),
         criticalSuccess: {
             msg: 'The citizens enjoy the time off and are ready to get back to work. ' + loseUnrest(1) + ', and the next Leadership activity you take gains a +2 circumstance bonus.',
