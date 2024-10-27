@@ -388,12 +388,14 @@ export function evaluateStructures(
     settlementLevel: number,
     mode: StructureStackRule,
     activities: KingdomActivityById,
+    forceBaseConsumption: number | undefined
 ): StructureResult {
     const settlementData = getSettlementConfig(settlementLevel);
     const maxItemBonus = settlementData.maxItemBonus;
     const allowCapitalInvestment = structures.some(structure => structure.enableCapitalInvestment === true);
     const notes = Array.from(new Set(structures.flatMap(result => result.notes ?? [])));
     const consumptionReduction = calculateConsumptionReduction(structures);
+    const baseConsumption = forceBaseConsumption ?? settlementData.consumption
     const result: StructureResult = {
         config: settlementData,
         allowCapitalInvestment,
@@ -441,8 +443,8 @@ export function evaluateStructures(
         },
         increaseLeadershipActivities: structures.some(structure => structure.increaseLeadershipActivities === true),
         consumptionReduction,
-        consumption: Math.max(0, settlementData.consumption - consumptionReduction),
-        consumptionSurplus: Math.max(0, consumptionReduction - settlementData.consumption),
+        consumption: Math.max(0, baseConsumption - consumptionReduction),
+        consumptionSurplus: Math.max(0, consumptionReduction - baseConsumption),
         unlockActivities: [],
         residentialLots: structures
             .filter(structure => structure?.traits?.includes('residential'))

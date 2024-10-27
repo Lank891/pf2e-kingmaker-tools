@@ -278,8 +278,21 @@ function getSettlementStructureResult(
     kingdomLevel: number
 ): StructureResult {
     const structures = getSceneStructures(settlement.scene);
-    const level = getSettlementInfo(settlement, autoCalculateSettlementLevel, kingdomLevel).level;
-    return evaluateStructures(structures, level, mode, activities);
+    const {level, lots} = getSettlementInfo(settlement, autoCalculateSettlementLevel, kingdomLevel);
+    let forceBaseConsumption : number | undefined
+    if( settlement.settlement.type == 'capital' ) {
+        // Hardcoded higher consumption even though effective level is lower
+        if(lots > 1) {
+            forceBaseConsumption = 2;
+        }
+        if(lots > 4) {
+            forceBaseConsumption = 4;
+        }
+        if(lots > 9) {
+            forceBaseConsumption = 6;
+        }
+    }
+    return evaluateStructures(structures, level, mode, activities, forceBaseConsumption);
 }
 
 
