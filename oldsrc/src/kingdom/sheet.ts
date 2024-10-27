@@ -955,7 +955,7 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
     }
 
     private getResourceDiceNum(kingdom: Kingdom): number {
-        const featDice = hasFeat(kingdom, 'Insider Trading') ? 1 : 0;
+        const featDice = 0;
         const levelData = getLevelData(kingdom.level);
         return Math.max(0, levelData.resourceDice + kingdom.resourceDice.now + featDice);
     }
