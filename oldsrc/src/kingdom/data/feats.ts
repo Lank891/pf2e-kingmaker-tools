@@ -342,7 +342,20 @@ master in Engineering, this bonus increases to +3, or to
             value: kingdom.skillRanks.engineering == 4 ? 4 : (kingdom.skillRanks.engineering == 3 ? 3 : 2),
             enabled: true
         } as Modifier],
-    }
+    },
+    {
+        name: 'Strong Reputation',
+        level: 2,
+        category: 'statecraft' as (Skill | 'general'),
+        prerequisites: 'Expert in Statecraft',
+        automationNotes: `Negotiation DC must be adjusted manually each time`,
+        text: `Your reputation as a fair and amicable nation (whether or
+not true) makes others more willing to interact with you.
+Your kingdom reduces the Negotiation DCs of other
+groups by 2. If the kingdom is at least master in Statecraft,
+it instead reduces Negotiation DCs by 3, or by 4 if it is
+legendary in Statecraft.`
+    },
 ]
 .sort((featA, featB) => featA.name.toLowerCase().localeCompare(featB.name.toLowerCase())) // Sort by name
 .sort((featA, featB) => featA.level - featB.level) // Then by level
