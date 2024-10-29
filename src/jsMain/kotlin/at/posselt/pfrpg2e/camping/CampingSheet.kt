@@ -205,8 +205,6 @@ private fun calculateNightModes(time: LocalTime): NightModes {
 private const val windowWidth = 970
 
 
-@OptIn(ExperimentalJsExport::class)
-@JsExport
 @JsName("CampingSheet")
 class CampingSheet(
     private val game: Game,
@@ -964,11 +962,16 @@ class CampingSheet(
         val currentRegion = camping.findCurrentRegion()
         val regions = camping.regionSettings.regions
         val isGM = game.user.isGM
+        val uncookedMeals = parsedCookingChoices.results
+            .filter { it.degreeOfSuccess == null }
+            .map { it.recipe.name }
+            .toSet()
         CampingSheetContext(
             canRollEncounter = currentRegion?.rollTableUuid != null,
             availableFood = availableFood,
             totalFoodCost = calculateTotalFoodCost(
-                actorMeals = parsedCookingChoices.meals,
+                actorMeals = parsedCookingChoices.meals
+                    .filter<MealChoice> { it.name in uncookedMeals || it.name == "rationsOrSubsistence" },
                 foodItems = foodItems,
                 availableFood = totalFood,
                 flatConsumption = FoodAmount(rations = camping.additionalRationConsumption)

@@ -1,3 +1,8 @@
-2024/10/27-23:51:51.355 960c Recovering log #1480
-2024/10/27-23:51:51.363 960c Delete type=0 #1480
-2024/10/27-23:51:51.363 960c Delete type=3 #1479
+2024/10/29-14:04:35.298 3104 Log #1437: 0 ops saved to Table #1485 OK
+2024/10/29-14:04:35.299 3104 Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-macros/001437.log: OK
+2024/10/29-14:04:35.299 3104 Log #1484: 0 ops saved to Table #1486 OK
+2024/10/29-14:04:35.300 3104 Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-macros/001484.log: OK
+2024/10/29-14:04:35.300 3104 Table #1431: 22 entries OK
+2024/10/29-14:04:35.304 3104 Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-macros/MANIFEST-001436: OK
+2024/10/29-14:04:35.304 3104 Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-macros/MANIFEST-001483: OK
+2024/10/29-14:04:35.309 3104 **** Repaired leveldb C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-macros; recovered 1 files; 5404 bytes. Some data may have been lost. ****

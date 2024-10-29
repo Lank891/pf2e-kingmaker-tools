@@ -63,12 +63,10 @@ external interface CampingSettings {
     val worldSceneId: String?
 }
 
-@OptIn(ExperimentalJsExport::class)
 @JsExport
 class CampingSettingsDataModel(value: AnyObject) : DataModel(value) {
     companion object {
         @Suppress("unused")
-        @OptIn(ExperimentalJsStatic::class)
         @JsStatic
         fun defineSchema() = buildSchema {
             int("gunsToClean")
@@ -118,7 +116,6 @@ private val companionActivities = setOf(
     "Wilderness Survival",
 )
 
-@OptIn(ExperimentalJsExport::class)
 @JsExport
 class CampingSettingsApplication(
     private val game: Game,
@@ -336,7 +333,7 @@ class CampingSettingsApplication(
             .filter { it.component2() == true }
             .map { it.component1() }
             .toTypedArray()
-        val activities = (value["alwaysPerformActivities"] ?: jso()) as Record<String, Boolean>
+        val activities = (value["alwaysPerformActivities"] ?: jso()).unsafeCast<Record<String, Boolean>>()
         value["alwaysPerformActivities"] = flattenObject(activities).asSequence()
             .filter { it.component2() == true }
             .map { it.component1() }
