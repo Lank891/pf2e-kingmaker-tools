@@ -19,6 +19,7 @@ This module ships all OGL licensed rules to run the Kingdom, Camping and Weather
 - Some feats are different than in original rules and there are more of them, including some activities related to those feats. Only relevant in my campaign will be done.
 - Changed some kingdom activities to better match homebrew I'm using.
 - Increase Control DC for level 1-4 to match dc by level table.
+- Buildings that give bonuses to earn income increase the effective settlement level for the purposes of calculating earn income task level.
 
 ## Licensing
 
