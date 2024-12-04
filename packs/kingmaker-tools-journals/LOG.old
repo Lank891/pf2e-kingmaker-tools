@@ -1,9 +1,1 @@
-2024/10/29-14:04:35.180 3104 Log #1464: 0 ops saved to Table #1511 OK
-2024/10/29-14:04:35.182 3104 Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-journals/001464.log: OK
-2024/10/29-14:04:35.183 3104 Log #1510: 0 ops saved to Table #1512 OK
-2024/10/29-14:04:35.184 3104 Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-journals/001510.log: OK
-2024/10/29-14:04:35.185 3104 Table #1457: 118 entries OK
-2024/10/29-14:04:35.187 3104 Table #1460: 118 entries OK
-2024/10/29-14:04:35.190 3104 Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-journals/MANIFEST-001463: OK
-2024/10/29-14:04:35.191 3104 Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-journals/MANIFEST-001509: OK
-2024/10/29-14:04:35.197 3104 **** Repaired leveldb C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-journals; recovered 2 files; 308360 bytes. Some data may have been lost. ****
+2024/12/04-22:40:46.026 4e08 Delete type=3 #1

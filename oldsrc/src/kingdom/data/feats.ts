@@ -356,6 +356,31 @@ groups by 2. If the kingdom is at least master in Statecraft,
 it instead reduces Negotiation DCs by 3, or by 4 if it is
 legendary in Statecraft.`
     },
+    {
+        name: 'Fortified Fiefs',
+        level: 1,
+        category: 'defense' as (Skill | 'general'),
+        prerequisites: 'Trained in Defense',
+        automationNotes: `Cost reduction is not automated; DC reduction is simulated by an Untyped Bonus`,
+        text: `Your vassals take their duty to protect those under their stewardship seriously, 
+and your engineers emphasize the value of a strong defense when building settlements and fortifications, 
+reducing their cost by combining them with the rest of the settlement seamlessly. Your reduce DCs by 
+2 and reduce any RP cost by one-quarter (to a minimum of 1) for the Fortify Hex activity 
+and when you use Build a Structure for a Barracks, Castle, Garrison, Keep, Wall, or Watchtower.`,
+        modifiers: (kingdom : Kingdom) => [{
+            name: 'Build or repair a Barracks, Castle, Garrison, Keep, Wall, or Watchtower',
+            type: 'untyped',
+            activities: ['build-structure'],
+            enabled: false,
+            value: 2,
+        } as Modifier, {
+            name: 'Fortified Fiefs',
+            type: 'untyped',
+            activities: ['fortify-hex'],
+            enabled: true,
+            value: 2
+        } as Modifier ],
+    },
 ]
 .sort((featA, featB) => featA.name.toLowerCase().localeCompare(featB.name.toLowerCase())) // Sort by name
 .sort((featA, featB) => featA.level - featB.level) // Then by level

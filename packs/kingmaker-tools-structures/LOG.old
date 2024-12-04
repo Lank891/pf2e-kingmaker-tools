@@ -1,10 +1,1 @@
-2024/10/29-14:04:34.990 8fa8 Log #1411: 0 ops saved to Table #1461 OK
-2024/10/29-14:04:34.991 8fa8 Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-structures/001411.log: OK
-2024/10/29-14:04:34.991 8fa8 Log #1460: 0 ops saved to Table #1462 OK
-2024/10/29-14:04:34.991 8fa8 Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-structures/001460.log: OK
-2024/10/29-14:04:34.992 8fa8 Table #1405: 97 entries OK
-2024/10/29-14:04:34.992 8fa8 Table #1430: 19 entries OK
-2024/10/29-14:04:34.992 8fa8 Table #1459: 6 entries OK
-2024/10/29-14:04:34.996 8fa8 Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-structures/MANIFEST-001410: OK
-2024/10/29-14:04:34.997 8fa8 Archiving C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-structures/MANIFEST-001458: OK
-2024/10/29-14:04:35.002 8fa8 **** Repaired leveldb C:\Users\h99_1\AppData\Local\FoundryVTT\Data\modules\pf2e-kingmaker-tools\packs\kingmaker-tools-structures; recovered 3 files; 154189 bytes. Some data may have been lost. ****
+2024/12/04-22:40:45.524 6b20 Delete type=3 #1
