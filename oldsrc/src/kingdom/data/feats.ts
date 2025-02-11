@@ -273,6 +273,7 @@ spent RP is lost`,
             type: 'circumstance',
             activities: ['channel-locks'],
             value: kingdom.skillRanks.boating - 1,
+            phases: ["region"],
             enabled: true
         } as Modifier],
     },
@@ -340,6 +341,7 @@ master in Engineering, this bonus increases to +3, or to
             type: 'circumstance',
             activities: ['build-structure'],
             value: kingdom.skillRanks.engineering == 4 ? 4 : (kingdom.skillRanks.engineering == 3 ? 3 : 2),
+            phases: ["civic"],
             enabled: true
         } as Modifier],
     },
@@ -368,15 +370,17 @@ reducing their cost by combining them with the rest of the settlement seamlessly
 2 and reduce any RP cost by one-quarter (to a minimum of 1) for the Fortify Hex activity 
 and when you use Build a Structure for a Barracks, Castle, Garrison, Keep, Wall, or Watchtower.`,
         modifiers: (kingdom : Kingdom) => [{
-            name: 'Build or repair a Barracks, Castle, Garrison, Keep, Wall, or Watchtower',
+            name: 'Build or repair a Barracks, Castle, Garrison, Keep, Wall, or Watchtower. You have 25% RP cost discount (min. 1).',
             type: 'untyped',
             activities: ['build-structure'],
+            phases: ["civic"],
             enabled: false,
             value: 2,
         } as Modifier, {
-            name: 'Fortified Fiefs',
+            name: 'Fortified Fiefs. You have 25% RP cost discount (min. 1).',
             type: 'untyped',
             activities: ['fortify-hex'],
+            phases: ["region"],
             enabled: true,
             value: 2
         } as Modifier ],
