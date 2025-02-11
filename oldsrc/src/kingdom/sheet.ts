@@ -80,6 +80,7 @@ import {settlementSizeDialog} from './dialogs/settlement-size-dialog';
 import {getSelectedArmies} from '../armies/utils';
 import {showArmyTacticsBrowser} from './dialogs/army-tactics-browser';
 import {showArmyBrowser} from './dialogs/army-browser';
+import { Console } from 'console';
 
 interface KingdomOptions {
     game: Game;
@@ -192,7 +193,7 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
         })
         const hideActivities = blacklistedActivities.reduce((a, b) => Object.assign(a, b), {});
 
-        return {
+        const ret = {
             notes: {
                 gm: await TextEditor.enrichHTML(kingdomData.notes.gm),
                 public: await TextEditor.enrichHTML(kingdomData.notes.public),
@@ -317,6 +318,10 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
                 .map(activity => {
                     return {label: createActivityLabel(groupedActivities, activity, kingdomData), value: activity};
                 }),
+            armyWinLossActivities: Array.from(groupedActivities['armyWinLoss'])
+                .map(activity => {
+                    return {label: createActivityLabel(groupedActivities, activity, kingdomData), value: activity};
+                }),
             featuresByLevel: Array.from(featuresByLevel.entries())
                 .map(([level, features]) => {
                     const featureNames = features.map(f => f.name);
@@ -341,6 +346,7 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
             showRealmData,
             showAddRealmButton,
         };
+        return ret;
     }
 
     /* eslint-disable @typescript-eslint/no-explicit-any */

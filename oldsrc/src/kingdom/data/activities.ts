@@ -5,6 +5,7 @@ import {armyStatisticsByLevel} from '../../armies/data';
 
 export const allKingdomPhases = [
     'army',
+    'armyWinLoss',
     'civic',
     'commerce',
     'event',
@@ -36,6 +37,7 @@ interface GroupedActivityNames {
     region: Set<string>;
     event: Set<string>;
     army: Set<string>;
+    armyWinLoss: Set<string>;
     commerce: Set<string>;
     upkeep: Set<string>;
     civic: Set<string>;
@@ -53,6 +55,7 @@ export function groupKingdomActivities(activities: KingdomActivityById): Grouped
         region: new Set(),
         event: new Set(),
         army: new Set(),
+        armyWinLoss: new Set(),
         commerce: new Set(),
         upkeep: new Set(),
         civic: new Set(),

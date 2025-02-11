@@ -2542,7 +2542,58 @@ return! ${gainUnrest('1d6')}, then attempt a @Check[flat|dc:11|showDc:all]; on a
 with you, and ends its diplomatic relations as well on a
 critical failure.`
         }
-    }
+    },
+    'determine-victory': {
+        oncePerRound: false,
+        fortune: false,
+        enabled: true,
+        phase: 'armyWinLoss',
+        dc: 'control',
+        title: 'Determine Victory',
+        description: 'The kingdom’s armies won the battle! Roll a Warfare control check to determine the final outcome.',
+        skills: simpleRank(['warfare']),
+        criticalSuccess: {
+            msg: `Your victory was great and damage wasn’t that bad. Restore 1 HP to each army damaged in the war encounte, at the start of your next kingdom turn, gain +1 Fame and ${loseUnrest(1)}.`,
+        },
+        success: {
+            msg: 'The damage wasn’t as bad as it seemed. Restore 1 HP to each army damaged in the war encounter.',
+        },
+        failure: {
+            msg: 'You had an ordinary victory.',
+        },
+        criticalFailure: {
+            msg: 'Although you won the battle, it took its toll on your armies. Any army damaged in the war encounter increases its shaken or weary value by 1 (PCs’ choice).',
+        },
+    },
+    'determine-loss': {
+        oncePerRound: false,
+        fortune: false,
+        enabled: true,
+        phase: 'armyWinLoss',
+        dc: 'control',
+        title: 'Determine Loss',
+        description: 'The kingdom’s armies lost the battle. Roll a Defense control check to determine the final outcome.',
+        skills: simpleRank(['defense']),
+        criticalSuccess: {
+            msg: `Many soldiers escaped the lost battle. All
+defeated armies are restored to 1 HP, and one army of
+your choice damaged in the war encounter regains 1 HP.`,
+        },
+        success: {
+            msg: `One army escaped the brunt of the battle. Restore
+1 HP to one army of your choice which was damaged in
+the war encounter. ${gainUnrest(1)}`,
+        },
+        failure: {
+            msg: `You've lost the battle. ${gainUnrest(1)}`,
+        },
+        criticalFailure: {
+            msg: `The loss crushed your armies’ spirits.
+Each army that participated in the lost war encounter
+increases its shaken or weary value by 2 (PCs’ choice).
+${gainUnrest('1d4')}`
+        }
+    },
 };
 
 interface CreateResourceButton {
