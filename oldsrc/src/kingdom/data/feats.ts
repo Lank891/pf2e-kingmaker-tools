@@ -396,6 +396,22 @@ of an activity, it rolls a DC 11 flat check. On a success, the RP cost is halved
 is a master in Trade, the flat check DC is reduced to 5. If the kingdom is legendary, it automatically succeeds 
 the flat check.`
     },
+    {
+        name: 'Practical Magic',
+        level: 1,
+        category: 'magic' as (Skill | 'general'),
+        prerequisites: 'Trained in Magic',
+        text: `Magic has an honored place in your society, and your people incorporate it into their everyday
+work to make life easier. Your people’s commonplace use of magic grants a +1 circumstance bonus to Agriculture, 
+Defense, Engineering, and Wilderness checks; if your kingdom is a master in Magic, this bonus increases to +2.`,
+        modifiers: (kingdom : Kingdom) => [{
+            name: 'Practical Magic',
+            type: 'circumstance',
+            skills: ["agriculture", "defense", "engineering", "wilderness"],
+            value: kingdom.skillRanks.magic >= 3 ? 2 : 1,
+            enabled: true
+        } as Modifier],
+    },
 ]
 .sort((featA, featB) => featA.name.toLowerCase().localeCompare(featB.name.toLowerCase())) // Sort by name
 .sort((featA, featB) => featA.level - featB.level) // Then by level

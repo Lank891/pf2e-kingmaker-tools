@@ -112,6 +112,7 @@ fun main() {
                 editStructureMacro = { actor -> buildPromise { editStructureMacro(actor) } },
                 openCampingSheet = { buildPromise { openCampingSheet(game, actionDispatcher) } },
                 subsistMacro = { actor -> buildPromise { subsistMacro(game, actor) } },
+                senseDirectionMacro = { actor -> buildPromise{ senseDirectionMacro(game, actor) } },
                 createFoodMacro = { buildPromise { createFoodMacro(game, actionDispatcher) } },
             )
         )
