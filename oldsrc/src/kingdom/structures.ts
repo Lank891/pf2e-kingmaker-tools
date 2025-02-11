@@ -32,6 +32,7 @@ export interface StructureResult {
     residentialLots: number;
     hasBridge: boolean;
     lots: number;
+    hasPathfinderSocietyLodge: boolean;
 }
 
 function count<T>(items: T[], idFunction: (item: T) => string): Map<string, { count: number, item: T }> {
@@ -452,6 +453,7 @@ export function evaluateStructures(
             .reduce((a, b) => a + b, 0),
         lots: structures.map(s => s.lots).reduce((a, b) => a + b, 0),
         hasBridge: structures.some(structure => structure.isBridge),
+        hasPathfinderSocietyLodge: structures.some(structure => structure.name === "Pathfinder Society Lodge")
     };
     const unionizedStructures = unionizeStructures(structures, activities);
     applyStorageIncreases(result.storage, structures);

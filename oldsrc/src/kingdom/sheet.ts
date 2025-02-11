@@ -1079,7 +1079,12 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
     }
 
     private calculateEventDC(turnsWithoutEvent: number): number {
-        return Math.max(1, 11 - (turnsWithoutEvent * 5));
+
+        let dc = 11 - (turnsWithoutEvent * 5);;
+        if( getAllMergedSettlements(this.game, this.object).hasPathfinderSocietyLodge ) {
+            dc -= 1;
+        }
+        return Math.max(1, dc);;
     }
 
     private calculateCultEventDC(turnsWithoutEvent: number): number {

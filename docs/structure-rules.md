@@ -76,6 +76,7 @@ and reference to built-in rules that get maintained and updated with the module.
 * Palace
 * Palace (V&K)
 * Park
+* Pathfinder Society Lodge
 * Pier
 * Printing House
 * Sacred Grove

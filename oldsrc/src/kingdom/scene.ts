@@ -318,6 +318,7 @@ interface MergedSettlements {
     settlementConsumption: number;
     storage: CommodityStorage;
     unlockedActivities: Set<string>;
+    hasPathfinderSocietyLodge: boolean;
 }
 
 export function getStructureStackMode(game: Game): StructureStackRule {
@@ -336,6 +337,7 @@ export function getAllMergedSettlements(game: Game, kingdom: Kingdom): MergedSet
                 settlementConsumption: structureResult.consumption,
                 storage: structureResult.storage,
                 unlockedActivities: new Set(structureResult.unlockActivities),
+                hasPathfinderSocietyLodge: structureResult.hasPathfinderSocietyLodge
             };
         })
         .reduce((prev, curr) => {
@@ -350,12 +352,14 @@ export function getAllMergedSettlements(game: Game, kingdom: Kingdom): MergedSet
                     food: prev.storage.food + curr.storage.food,
                 },
                 unlockedActivities: new Set<string>([...prev.unlockedActivities, ...curr.unlockedActivities]),
+                hasPathfinderSocietyLodge: prev.hasPathfinderSocietyLodge || curr.hasPathfinderSocietyLodge
             };
         }, {
             leadershipActivityNumber: 2,
             settlementConsumption: 0,
             storage: {ore: 0, stone: 0, luxuries: 0, lumber: 0, food: 0},
             unlockedActivities: new Set<string>(),
+            hasPathfinderSocietyLodge: false
         });
 }
 

@@ -23,6 +23,7 @@ import {
     getSceneActorStructures,
     getStructuresFromActors,
     isStructureActorActive,
+    getAllMergedSettlements,
 } from '../scene';
 
 interface StructureBrowserOptions {
@@ -281,8 +282,12 @@ class StructureBrowserApp extends FormApplication<
         freeStructures: ActorStructure[];
         sceneStructures: ActorStructure[];
     } {
-        const buildableStructures = getStructuresFromActors(this.structureActors)
+        let buildableStructures = getStructuresFromActors(this.structureActors)
             .filter(a => a.name !== 'Rubble');
+        if( getAllMergedSettlements(this.game, this.kingdom).hasPathfinderSocietyLodge ) {
+            buildableStructures = buildableStructures.filter(a => a.name !== 'Pathfinder Society Lodge');
+        }
+        
         const activeSettlement = getScene(this.game, this.kingdom.activeSettlement);
 
         if (activeSettlement) {
