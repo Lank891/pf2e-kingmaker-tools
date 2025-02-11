@@ -1103,7 +1103,7 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
                 content: `<h2>Paying Consumption</h2>
             <ul>
                 <li>Reducing food commodities by ${Math.min(currentFood, totalConsumption)}</li>
-                ${missingFood > 0 ? `<li>Missing ${missingFood} food commodities. Either pay ${loseRP(pay)} or gain ${gainUnrest('1d4')}</li>` : ''}
+                ${missingFood > 0 ? `<li>Missing ${missingFood} food commodities. Either pay ${loseRP(pay, false, true)} or gain ${gainUnrest('1d4')}</li>` : ''}
             </ul>
             `,
             });

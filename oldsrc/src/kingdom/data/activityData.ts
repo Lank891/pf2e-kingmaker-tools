@@ -85,11 +85,11 @@ const activityData: Record<string, ActivityContent> = {
         description: `<p>You order your kingdom’s engineers to construct a network of robust roads through the hex. Travel along roads is treated as if it were open terrain.</p>
 <p>Spend RP as determined by the hex’s most inhospitable terrain (if the hex includes any rivers that cross the hex from one hex side to any other, you must spend double the normal RP cost to also build bridges; this adds the Bridge structure to that hex):</p>
 <ul>
-<li><b>Mountains</b>: ${loseRP(12)}</li>
-<li><b>Swamps</b>: ${loseRP(8)}</li>
-<li><b>Forests</b>: ${loseRP(4)}</li>
-<li><b>Hills</b>: ${loseRP(2)}</li>
-<li><b>Plains</b>: ${loseRP(1)}</li>
+<li><b>Mountains</b>: ${loseRP(12, false, true)}</li>
+<li><b>Swamps</b>: ${loseRP(8, false, true)}</li>
+<li><b>Forests</b>: ${loseRP(4, false, true)}</li>
+<li><b>Hills</b>: ${loseRP(2, false, true)}</li>
+<li><b>Plains</b>: ${loseRP(1, false, true)}</li>
 </ul>
 <p>Then attempt a basic check. Work with the GM to determine where your roads appear on the map.</p>`,
         requirement: 'The hex in which you seek to build roads must be claimed by your kingdom.',
@@ -181,7 +181,7 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
             }],
         },
         success: {
-            msg: `Your holidays are a success, but they’re also expensive. You gain a +1 circumstance bonus to Loyalty-based checks until the end of your next Kingdom turn. ${loseRolledRD(1)}. If you can’t afford this cost, treat this result as a Critical Failure instead.`,
+            msg: `Your holidays are a success, but they’re also expensive. You gain a +1 circumstance bonus to Loyalty-based checks until the end of your next Kingdom turn. ${loseRolledRD(1, false)}. If you can’t afford this cost, treat this result as a Critical Failure instead.`,
             modifiers: () => [{
                 turns: 2,
                 enabled: true,
@@ -192,7 +192,7 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
             }],
         },
         failure: {
-            msg: `The holiday passes with little enthusiasm, but is still expensive. ${loseRolledRD(1)}. If you can’t afford this cost, treat this result as a Critical Failure instead.`,
+            msg: `The holiday passes with little enthusiasm, but is still expensive. ${loseRolledRD(1, false)}. If you can’t afford this cost, treat this result as a Critical Failure instead.`,
         },
         criticalFailure: {
             msg: `Your festival days are poorly organized, and the citizens actively mock your failed attempt to celebrate. ${createResourceButton({
@@ -219,10 +219,10 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
         phase: 'region',
         dc: 'control',
         requirement: 'You have Reconnoitered the hex to be claimed during hexploration. This hex must be adjacent to at least one hex that’s already part of your kingdom. If the hex to be claimed contains dangerous hazards or monsters, they must first be cleared out—either via standard adventuring or the Clear Hex activity.',
-        description: `Your surveyors fully explore the hex and attempt to add it into your kingdom’s domain. ${loseRP(1)} and then attempt a basic Exploration, Intrigue, Magic, or Wilderness check.`,
+        description: `Your surveyors fully explore the hex and attempt to add it into your kingdom’s domain. ${loseRP(1, false, true)} and then attempt a basic Exploration, Intrigue, Magic, or Wilderness check.`,
         skills: simpleRank(['exploration', 'intrigue', 'magic', 'wilderness']),
         criticalSuccess: {
-            msg: 'You claim the hex and immediately add it to your territory, increasing your kingdom\'s Size by 1 (this affects all statistics determined by Size; see page 532). Your occupation of the hex goes so smoothly that you can immediately attempt another Region activity.',
+            msg: 'You claim the hex and immediately add it to your territory, increasing your kingdom\'s Size by 1 (this affects all statistics determined by Size; see page 532). Your occupation of the hex goes so smoothly that you can immediately attempt another Region activity in the same hex.',
         },
         success: {
             msg: 'You claim the hex and add it to your territory, increasing your kingdom\'s Size by 1 (this affects all statistics determined by Size; see page 532).',
@@ -275,11 +275,11 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
         description: `<p>Engineers and mercenaries attempt to prepare a hex to serve as the site for a settlement, or they work to remove an existing improvement, a dangerous hazard, or an encounter.</p>
 <p>If you’re trying to prepare a hex for a settlement or demolish an improvement you previously built (or that was already present in the hex), spend RP as determined by the hex’s most inhospitable terrain feature:</p>
 <ul>
-<li><b>Mountains</b>: ${loseRP(12)}</li>
-<li><b>Swamps</b>: ${loseRP(8)}</li>
-<li><b>Forests</b>: ${loseRP(4)}</li>
-<li><b>Hills</b>: ${loseRP(2)}</li>
-<li><b>Plains</b>: ${loseRP(1)}</li>
+<li><b>Mountains</b>: ${loseRP(12, false, true)}</li>
+<li><b>Swamps</b>: ${loseRP(8, false, true)}</li>
+<li><b>Forests</b>: ${loseRP(4, false, true)}</li>
+<li><b>Hills</b>: ${loseRP(2, false, true)}</li>
+<li><b>Plains</b>: ${loseRP(1, false, true)}</li>
 </ul>
 <p>Then attempt a basic Engineering check. If you’re trying to remove a hazard or encounter, instead attempt an Exploration check. The DC of this check is set by the highest level creature or hazard in the hex (as set by Table 10–5: DCs by Level, on page 503 of the Pathfinder Core Rulebook).</p>
 
@@ -351,7 +351,7 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
         phase: 'leadership',
         dc: 'control',
         title: 'Craft Luxuries',
-        description: `You encourage your artisans to craft luxury goods and may even aid them in this pursuit. ${loseRolledRD(1)}. Then attempt a basic check.`,
+        description: `You encourage your artisans to craft luxury goods and may even aid them in this pursuit. ${loseRolledRD(1, true)}. Then attempt a basic check.`,
         skills: simpleRank(['arts']),
         criticalSuccess: {
             msg: `Your artisans exceed expectations and craft extravagant goods. ${gainCommodities('luxuries', '1d4')}`,
@@ -406,13 +406,13 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
             msg: `You can call upon the solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('creative-solution')}.`
         },
         success: {
-            msg: `You can call upon the solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('creative-solution')}. In addition, ${loseRolledRD(1)} to research the solution. This cost is paid now, whether or not you use your Creative Solution.`
+            msg: `You can call upon the solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('creative-solution')}. In addition, ${loseRolledRD(1, false)} to research the solution. This cost is paid now, whether or not you use your Creative Solution.`
         },
         failure: {
-            msg: `Your attempt at researching is a failure and you ${loseRolledRD(2)}. It provides no advantage.`,
+            msg: `Your attempt at researching is a failure and you ${loseRolledRD(2, false)}. It provides no advantage.`,
         },
         criticalFailure: {
-            msg: `Your attempt at researching is a failure and you ${loseRolledRD(2)}. It provides no advantage. In addition, your scholars and thinkers are so frustrated that you cannot attempt a Creative Solution again for 2 Kingdom turns.`,
+            msg: `Your attempt at researching is a failure and you ${loseRolledRD(2, false)}. It provides no advantage. In addition, your scholars and thinkers are so frustrated that you cannot attempt a Creative Solution again for 2 Kingdom turns.`,
         },
         special: 'You cannot influence a check with Supernatural Solution and Creative Solution simultaneously.',
     },
@@ -513,7 +513,7 @@ When you use a Boating check, the army’s starting point and ending point must 
 
 You must be at least master in Magic to attempt a Magic check. When you do so, choose any location within 20 hexes of the army’s current hex, then roll your check. 
 
-If the army’s deployment causes it to cross your kingdom’s border, the DC increases by 5. If the army’s deployment causes it to cross an enemy kingdom’s border, the DC instead increases by 10.`,
+If the army’s deployment causes it to cross your kingdom’s border (leave your kingdom), the DC increases by 5. If the army’s deployment causes it to cross an enemy kingdom’s border (eneter enemy kingdom), the DC instead increases by 10. Those increases are cumulative, so if the army starts in your kingdom and want to end in enemy's kingdom, the DC is increased by 15.`,
         skills: {
             exploration: 0,
             boating: 0,
@@ -549,7 +549,7 @@ If the army’s deployment causes it to cross your kingdom’s border, the DC in
         enabled: true,
         phase: 'region',
         dc: 'control',
-        description: `You plant crops and establish livestock in permanent farms, ranches, and other growing operations to create Farmland (page 535). If you’re attempting to Establish Farmland in a hex that is predominantly plains, you must ${loseRP(1)} and the check is against your Control DC. If you’re targeting a hex that is predominantly hills, you must spend ${loseRP(2)} and the check is against your Control DC + 5.`,
+        description: `You plant crops and establish livestock in permanent farms, ranches, and other growing operations to create Farmland (page 535). If you’re attempting to Establish Farmland in a hex that is predominantly plains, you must ${loseRP(1, false, true)} and the check is against your Control DC. If you’re targeting a hex that is predominantly hills, you must spend ${loseRP(2, false, true)} and the check is against your Control DC + 5.`,
         requirement: 'Plains or hills are the predominant terrain feature in the hex; the hex is in the influence of one of your settlements.',
         skills: simpleRank(['agriculture']),
         criticalSuccess: {
@@ -576,13 +576,13 @@ If the army’s deployment causes it to cross your kingdom’s border, the DC in
         requirement: 'The hex in which you’re establishing the settlement has been Cleared and doesn’t currently have a settlement (including a Freehold) in it.',
         skills: simpleRank(['engineering', 'industry', 'politics', 'scholarship']),
         criticalSuccess: {
-            msg: `You establish the settlement largely with the aid of enthusiastic volunteers. ${loseRP('1d6')}`,
+            msg: `You establish the settlement largely with the aid of enthusiastic volunteers. ${loseRP('1d6', false, false)}`,
         },
         success: {
-            msg: `You establish the settlement. ${loseRP('3d6')}`,
+            msg: `You establish the settlement. ${loseRP('3d6', false, false)}`,
         },
         failure: {
-            msg: `You establish the settlement, but inefficiently and at great expense. ${loseRP('6d6')}`,
+            msg: `You establish the settlement, but inefficiently and at great expense. ${loseRP('6d6', false, false)}`,
         },
         criticalFailure: {
             msg: 'You fail to establish the settlement.',
@@ -612,7 +612,7 @@ If you are using boating and a navigable river connects not only your kingdom bu
             msg: 'You successfully establish a trade agreement.',
         },
         failure: {
-            msg: `Your traders reach their destination but need to sweeten the deal to secure the trade agreement. ${loseRolledRD(2)}. If you do so, you successfully establish a trade agreement, otherwise the attempt fails.`,
+            msg: `Your traders reach their destination but need to sweeten the deal to secure the trade agreement. ${loseRolledRD(2, false)}. If you do so, you successfully establish a trade agreement, otherwise the attempt fails.`,
         },
         criticalFailure: {
             msg: `Your trade agreement is a total loss and your traders do not return. ${gainUnrest(1)}, and until the end of the next Kingdom turn, take a –1 circumstance penalty to all Economy-related checks.`,
@@ -635,11 +635,11 @@ If you are using boating and a navigable river connects not only your kingdom bu
         dc: 'control',
         description: `<p>Your hire a crew of workers to travel to a hex that contains Lumber, Ore, or Stone to be harvested. Spend RP as determined by the hex’s most inhospitable terrain:</p>
 <ul>
-<li><b>Mountains</b>: ${loseRP(12)}</li>
-<li><b>Swamps</b>: ${loseRP(8)}</li>
-<li><b>Forests</b>: ${loseRP(4)}</li>
-<li><b>Hills</b>: ${loseRP(2)}</li>
-<li><b>Plains</b>: ${loseRP(1)}</li>
+<li><b>Mountains</b>: ${loseRP(12, false, true)}</li>
+<li><b>Swamps</b>: ${loseRP(8, false, true)}</li>
+<li><b>Forests</b>: ${loseRP(4, false, true)}</li>
+<li><b>Hills</b>: ${loseRP(2, false, true)}</li>
+<li><b>Plains</b>: ${loseRP(1, false, true)}</li>
 </ul>
 <p>Then attempt a basic check. Lumber camps can be established in any hex that contains a significant amount of forest terrain. Mines and quarries can be established in any hex that contains a significant amount of hill or mountain terrain.</p>`,
         skills: simpleRank(['engineering']),
@@ -666,11 +666,11 @@ If you are using boating and a navigable river connects not only your kingdom bu
         dc: 'control',
         description: `<p>Your hire a crew of workers to travel to a hex that contains Lumber, Ore, or Stone to be harvested. Spend RP as determined by the hex’s most inhospitable terrain:</p>
 <ul>
-<li><b>Mountains</b>: ${loseRP(12)}</li>
-<li><b>Swamps</b>: ${loseRP(8)}</li>
-<li><b>Forests</b>: ${loseRP(4)}</li>
-<li><b>Hills</b>: ${loseRP(2)}</li>
-<li><b>Plains</b>: ${loseRP(1)}</li>
+<li><b>Mountains</b>: ${loseRP(12, false, true)}</li>
+<li><b>Swamps</b>: ${loseRP(8, false, true)}</li>
+<li><b>Forests</b>: ${loseRP(4, false, true)}</li>
+<li><b>Hills</b>: ${loseRP(2, false, true)}</li>
+<li><b>Plains</b>: ${loseRP(1, false, true)}</li>
 </ul>
 <p>Then attempt a basic check. Lumber camps can be established in any hex that contains a significant amount of forest terrain. Mines and quarries can be established in any hex that contains a significant amount of hill or mountain terrain.</p>`,
         skills: simpleRank(['engineering']),
@@ -696,11 +696,11 @@ If you are using boating and a navigable river connects not only your kingdom bu
         dc: 'control',
         description: `<p>Your hire a crew of workers to travel to a hex that contains Lumber, Ore, or Stone to be harvested. Spend RP as determined by the hex’s most inhospitable terrain:</p>
 <ul>
-<li><b>Mountains</b>: ${loseRP(12)}</li>
-<li><b>Swamps</b>: ${loseRP(8)}</li>
-<li><b>Forests</b>: ${loseRP(4)}</li>
-<li><b>Hills</b>: ${loseRP(2)}</li>
-<li><b>Plains</b>: ${loseRP(1)}</li>
+<li><b>Mountains</b>: ${loseRP(12, false, true)}</li>
+<li><b>Swamps</b>: ${loseRP(8, false, true)}</li>
+<li><b>Forests</b>: ${loseRP(4, false, true)}</li>
+<li><b>Hills</b>: ${loseRP(2, false, true)}</li>
+<li><b>Plains</b>: ${loseRP(1, false, true)}</li>
 </ul>
 <p>Then attempt a basic check. Lumber camps can be established in any hex that contains a significant amount of forest terrain. Mines and quarries can be established in any hex that contains a significant amount of hill or mountain terrain.</p>`,
         skills: simpleRank(['engineering']),
@@ -816,11 +816,11 @@ The Cooperative Leadership Kingdom feat (page 531) increases the efficiency of t
         title: 'Fortify Hex',
         description: `<p>Your command your engineers to construct a protected encampment, such as a fort or barbican, to serve as a defensive post in the hex. Spend RP as determined by the hex’s most inhospitable terrain:</p>
 <ul>
-<li><b>Mountains</b>: ${loseRP(12)}</li>
-<li><b>Swamps</b>: ${loseRP(8)}</li>
-<li><b>Forests</b>: ${loseRP(4)}</li>
-<li><b>Hills</b>: ${loseRP(2)}</li>
-<li><b>Plains</b>: ${loseRP(1)}</li>
+<li><b>Mountains</b>: ${loseRP(12, false, true)}</li>
+<li><b>Swamps</b>: ${loseRP(8, false, true)}</li>
+<li><b>Forests</b>: ${loseRP(4, false, true)}</li>
+<li><b>Hills</b>: ${loseRP(2, false, true)}</li>
+<li><b>Plains</b>: ${loseRP(1, false, true)}</li>
 </ul>
 <p>Then attempt a basic check. A fortified hex grants an additional bonus in warfare (see Appendix 3), but also gives traveling PCs a place to rest that prevents wandering monsters from interrupting their rest.</p>`,
         requirement: 'The target hex must be claimed by your kingdom and must not have a settlement in it.',
@@ -959,7 +959,7 @@ The Cooperative Leadership Kingdom feat (page 531) increases the efficiency of t
         phase: 'leadership',
         dc: 'custom',
         title: 'Hire Adventurers',
-        description: `While the PCs can strike out themselves to deal or help with ongoing events, it’s often more efficient to Hire Adventurers. When you Hire Adventurers to help end an ongoing event, the DC is equal to your Control DC adjusted by the event’s level modifier. ${loseRolledRD(1)} each time you attempt this activity.`,
+        description: `While the PCs can strike out themselves to deal or help with ongoing events, it’s often more efficient to Hire Adventurers. When you Hire Adventurers to help end an ongoing event, the DC is equal to your Control DC adjusted by the event’s level modifier. ${loseRolledRD(1, true)} each time you attempt this activity.`,
         skills: simpleRank(['exploration']),
         criticalSuccess: {
             msg: 'You end the continuous event. For beneficial events, adventurers assured that the worst outcom is not possible. You gain +2 circumstance bonus to resolve the event during the next Event phase, and if you get critical failure, you get failure instead.',
@@ -1090,11 +1090,11 @@ The Cooperative Leadership Kingdom feat (page 531) increases the efficiency of t
         title: 'Irrigation',
         description: `<p>You send excavators to build waterways, canals, or drainage systems to convey water from areas that have natural access to a river or lake. Spend RP as determined by the hex’s most inhospitable terrain feature:</p>
 <ul>
-<li><b>Mountains</b>: ${loseRP(12)}</li>
-<li><b>Swamps</b>: ${loseRP(8)}</li>
-<li><b>Forests</b>: ${loseRP(4)}</li>
-<li><b>Hills</b>: ${loseRP(2)}</li>
-<li><b>Plains</b>: ${loseRP(1)}</li>
+<li><b>Mountains</b>: ${loseRP(12, false, true)}</li>
+<li><b>Swamps</b>: ${loseRP(8, false, true)}</li>
+<li><b>Forests</b>: ${loseRP(4, false, true)}</li>
+<li><b>Hills</b>: ${loseRP(2, false, true)}</li>
+<li><b>Plains</b>: ${loseRP(1, false, true)}</li>
 </ul>
 <p>Then attempt a basic check.</p>`,
         requirement: 'You control a hex adjacent to a river or lake that itself does not contain a river or lake.',
@@ -1119,7 +1119,7 @@ The Cooperative Leadership Kingdom feat (page 531) increases the efficiency of t
         phase: 'commerce',
         dc: 'control',
         title: 'Manage Trade Agreements',
-        description: `You send agents out to attend to established trade agreements. ${loseRP(2, true)} per Trade Agreement you wish to manage. Then attempt a basic check. If you Managed Trade Agreements on the previous turn, increase this DC by 5.`,
+        description: `You send agents out to attend to established trade agreements. ${loseRP(2, true, true)} per Trade Agreement you wish to manage. Then attempt a basic check. If you Managed Trade Agreements on the previous turn, increase this DC by 5.`,
         skills: simpleRank(['trade']),
         criticalSuccess: {
             msg: `${createResourceButton({
@@ -1258,7 +1258,7 @@ You can attempt this skill check with Intrigue, Statecraft, or Warfare; however,
             msg: 'The group becomes part of your kingdom, granting the specific boon or advantage listed in that group’s entry. If you haven’t already claimed the hex in which the group dwells, you immediately do so, gain 10XP and increasing your kingdom\'s Size by 1 (this affects all statistics determined by Size; see page 532). If the hex doesn’t share a border with your kingdom, it becomes a secondary territory and checks involving this location take a Control penalty.',
         },
         success: {
-            msg: `The group becomes part of your kingdom, granting the specific boon or advantage listed in that group’s entry. If the hex doesn’t share a border with your kingdom, it becomes a secondary territory and checks involving this location take a Control penalty. ${loseRolledRD(1)} to the result to integrate the group into your kingdom.`,
+            msg: `The group becomes part of your kingdom, granting the specific boon or advantage listed in that group’s entry. If the hex doesn’t share a border with your kingdom, it becomes a secondary territory and checks involving this location take a Control penalty. ${loseRolledRD(1, false)} to the result to integrate the group into your kingdom.`,
         },
         failure: {
             msg:
@@ -1417,7 +1417,7 @@ You can attempt this skill check with Intrigue, Statecraft, or Warfare; however,
         phase: 'leadership',
         dc: 'control',
         title: 'Purchase Commodities',
-        description: `You can spend RP to Purchase Commodities, but doing so is more expensive than gathering them or relying upon trade agreements. When you Purchase Commodities, select the Commodity you wish to purchase (Food, Lumber, Luxuries, Ore, or Stone). ${loseRP(8)} if you’re purchasing Luxuries or ${loseRP(4)} if you’re purchasing any other Commodity. Then attempt a basic check.`,
+        description: `You can spend RP to Purchase Commodities, but doing so is more expensive than gathering them or relying upon trade agreements. When you Purchase Commodities, select the Commodity you wish to purchase (Food, Lumber, Luxuries, Ore, or Stone). ${loseRP(8, false, true)} if you’re purchasing Luxuries or ${loseRP(4, false, true)} if you’re purchasing any other Commodity. Then attempt a basic check.`,
         skills: simpleRank(['trade']),
         criticalSuccess: {
             msg: `<p>You immediately gain 4 Commodities of the chosen type:</p> <ul>
@@ -1858,7 +1858,7 @@ The skill used to Repair Reputation depends on which Ruin total you wish to redu
         phase: 'leadership',
         dc: 32,
         title: 'Repair the Flooded Mine',
-        description: `A group of engineers work to drain the flooded mine, shore up its damaged section, and establish the mine as a functional Work Site. ${loseRP(20)}, then attempt a DC 32 Engineering check.`,
+        description: `A group of engineers work to drain the flooded mine, shore up its damaged section, and establish the mine as a functional Work Site. ${loseRP(20, false, true)}, then attempt a DC 32 Engineering check.`,
         skills: simpleRank(['engineering'], 3),
         criticalSuccess: {
             msg: 'The mine is repaired, and as a bonus, your workers Establish a Work Site at the mine immediately. This mine produces 2 Ore Commodities per Kingdom turn.',
@@ -2008,7 +2008,7 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
         phase: 'leadership',
         dc: 25,
         title: 'Restore the Temple of the Elk',
-        description: `You work with several worshippers of the temple's faith, gifted masons, and skilled laborers to restore the temple and once more consecrate it as a sacred place devoted to the worship of their god. ${loseRP('1d6')}, then attempt a DC 25 Folklore check.`,
+        description: `You work with several worshippers of the temple's faith, gifted masons, and skilled laborers to restore the temple and once more consecrate it as a sacred place devoted to the worship of their god. ${loseRP('1d6', false, true)}, then attempt a DC 25 Folklore check.`,
         skills: simpleRank(['folklore']),
         criticalSuccess: {
             msg: 'The temple is restored and can now serve as a Refuge terrain feature. If you later build a settlement here, the temple instead functions as a free Shrine in the settlement. In addition, your work was so excellent that you’ve attracted their god’s attention! The PC who rolled the Folklore check is granted @UUID[Compendium.pf2e.boons-and-curses.Item.hrTl9kfSNrOQeNze]: whenever that PC critically fails a check to Subsist in the wild, they gain a failure instead.',
@@ -2057,7 +2057,7 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
             }],
         },
         criticalFailure: {
-            msg: `Disaster! Your envoy fails to reach their destination, is turned back at the border, or is taken prisoner or executed, at the GM’s discretion. The repercussions on your kingdom’s morale and reputation are significant. Choose one of the following results: ${gainUnrest('1d4')}, add 1 to a Ruin of your choice, or ${loseRolledRD(2)}. In any event, you cannot attempt to Send a Diplomatic Envoy to this same target for the next 3 Kingdom Turns.`,
+            msg: `Disaster! Your envoy fails to reach their destination, is turned back at the border, or is taken prisoner or executed, at the GM’s discretion. The repercussions on your kingdom’s morale and reputation are significant. Choose one of the following results: ${gainUnrest('1d4')}, add 1 to a Ruin of your choice, or ${loseRolledRD(2, false)}. In any event, you cannot attempt to Send a Diplomatic Envoy to this same target for the next 3 Kingdom Turns.`,
         },
     },
     'show-of-force': {
@@ -2121,13 +2121,13 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
             msg: `You can call upon your spellcasters’ supernatural solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('supernatural-solution')}.`,
         },
         success: {
-            msg: `You can call upon your spellcasters’ supernatural solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('supernatural-solution')}. However, you ${loseRolledRD(1)} to research the solution. This cost is paid now, whether or not you use your supernatural solution.`,
+            msg: `You can call upon your spellcasters’ supernatural solution to aid in resolving any Kingdom skill check made during the remainder of this Kingdom turn ${gainSolution('supernatural-solution')}. However, you ${loseRolledRD(1, false)} to research the solution. This cost is paid now, whether or not you use your supernatural solution.`,
         },
         failure: {
-            msg: `Your attempt at researching a supernatural solution costs additional RP to research, but is ultimately a failure, providing no advantage. ${loseRolledRD(2)}`,
+            msg: `Your attempt at researching a supernatural solution costs additional RP to research, but is ultimately a failure, providing no advantage. ${loseRolledRD(2, false)}`,
         },
         criticalFailure: {
-            msg: `Your attempt at researching a supernatural solution costs additional RP to research, but is ultimately a failure, providing no advantage. ${loseRolledRD(2)}. In addition, your spellcasters’ resources and morale are impacted such that you cannot attempt a Supernatural Solution again for 2 Kingdom turns.`,
+            msg: `Your attempt at researching a supernatural solution costs additional RP to research, but is ultimately a failure, providing no advantage. ${loseRolledRD(2, false)}. In addition, your spellcasters’ resources and morale are impacted such that you cannot attempt a Supernatural Solution again for 2 Kingdom turns.`,
         },
         special: 'You cannot influence a check with Supernatural Solution and Creative Solution simultaneously.',
     },
@@ -2308,7 +2308,7 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
         phase: 'leadership',
         dc: 'control',
         title: 'Reconnoiter Hex (V&K)',
-        description: `You send a team to spend time surveying and exploring a specific hex, getting the lay of the land and looking for unusual features and specific sites. ${loseRP(1)} and then attempt a Basic check.`,
+        description: `You send a team to spend time surveying and exploring a specific hex, getting the lay of the land and looking for unusual features and specific sites. ${loseRP(1, false, true)} and then attempt a Basic check.`,
         skills: simpleRank(['wilderness']),
         criticalSuccess: {
             msg: 'Your team successfully explores the hex and it is now Reconnoitered for the purpose of Claim Hex. Your team automatically finds one Special or Hidden feature if the hex contains one. If the hex contains multiple Special or Hidden Features the GM chooses one. If the hex contains an Encounter or Hazard, the team avoids it and reports back useful and detailed information on it. In addition, your team\'s reconnaissance of the hex goes so smoothly you may immediately attempt an additional Reconnoiter Hex activity on an adjacent hex. Treat a Critical Success on this additional check as a Success instead.',
@@ -2407,10 +2407,10 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
             msg: `You gain 1 additional Region Activity.`,
         },
         failure: {
-            msg: `You gain 1 additional region activity by investing additional funds. ${loseRP('2d6')}.`,
+            msg: `You gain 1 additional region activity by investing additional funds. ${loseRP('2d6', false, false)}.`,
         },
         criticalFailure: {
-            msg: `You do not gain any region activities and ${loseRP('2d6')}.`,
+            msg: `You do not gain any region activities and ${loseRP('2d6', false, false)}.`,
         },
 	},
     'insider-trading': {
@@ -2475,7 +2475,7 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
         title: 'Channel Locks (Feat, HB)',
         description: `Your people are skilled in modifying or coping with difficult terrain features, such as using channel locks for steep elevation changes or rocky rapids. 
 <br/>    
-Choose a nonnavigable river within your kingdom, then ${loseRP(2)} and attempt an Engineering control check. 
+Choose a nonnavigable river within your kingdom, then ${loseRP(2, false, true)} and attempt an Engineering control check. 
 <br/>
 You have a +1circumstance bonus to this check; if the kingdom is at least master in Boating, this bonus increases to +2, or to +3 if it is legendary in Boating.`,
         skills: simpleRank(['engineering'], 1),
@@ -2505,7 +2505,7 @@ You have a +1circumstance bonus to this check; if the kingdom is at least master
         Covert agents within your kingdom use established trade
 routes to mask the smuggling and sale of illicit goods.
 Choose a group with which you have a trade agreement
-and ${loseRP(1)}, then attempt an Intrigue control check.
+and ${loseRP(1, false, true)}, then attempt an Intrigue control check.
 Regardless of the result, the target becomes immune to
 further Smuggler Network attempts until the start of the
 next kingdom turn.<br/>
@@ -2552,6 +2552,7 @@ interface CreateResourceButton {
     value: string,
     hints?: string;
     multiple?: boolean;
+    initialCost?: boolean;
 }
 
 export function gainXp(value: number | string): string {
@@ -2586,16 +2587,16 @@ export function gainRolledRD(value: number | string): string {
     return createResourceButton({value: `${value}`, type: 'rolled-resource-dice'});
 }
 
-export function loseRolledRD(value: number | string): string {
-    return createResourceButton({value: `${value}`, type: 'rolled-resource-dice', mode: 'lose'});
+export function loseRolledRD(value: number | string, initial = false): string {
+    return createResourceButton({value: `${value}`, type: 'rolled-resource-dice', mode: 'lose', initialCost: initial});
 }
 
 export function gainRP(value: number | string): string {
     return createResourceButton({value: `${value}`, type: 'resource-points'});
 }
 
-export function loseRP(value: number | string, multiple = false): string {
-    return createResourceButton({value: `${value}`, type: 'resource-points', mode: 'lose', multiple});
+export function loseRP(value: number | string, multiple = false, initial = false): string {
+    return createResourceButton({value: `${value}`, type: 'resource-points', mode: 'lose', multiple, initialCost: initial});
 }
 
 export function gainUnrest(value: number | string): string {
@@ -2617,6 +2618,7 @@ export function createResourceButton({
                                          type,
                                          hints,
                                          multiple = false,
+                                         initialCost = false
                                      }: CreateResourceButton): string {
     const turnLabel = turn === 'now' ? '' : ' Next Turn';
     const label = `${mode === 'gain' ? 'Gain' : 'Lose'} ${value} ${unslugify(type)}${turnLabel}`;
@@ -2625,6 +2627,7 @@ export function createResourceButton({
         data-mode="${mode}"
         data-turn="${turn}"
         data-multiple="${multiple}"
+        data-initialcost="${initialCost}"
         ${value !== undefined ? `data-value="${value}"` : ''}
         >${label}${hints !== undefined ? `(${hints})` : ''}</button>`;
 }

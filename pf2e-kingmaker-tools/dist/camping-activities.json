@@ -1,0 +1,683 @@
+[
+    {
+        "name": "Blend Into The Night",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.jz1FI7zSoPLR8iBL",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [],
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 2
+        }
+    },
+    {
+        "name": "Bolster Confidence",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.pxHYFLK7VYGppCzS",
+        "isLocked": true,
+        "isSecret": false,
+        "skills": [],
+        "isHomebrew": false,
+        "effectUuids": [
+            {
+                "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.mAEvnTqFuLIASQLB"
+            }
+        ]
+    },
+    {
+        "name": "Camouflage Campsite",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.mlLCjokti3RXAlUP",
+        "isLocked": false,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [
+            {
+                "name": "stealth",
+                "proficiency": "trained",
+                "dcType": "zone"
+            }
+        ],
+        "criticalSuccess": {
+            "message": "Your camouflage attempt exceeds expectation. Increase the Encounter DC for your camp by 2. The first time a flat check would result in an encounter during this camping session, instead treat that result as a failure with no encounter.",
+            "modifyRandomEncounterDc": {
+                "day": 2,
+                "night": 2
+            }
+        },
+        "success": {
+            "message": "Your work helps hide your camp from detection. Increase the Encounter DC for your camp by 1.",
+            "modifyRandomEncounterDc": {
+                "day": 1,
+                "night": 1
+            }
+        },
+        "criticalFailure": {
+            "message": "You believe you’ve done well at your camouflage attempt but have actually forgotten something important or accidentally did something to make the campsite more noticeable. Decrease the Encounter DC for your camp by 2, and flat checks made to determine encounters result in a critical success on a roll of 19 or 20.",
+            "modifyRandomEncounterDc": {
+                "day": -2,
+                "night": -2
+            }
+        }
+    },
+    {
+        "name": "Camp Management",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.JRScwsFTXTpTwWYA",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [
+            {
+                "name": "survival",
+                "proficiency": "untrained",
+                "dcType": "zone"
+            }
+        ],
+        "criticalSuccess": {
+            "message": "During the hour immediately following this critical success, each PC may attempt two Camping activities instead of one. This success does not increase the number of activities companions may attempt."
+        },
+        "success": {
+            "message": "During the hour immediately following this critical success, one PC may attempt two Camping activities instead of one. This success does not increase the number of activities companions may attempt."
+        },
+        "criticalFailure": {
+            "message": "All checks made to resolve Camping activities take a –2 circumstance penalty for the remainder of this camping session.",
+            "effectUuids": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.vpH13xgAqX4zsU6o"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Cook Meal",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.S72BNBTfKfkCjriU",
+        "isLocked": false,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [],
+        "criticalSuccess": {
+            "message": "The character gains the recipe’s listed critical success effect."
+        },
+        "success": {
+            "message": "The character gains the recipe’s listed success effect."
+        },
+        "failure": {
+            "message": "The character gains no special benefit from the meal, though it still prevents starvation."
+        },
+        "criticalFailure": {
+            "message": "The character suffers the recipe’s critical failure effect."
+        }
+    },
+    {
+        "name": "Dawnflower's Blessing",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.X4ggcXUe0wPiW4jt",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [],
+        "effectUuids": [
+            {
+                "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.eaWmjDOIvUF9aDbq",
+                "doublesHealing": true
+            }
+        ]
+    },
+    {
+        "skills": [
+            {
+                "dcType": "none",
+                "required": false,
+                "validateOnly": false,
+                "proficiency": "untrained",
+                "name": "any"
+            }
+        ],
+        "criticalFailure": {
+            "effectUuids": [],
+            "checkRandomEncounter": false,
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": "Choose the resistance, weakness or the easiest influence skill. You learn fake information."
+        },
+        "isLocked": false,
+        "name": "Discover Companion",
+        "success": {
+            "effectUuids": [],
+            "checkRandomEncounter": false,
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": "Choose the resistance, weakness or the easiest influence skill. You learn the information."
+        },
+        "isHomebrew": true,
+        "effectUuids": [],
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "isSecret": true,
+        "criticalSuccess": {
+            "effectUuids": [],
+            "checkRandomEncounter": false,
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": "Choose two of the resistance, weakness or the easiest influence skill (can be taken twice). You learn the information."
+        },
+        "failure": {
+            "effectUuids": [],
+            "checkRandomEncounter": false,
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": "You learn no information."
+        }
+    },
+    {
+        "name": "Discover Special Meal",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.5I8jnFjirbbIUkGy",
+        "isLocked": false,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [
+            {
+                "name": "cooking",
+                "proficiency": "trained",
+                "dcType": "none"
+            }
+        ],
+        "criticalSuccess": {
+            "message": "You discover the special meal and add it to the list of recipes the party knows. In addition, your research was efficient, and you recover half of the ingredients you had to expend to attempt this activity."
+        },
+        "success": {
+            "message": "As critical success, but you do not recover any ingredients."
+        },
+        "failure": {
+            "message": "You fail to discover the special meal and do not recover any ingredients."
+        },
+        "criticalFailure": {
+            "message": "As failure, but you also expose yourself to the special meal’s critical failure effect while performing an unwise taste test."
+        }
+    },
+    {
+        "name": "Enhance Campfire",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.ytyW9F39m7xf0gx5",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [],
+        "effectUuids": [
+            {
+                "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.NFPQHxvpJd2vsKMe"
+            }
+        ]
+    },
+    {
+        "name": "Enhance Weapons",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.2Dn89HrY7gyvQiOH",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": []
+    },
+    {
+        "name": "Hunt and Gather",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.RujdVNvLpoQBBdVV",
+        "isLocked": false,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [
+            {
+                "name": "survival",
+                "proficiency": "trained",
+                "dcType": "zone",
+                "required": true
+            },
+            {
+                "name": "hunting",
+                "proficiency": "trained",
+                "dcType": "zone"
+            }
+        ],
+        "criticalSuccess": {
+            "message": "You find a number of Basic Ingredients equal to twice the zone’s DC, plus 4 Special Ingredients. If you’re Hunting and Gathering in a zone that’s at least level 7, increase the number of special ingredients found to 8; if you’re doing so in a zone that’s at least level 14, increase it to 12."
+        },
+        "success": {
+            "message": "You find a number of Basic Ingredients equal to the zone’s DC, plus [[/r 1d4]] Special Ingredients. If you’re Hunting and Gathering in a zone that’s at least level 7, increase the number of special ingredients found to [[/r 2d4]]; if you’re doing so in a zone that’s at least level 14, increase it to [[/r 3d4]]."
+        },
+        "failure": {
+            "message": "You find a number of Basic Ingredients equal to the zone’s DC."
+        },
+        "criticalFailure": {
+            "message": "You find [[/r 1d4]] Basic Ingredients (maximum equal to the zone’s DC). In addition, you’ve attracted attention. Make an additional flat check to determine if a random encounter occurs at your campsite following this activity.",
+            "checkRandomEncounter": true
+        }
+    },
+    {
+        "skills": [
+            {
+                "dcType": "none",
+                "required": false,
+                "validateOnly": false,
+                "proficiency": "untrained",
+                "name": "any"
+            }
+        ],
+        "criticalFailure": {
+            "effectUuids": [],
+            "checkRandomEncounter": false,
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": "Lost 1 Influence Point"
+        },
+        "isLocked": false,
+        "name": "Influence Companion",
+        "success": {
+            "effectUuids": [],
+            "checkRandomEncounter": false,
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": "Gained 1 Influence Point"
+        },
+        "isHomebrew": true,
+        "effectUuids": [],
+        "modifyRandomEncounterDc": {
+            "day": 0,
+            "night": 0
+        },
+        "isSecret": false,
+        "criticalSuccess": {
+            "effectUuids": [],
+            "checkRandomEncounter": false,
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": "Gained 2 Influence Points"
+        },
+        "failure": {
+            "effectUuids": [],
+            "checkRandomEncounter": false,
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": "No influence gained"
+        }
+    },
+    {
+        "name": "Intimidating Posture",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.LhhERalHv4QA14fQ",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": []
+    },
+    {
+        "name": "Learn from a Companion",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.MyeB2g0yDwEsqfI9",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [
+            {
+                "name": "perception",
+                "dcType": "static",
+                "proficiency": "untrained",
+                "dc": 20
+            }
+        ],
+        "criticalSuccess": {
+            "message": "You learn the companion’s special activity. Any PC who meets that activity’s requirements (see table above) can now perform that activity even when the companion isn’t in the camp."
+        },
+        "success": {
+            "message": "You make progress in learning the special activity but require at least one more day to master it. If you attempt to Learn from this Companion the next time you camp, the result of that check is improved by one degree of success from the result rolled."
+        },
+        "failure": {
+            "message": "You fail to learn anything from the companion."
+        },
+        "criticalFailure": {
+            "message": "You fail to learn from the companion, who grows frustrated with the party. No further attempts to Learn from this Companion can be attempted during this camping session."
+        }
+    },
+    {
+        "name": "Maintain Armor",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.zUaeA8Ud9dv3hhnc",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": []
+    },
+    {
+        "name": "Organize Watch",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.wgyPZBRgPjTeK0Ch",
+        "isLocked": false,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [
+            {
+                "name": "perception",
+                "proficiency": "expert",
+                "dcType": "zone"
+            }
+        ],
+        "criticalSuccess": {
+            "message": "The camp’s watch is efficient. Treat the total time required for rest as if the party size were 1 more, and all characters gain a +2 status bonus to Perception checks made during their shift on watch.",
+            "effectUuids": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.010XlkzzjX38BHsO"
+                }
+            ]
+        },
+        "success": {
+            "message": "Characters gain a +1 status bonus to Perception checks made during their shift on watch.",
+            "effectUuids": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.MOXWga7l8dsypUPy"
+                }
+            ]
+        },
+        "failure": {
+            "message": "Your attempt to organize the watch doesn’t grant any additional benefits."
+        },
+        "criticalFailure": {
+            "message": "As failure, but you may have attracted unwanted attention. Attempt a flat check against the zone’s Encounter DC to determine if a random encounter occurs.",
+            "checkRandomEncounter": true
+        }
+    },
+    {
+        "name": "Prepare Campsite",
+        "isHomebrew": false,
+        "skills": [
+            {
+                "name": "survival",
+                "proficiency": "untrained",
+                "dcType": "zone"
+            }
+        ],
+        "isSecret": false,
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.Iuen7iSvZAlnAJFB",
+        "isLocked": false,
+        "criticalSuccess": {
+            "message": "Prepare Campsite: You find the perfect spot for a camp. Flat checks to determine encounters at the campsite for the next 24 hours have a DC 2 higher than normal, and the first 2 hours spent performing Camping activities does not incur the usual flat check for random encounters.",
+            "modifyRandomEncounterDc": {
+                "day": 2,
+                "night": 2
+            }
+        },
+        "success": {
+            "message": "Prepare Campsite: You find a serviceable spot for a camp and for Camping activities."
+        },
+        "failure": {
+            "message": "Prepare Campsite: Your campsite will work, but it’s not the best. Campsite activities that require checks take a –2 penalty.",
+            "effectUuids": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.X1OvR5j1cAXZ4Lbp"
+                }
+            ]
+        },
+        "criticalFailure": {
+            "message": "Prepare Campsite: Your campsite is a mess. You can use it to rest and to perform daily preparations, but it isn’t good enough to allow for Campsite activities at all. Worse, your attempt to secure a campsite has possibly attracted unwanted attention—attempt a flat check against the zone’s Encounter DC. If successful, a random encounter automatically occurs.",
+            "checkRandomEncounter": true
+        }
+    },
+    {
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.ODZNlkmpBByewUQW",
+        "isHomebrew": true,
+        "effectUuids": [],
+        "isLocked": false,
+        "skills": [
+            {
+                "dcType": "zone",
+                "proficiency": "untrained",
+                "name": "any"
+            }
+        ],
+        "isSecret": false,
+        "name": "Provide Aid",
+        "criticalFailure": {
+            "checkRandomEncounter": false,
+            "effectUuids": [],
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": ""
+        },
+        "criticalSuccess": {
+            "checkRandomEncounter": false,
+            "effectUuids": [],
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": "+1 circumstance bonus to the main activity's check, +3 if you are master, +4 if you are legendary."
+        },
+        "success": {
+            "checkRandomEncounter": false,
+            "effectUuids": [],
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": "+1 circumstance bonus to the main activity's check."
+        },
+        "failure": {
+            "checkRandomEncounter": false,
+            "effectUuids": [],
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": ""
+        }
+    },
+    {
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F",
+        "isHomebrew": true,
+        "effectUuids": [
+            {
+                "target": "self",
+                "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.zliIP2agG0TVwKV4"
+            }
+        ],
+        "isLocked": false,
+        "skills": [
+            {
+                "dcType": "none",
+                "proficiency": "untrained",
+                "name": "any"
+            }
+        ],
+        "isSecret": false,
+        "name": "Relax",
+        "criticalFailure": {
+            "checkRandomEncounter": false,
+            "effectUuids": [],
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": ""
+        },
+        "criticalSuccess": {
+            "checkRandomEncounter": false,
+            "effectUuids": [],
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": ""
+        },
+        "success": {
+            "checkRandomEncounter": false,
+            "effectUuids": [],
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": ""
+        },
+        "failure": {
+            "checkRandomEncounter": false,
+            "effectUuids": [],
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": ""
+        }
+    },
+    {
+        "isHomebrew": true,
+        "effectUuids": [],
+        "isLocked": false,
+        "skills": [
+            {
+                "dcType": "zone",
+                "proficiency": "untrained",
+                "name": "any"
+            }
+        ],
+        "isSecret": false,
+        "name": "Resourceless Healing",
+        "criticalFailure": {
+            "checkRandomEncounter": false,
+            "effectUuids": [],
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": ""
+        },
+        "criticalSuccess": {
+            "checkRandomEncounter": false,
+            "effectUuids": [],
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": ""
+        },
+        "success": {
+            "checkRandomEncounter": false,
+            "effectUuids": [],
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": ""
+        },
+        "failure": {
+            "checkRandomEncounter": false,
+            "effectUuids": [],
+            "modifyRandomEncounterDc": {
+                "day": 0,
+                "night": 0
+            },
+            "message": ""
+        }
+    },
+    {
+        "name": "Set Alarms",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.vWSQmYLKlrk3rLDE",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [],
+        "effectUuids": [
+            {
+                "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.ptjs54eoEX8EAQNq"
+            }
+        ]
+    },
+    {
+        "name": "Set Traps",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.5ynOh085kwNp75t4",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": []
+    },
+    {
+        "name": "Tell Campfire Story",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.XaKD1oGTAgZUjlQ5",
+        "isLocked": false,
+        "isSecret": false,
+        "skills": [
+            {
+                "name": "performance",
+                "dcType": "actorLevel",
+                "proficiency": "untrained"
+            }
+        ],
+        "isHomebrew": false,
+        "criticalSuccess": {
+            "message": "You inspire your allies dramatically. For the remainder of the camping session, your allies gain a +2 status bonus to attack rolls, saving throws, and skill checks during combat at the campsite. The bonuses end as soon as daily preparations begin after resting is concluded. If an ally spent the hour Relaxing, they can also choose to reroll a failed roll at any time once during the remainder of the camping session while the status bonus persists; this is a fortune effect.",
+            "effectUuids": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.2vdskbqd0VrWKR9Y",
+                    "target": "allies"
+                }
+            ]
+        },
+        "success": {
+            "message": "You inspire your allies dramatically. For the remainder of the camping session, your allies gain a +1 status bonus to attack rolls, saving throws, and skill checks during combat at the campsite. The bonuses end as soon as daily preparations begin after resting is concluded. An ally who spent the hour Relaxing receives a +2 status bonus.",
+            "effectUuids": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.wT2NzrfgmWmCMRtv",
+                    "target": "allies"
+                }
+            ]
+        },
+        "failure": {
+            "message": "Your allies are unmoved and receive no benefits."
+        },
+        "criticalFailure": {
+            "message": "Your story distracts or unsettles your allies. They each take a –1 status penalty to skill checks until they Relax or until they begin daily preparations.",
+            "effectUuids": [
+                {
+                    "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.y5Jqw40SWNOgcxvC",
+                    "target": "allies"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Undead Guardians",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.YzOixXzCwfXOBjtx",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": []
+    },
+    {
+        "name": "Water Hazards",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.HGcwmsfjVqfLeYhu",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": []
+    },
+    {
+        "name": "Wilderness Survival",
+        "journalUuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-journals.JournalEntry.uSTTCqRYCWj7a38F.JournalEntryPage.8PNH77YHVkw9KoAv",
+        "isLocked": true,
+        "isSecret": false,
+        "isHomebrew": false,
+        "skills": [],
+        "effectUuids": [
+            {
+                "uuid": "Compendium.pf2e-kingmaker-tools.kingmaker-tools-camping-effects.Item.v9i9W49PeJ9NkfXX"
+            }
+        ]
+    }
+]

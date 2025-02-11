@@ -1,5 +1,5 @@
 import {parseNumberInput, unslugify} from '../utils';
-import {getSizeData, Kingdom} from './data/kingdom';
+import {getSizeData, Kingdom, hasFeat} from './data/kingdom';
 import {getKingdom, saveKingdom} from './storage';
 import {getCapacity} from './kingdom-utils';
 import {getStringSetting} from '../settings';
@@ -215,7 +215,8 @@ interface ResourceButton {
     mode: ResourceMode,
     turn: ResourceTurn,
     value: string,
-    multiple: boolean;
+    multiple: boolean,
+    initialCost: boolean;
 }
 
 export function parseResourceButton(element: HTMLButtonElement): ResourceButton {
@@ -224,20 +225,43 @@ export function parseResourceButton(element: HTMLButtonElement): ResourceButton 
     const turn = element.dataset.turn! as 'now' | 'next';
     const multiple = element.dataset.multiple === 'true';
     const value = element.dataset.value!;
+    const initialCost = element.dataset.initialcost === 'true';
     return {
         type,
         mode,
         turn,
         value,
         multiple,
+        initialCost,
     };
 }
 
 export async function updateResources(game: Game, actor: Actor, target: HTMLButtonElement): Promise<void> {
-    const {multiple, type, mode, turn, value: parsedValue} = parseResourceButton(target);
+    const {multiple, type, mode, turn, value: parsedValue, initialCost} = parseResourceButton(target);
     const kingdom = getKingdom(actor);
 
-    const evaluatedValue = await evaluateValue(game, kingdom, type, parsedValue);
+    let evaluatedValue = await evaluateValue(game, kingdom, type, parsedValue);
+
+    if(!initialCost && mode == 'lose' && hasFeat(kingdom, 'Price Consideration') && (type == 'rolled-resource-dice' || type == 'resource-points')) {
+        let halfValue = false;
+        if(kingdom.skillRanks.trade == 4) {
+            // Legendary, value is halved automatically
+            halfValue = true;
+        } else {
+            const flatDC = kingdom.skillRanks.trade == 3 ? 6 : 11; // 6 for master, 11 for expert (or anything lower)
+            const roll = await new Roll(`1d20`).roll();
+            await roll.toMessage({flavor: `<b>Price Consideration</b>: lower cost by half (min. 0) if rolled at least ${flatDC}`});
+            if( roll.total >= flatDC ) {
+                halfValue = true;
+            }
+        }
+
+        if(halfValue) {
+            evaluatedValue = Math.max(0, Math.floor(evaluatedValue/2));
+            await ChatMessage.create({'content': `<b>Price Consideration</b>: cost lowered to ${evaluatedValue}`});
+        }
+    }
+
     const currentValue = getCurrentValue(kingdom, type, turn);
     const limit = getLimit(game, kingdom, type, turn);
     const {missingMessage, message, value} = await calculateNewValue({

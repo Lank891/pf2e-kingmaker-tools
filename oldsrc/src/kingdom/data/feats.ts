@@ -381,6 +381,17 @@ and when you use Build a Structure for a Barracks, Castle, Garrison, Keep, Wall,
             value: 2
         } as Modifier ],
     },
+    {
+        name: 'Price Consideration',
+        level: 2,
+        category: 'trade' as (Skill | 'general'),
+        prerequisites: 'Expert in Trade',
+        text: `Your kingdom keeps a close eye on its coffers and is careful not to incur unnecessary expenses. 
+When the kingdom would have to pay RP as a result of a kingdom check, though not as the initial cost 
+of an activity, it rolls a DC 11 flat check. On a success, the RP cost is halved (minimum 0). If the kingdom 
+is a master in Trade, the flat check DC is reduced to 5. If the kingdom is legendary, it automatically succeeds 
+the flat check.`
+    },
 ]
 .sort((featA, featB) => featA.name.toLowerCase().localeCompare(featB.name.toLowerCase())) // Sort by name
 .sort((featA, featB) => featA.level - featB.level) // Then by level
