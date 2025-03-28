@@ -83,19 +83,9 @@ class SettlementApp extends Application<ApplicationOptions & SettlementOptions> 
         const hasBonuses = skillItemBonuses.map(b => b.value > 0 || b.actions.some(a => a.value > 0));
         const hasBuildings = builtStructures.length > 0;
 
-        // Hardcoded minimum influence and higher consumption even though effective level is lower
+        // Hardcoded minimum influence even though effective level is lower
         if(settlement.settlement.type === 'capital') {
             structureData.config.influence = Math.max(structureData.config.influence, 1);
-
-            if(settlementInfo.lots > 1) {
-                structureData.consumption = 2;
-            }
-            if(settlementInfo.lots > 4) {
-                structureData.consumption = 4;
-            }
-            if(settlementInfo.lots > 9) {
-                structureData.consumption = 6;
-            }
         }
 
         // reset active tab if not active anymore
