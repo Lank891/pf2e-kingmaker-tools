@@ -124,36 +124,6 @@ your settlements’ defenses.`,
         text: 'Your people are independent-minded and take care of the small things around the kingdom, not letting them pile up into bigger problems. Increase two of your Ruin thresholds by 1 and one of them by 2.',
     },*/
     /*{
-        automationNotes: 'Hire Adventurers RP reduction is not implemented',
-        name: 'Practical Magic',
-        level: 1,
-        prerequisites: 'Trained in Magic',
-        text: `Magic has an honored place in your society, and your people incorporate it into their everyday work to make
-life easier. You gain a +1 circumstance bonus to Magic checks, and you can use Magic checks in place of Engineering checks. In addition, as magic-wielding NPCs find your nation a comfortable place to live and work, you reduce the cost of using the Hire Adventurers activity to 1 RP.`,
-        modifiers: [{
-            name: 'Practical Magic',
-            type: 'circumstance',
-            skills: ['magic'],
-            enabled: true,
-            value: 1,
-        }],
-    },*/
-    /*{
-        automationNotes: 'Hire Adventurers RP reduction is not implemented',
-        name: 'Practical Magic (V&K)',
-        level: 1,
-        prerequisites: 'Trained in Magic',
-        text: `Magic has an honored place in your society, and your people incorporate it into their everyday work to make
-life easier. You gain a +1 circumstance bonus to Magic checks, and if you have Expert Magic you gain a +1 circumstance bonus to Engineering checks. If you have Master Magic, this bonus increases to +2. In addition, as magic-wielding NPCs find your nation a comfortable place to live and work, you reduce the cost of using the Hire Adventurers activity to 1 RP.`,
-        modifiers: [{
-            name: 'Practical Magic',
-            type: 'circumstance',
-            skills: ['magic'],
-            enabled: true,
-            value: 1,
-        }],
-    },*/
-    /*{
         automationNotes: 'Nothing automated',
         name: 'Pull Together',
         level: 1,
