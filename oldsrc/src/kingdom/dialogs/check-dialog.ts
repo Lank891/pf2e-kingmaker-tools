@@ -180,23 +180,6 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
             activeSettlementStructureResult,
             getSettlementsWithoutLandBorders(this.game, this.kingdom),
         ).concat(getArmyModifiers(this.game));
-        if (hasFeat(this.kingdom, 'Practical Magic (V&K)')) {
-            const modifier: Modifier = {
-                skills: ['engineering'],
-                value: 1,
-                type: 'circumstance',
-                name: 'Practical Magic',
-                enabled: true,
-            };
-            if (this.kingdom.skillRanks.magic === 2) {
-                additionalModifiers.push(modifier);
-            } else if (this.kingdom.skillRanks.magic > 2) {
-                additionalModifiers.push({
-                    ...modifier,
-                    value: 2,
-                });
-            }
-        }
         if (this.kingdom.unrest > 0 && hasFeat(this.kingdom, 'Inspiring Entertainment')) {
             additionalModifiers.push({
                 name: 'Inspiring Entertainment',
@@ -375,9 +358,8 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
         const ignoreSkillRequirements = getBooleanSetting(this.game, 'kingdomIgnoreSkillRequirements');
         const skillRankFilters = ignoreSkillRequirements ? undefined : ranks;
         const activitySkills = getActivitySkills(this.overrideSkills ?? activities[activity].skills, skillRankFilters);
-        const practicalMagic: Skill[] = activitySkills.includes('engineering') && hasFeat(this.kingdom, 'Practical Magic') ? ['magic'] : [];
         const expandMagicSkills: Skill[] = this.kingdom.settings.expandMagicUse && expandMagicActivities.has(activity) ? ['magic'] : [];
-        return Array.from(new Set([...activitySkills, ...expandMagicSkills, ...practicalMagic]));
+        return Array.from(new Set([...activitySkills, ...expandMagicSkills]));
     }
 
     private calculateModifiers(
