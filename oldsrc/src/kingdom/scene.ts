@@ -1,6 +1,6 @@
 import {evaluateStructures, includeCapital, StructureResult, StructureStackRule} from './structures';
 import {ruleSchema} from './schema';
-import {CommodityStorage, Structure, structuresByName} from './data/structures';
+import {CommodityStorage, SkillItemBonuses, Structure, structuresByName} from './data/structures';
 import {Kingdom, Settlement, WorkSite, WorkSites} from './data/kingdom';
 import {getBooleanSetting} from '../settings';
 import {isKingmakerInstalled, isNonNullable} from '../utils';
@@ -382,6 +382,23 @@ export function getActiveSettlementStructureResult(game: Game, kingdom: Kingdom)
             merged: mergedSettlementStructures,
         };
     }
+}
+
+export function getAllSettlementsSkillItemBonuses(game: Game, kingdom: Kingdom): SkillItemBonuses[] {
+    const mode = getStructureStackMode(game);
+    const autoCalculateSettlementLevel = getBooleanSetting(game, 'autoCalculateSettlementLevel');
+    const activities = getKingdomActivitiesById(kingdom.homebrewActivities);
+
+    const skillItemBonuses = [] as SkillItemBonuses[];
+    for(var settlement of kingdom.settlements) {
+        const scene = getScene(game, settlement.sceneId) as Scene;
+        if(settlement) {
+            const settlementResult = getStructureResult(mode, autoCalculateSettlementLevel, activities, {settlement, scene}, kingdom.level);
+            skillItemBonuses.push(settlementResult.skillBonuses)
+        }
+    }
+
+    return skillItemBonuses;
 }
 
 export function getSettlementsWithoutLandBorders(game: Game, kingdom: Kingdom): number {

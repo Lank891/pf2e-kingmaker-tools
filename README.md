@@ -22,6 +22,7 @@ This module ships all OGL licensed rules to run the Kingdom, Camping and Weather
 - Buildings that give bonuses to earn income increase the effective settlement level for the purposes of calculating earn income task level.
 - Macro for Sense Direction.
 - Some custom buildings.
+- Activity item bonuses from buildings are calculated from all cities, not only active city + capital.
 
 ## Licensing
 

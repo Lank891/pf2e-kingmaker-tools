@@ -300,7 +300,7 @@ export function getSettlementConfig(settlementLevel: number): SettlementConfig {
     };
 }
 
-function mergeBonuses(capital: SkillItemBonus, settlement: SkillItemBonus): SkillItemBonus {
+export function mergeBonuses(capital: SkillItemBonus, settlement: SkillItemBonus): SkillItemBonus {
     const skillValue = capital.value > settlement.value ? capital.value : settlement.value;
     const activities = mergePartialObjects(capital.activities, settlement.activities, (a: number | undefined, b: number | undefined) => Math.max(a ?? 0, b ?? 0));
     const filteredActivities = Object.fromEntries(

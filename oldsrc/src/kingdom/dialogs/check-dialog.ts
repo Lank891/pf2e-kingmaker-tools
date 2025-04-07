@@ -19,6 +19,7 @@ import {cooperativeLeadership, rollCheck} from '../rolls';
 import {
     ActiveSettlementStructureResult,
     getActiveSettlementStructureResult,
+    getAllSettlementsSkillItemBonuses,
     getSettlement,
     getSettlementsWithoutLandBorders,
     getStolenLandsData,
@@ -27,6 +28,8 @@ import {
 import {getBooleanSetting, getStringSetting} from '../../settings';
 import {DegreeOfSuccess} from '../../degree-of-success';
 import {getArmyModifiers, getScoutingDC} from '../../armies/utils';
+import { SkillItemBonuses, SkillItemBonus } from '../data/structures';
+import { mergeBonuses } from '../structures';
 
 export type CheckType = 'skill' | 'activity';
 
@@ -171,6 +174,7 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
 
     override getData(options?: Partial<FormApplicationOptions & { feats: KingdomFeat[] }>): Promise<object> | object {
         const activeSettlementStructureResult = getActiveSettlementStructureResult(this.game, this.kingdom);
+        const allSettlementStructureBonuses = getAllSettlementsSkillItemBonuses(this.game, this.kingdom);
         const activeSettlement = getSettlement(this.game, this.kingdom, this.kingdom.activeSettlement);
         const activities = getKingdomActivitiesById(this.kingdom.homebrewActivities);
         const applicableSkills = this.type === 'skill' ? [this.skill!] : this.getActivitySkills(this.kingdom.skillRanks, activities);
@@ -193,6 +197,7 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
         const skillModifiers = this.calculateModifiers(
             applicableSkills,
             activeSettlementStructureResult,
+            allSettlementStructureBonuses,
             additionalModifiers,
             convertedCustomModifiers,
             activities,
@@ -200,6 +205,7 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
         const creativeSolutionModifier = this.calculateModifiers(
             applicableSkills,
             activeSettlementStructureResult,
+            allSettlementStructureBonuses,
             [...additionalModifiers, {enabled: true, type: 'circumstance', value: 2, name: 'Creative Solution'}],
             convertedCustomModifiers,
             activities,
@@ -207,6 +213,7 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
         const supernaturalSolutionModifier = this.calculateModifiers(
             ['magic'],
             activeSettlementStructureResult,
+            allSettlementStructureBonuses,
             additionalModifiers,
             convertedCustomModifiers,
             activities,
@@ -365,11 +372,18 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
     private calculateModifiers(
         applicableSkills: Skill[],
         activeSettlementStructureResult: ActiveSettlementStructureResult | undefined,
+        allSettlementStructureBonuses: SkillItemBonuses[],
         additionalModifiers: Modifier[],
         convertedCustomModifiers: Modifier[],
         activities: KingdomActivityById,
     ): Record<Skill, TotalAndModifiers> {
         return Object.fromEntries(applicableSkills.map(skill => {
+
+            const skillBonusesForSkill = allSettlementStructureBonuses.flatMap(sib => sib?.[skill]);
+            const mergedBonuses = skillBonusesForSkill.reduce((prev, curr) => {
+                return mergeBonuses(prev, curr);
+            }, {value: 0, activities: {}} as SkillItemBonus);
+
             const modifiers = createSkillModifiers({
                 ruin: this.kingdom.ruin,
                 unrest: this.kingdom.unrest,
@@ -379,7 +393,7 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
                 kingdomLevel: this.kingdom.level,
                 untrainedProficiencyMode: getUntrainedProficiencyMode(this.game),
                 ability: skillAbilities[skill],
-                skillItemBonus: activeSettlementStructureResult?.merged?.skillBonuses?.[skill],
+                skillItemBonus: mergedBonuses,
                 additionalModifiers: [...additionalModifiers, ...convertedCustomModifiers],
                 activity: this.activity,
                 phase: this.phase,
