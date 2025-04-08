@@ -10,7 +10,7 @@ import {abilityRuins} from './data/ruin';
 import {ActivityBonuses, SkillItemBonus} from './data/structures';
 import {ActiveSettlementStructureResult} from './scene';
 import {getBooleanSetting} from '../settings';
-import {KingdomActivityById} from './data/activityData';
+import {KingdomActivityById, KingdomActivity} from './data/activityData';
 
 export type Proficiency = 'trained' | 'expert' | 'master' | 'legendary';
 
@@ -274,6 +274,7 @@ export function createActiveOtherModifiers(
     activeSettlement: Settlement | undefined,
     activeSettlementStructureResult: ActiveSettlementStructureResult | undefined,
     settlementsWithoutLandBorders: number,
+    activity: KingdomActivity | undefined
 ): Modifier[] {
     const levelData = getLevelData(kingdom.level);
     const feats = new Set([...kingdom.feats.map(f => f.id), ...kingdom.bonusFeats.map(f => f.id)]);
@@ -326,6 +327,15 @@ export function createActiveOtherModifiers(
             enabled: false,
             phases: ['leadership'],
         });
+    }
+    if ( activity && activity.disableUnrestPenalty ) {
+        result.push({
+            name: 'Unrest compensation for reducing unrest',
+            type: 'untyped',
+            value: calculateUnrestPenalty(kingdom.unrest),
+            enabled: true,
+            phases: ['leadership']
+        })
     }
     result.push({
         name: 'Invested, Non-Vacant Leader Handles Event',

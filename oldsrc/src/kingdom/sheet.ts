@@ -252,6 +252,7 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
                     activeSettlement?.settlement,
                     activeSettlementStructureResult,
                     getSettlementsWithoutLandBorders(this.game, kingdomData),
+                    undefined
                 ),
                 activities,
             }),
@@ -697,7 +698,8 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
     }
 
     private getFameLabel(fameType: FameType): string {
-        return fameType === 'famous' ? 'Fame' : 'Infamy';
+        //return fameType === 'famous' ? 'Fame' : 'Infamy';
+        return 'Crisis Point';
     }
 
     private getActiveTabs(): Record<string, boolean> {

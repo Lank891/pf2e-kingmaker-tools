@@ -42,6 +42,8 @@ export interface ActivityContent extends ActivityResults {
     oncePerRound: boolean;
     hint?: string;
     requiredFeat?: string;
+    disableUnrestPenalty?: boolean;
+    disableGeneratingFameOnCriticalFailure?: boolean;
 }
 
 export interface KingdomActivity extends ActivityContent {
@@ -262,7 +264,7 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
             msg: `${gainRolledRD(1)}. Rumors are backed up with eyewitness accounts. ${gainUnrest(1)} and ${gainRuin('corruption', 1)}.`,
         },
         criticalFailure: {
-            msg: `You gain nothing from the Clandestine Business but angry citizens. ${gainUnrest('1d6')}, ${gainRuin('corruption', 2)}, and one other Ruin of your choice by 1.`,
+            msg: `You gain nothing from the Clandestine Business but angry citizens. ${gainUnrest('1d5')}, ${gainRuin('corruption', 2)}, and one other Ruin of your choice by 1.`,
         },
     },
     'clear-hex': {
@@ -371,10 +373,11 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
         oncePerRound: true,
         fortune: false,
         enabled: true,
+        disableGeneratingFameOnCriticalFailure: true,
         phase: 'leadership',
         dc: 'control',
         title: 'Create a Masterpiece',
-        description: 'You encourage your kingdom’s artists to create and display a masterful work of art to bolster your kingdom’s reputation. Attempt a basic check; the result affects either Fame or Infamy (depending on the type of kingdom you’re running). Create a Masterpiece may be attempted only once per Kingdom turn regardless of the number of leaders pursuing activities.',
+        description: 'You encourage your kingdom’s artists to create and display a masterful work of art to bolster your kingdom’s reputation. Attempt a basic check; Create a Masterpiece may be attempted only once per Kingdom turn regardless of the number of leaders pursuing activities.',
         skills: simpleRank(['arts'], 1),
         criticalSuccess: {
             msg: `${gainFame(1)}, and ${createResourceButton({
@@ -390,7 +393,7 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
             msg: 'Your attempt to create a masterpiece fails.',
         },
         criticalFailure: {
-            msg: `Not only does your attempt to create a masterpiece fail, it does so in a dramatic and humiliating way. ${loseFame(1)}; if you have no Fame or Infamy points to lose, instead ${gainUnrest('1d4')}`,
+            msg: `Not only does your attempt to create a masterpiece fail, it does so in a dramatic and humiliating way. ${loseFame(1)}; if you have no points to lose, instead ${gainUnrest('1d3')}`,
         },
     },
     'creative-solution': {
@@ -417,7 +420,7 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
         special: 'You cannot influence a check with Supernatural Solution and Creative Solution simultaneously.',
     },
     'decadent-feasts': {
-        oncePerRound: false,
+        oncePerRound: true,
         fortune: false,
         enabled: false,
         phase: 'leadership',
@@ -426,16 +429,16 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
         description: `Your goddess is more than just the goddess of undeath— she’s also the goddess of gluttony. And you are no fool; you understand the fear your goddess inspires in the living and knows that focusing on other aspects of her worship are more likely to result in positive growth for the nation. In order to distract the populace, you arrange for decadent feasts for the people, simultaneously feeding the hungry while camouflaging some of your faith’s more sinister aspects. ${loseCommodities('food', '1d8')} and ${loseCommodities('luxuries', 1)}, then attempt a basic Agriculture or Trade check to determine how effective the feasts are.`,
         skills: simpleRank(['agriculture']),
         criticalSuccess: {
-            msg: `The people rejoice and glut themselves on the repast! ${loseUnrest('1d6')}, and the next time this Kingdom turn you suffer an effect that increases Unrest, do not increase your Unrest.`,
+            msg: `The people rejoice and glut themselves on the repast! ${loseUnrest('1d5')}, and the next time this Kingdom turn you suffer an effect that increases Unrest, do not increase your Unrest.`,
         },
         success: {
-            msg: `The people enjoy the meal, but no longer than it takes to gulp it down. ${loseUnrest('1d3')}`,
+            msg: `The people enjoy the meal, but no longer than it takes to gulp it down. ${loseUnrest(1)}`,
         },
         failure: {
-            msg: `The meal is appreciated, but the people remain suspicious. ${loseUnrest(1)}.`,
+            msg: `The meal is appreciated, but the people remain suspicious. ${loseUnrest(1)} and ${gainRuin('corruption', 1)}.`,
         },
         criticalFailure: {
-            msg: `The people are too suspicious of the feast to enjoy it. Worse, rumors that Jaethal is trying to distract the citizens from an evil ritual spread. ${gainUnrest('1d4')} and ${gainRuin('corruption', 1)}`,
+            msg: `The people are too suspicious of the feast to enjoy it. Worse, rumors that Jaethal is trying to distract the citizens from an evil ritual spread. ${gainUnrest('1d3')} and ${gainRuin('corruption', 1)}`,
         },
     },
     'deliberate-planning': {
@@ -529,7 +532,7 @@ If the army’s deployment causes it to cross your kingdom’s border (leave you
             msg: 'The army arrives at its destination, but ran into some sort of trouble along the way. Increase the army’s weary condition by 1 and attempt a @Check[type:flat|dc:6]; on a failure, reduce the army’s HP by 1.',
         },
         criticalFailure: {
-            msg: `Rather than arriving at its destination, the army becomes lost until it recovers from this condition. ${gainUnrest('1d4')}, and attempt a @Check[type:flat|dc:11]; on a failure, reduce the army’s HP by 1.`,
+            msg: `Rather than arriving at its destination, the army becomes lost until it recovers from this condition. ${gainUnrest('1d3')}, and attempt a @Check[type:flat|dc:11]; on a failure, reduce the army’s HP by 1.`,
         },
     },
     'disband-army': {
@@ -718,7 +721,7 @@ If you are using boating and a navigable river connects not only your kingdom bu
         },
     },
     'evangelize-the-end': {
-        oncePerRound: false,
+        oncePerRound: true,
         fortune: false,
         enabled: false,
         phase: 'leadership',
@@ -727,20 +730,20 @@ If you are using boating and a navigable river connects not only your kingdom bu
         description: 'You spend time preaching the End Times. While your sermons certainly aren’t for everyone, your methods avoid deliberately antagonizing those who see hope in the world while simultaneously providing ease and calm to the more desperate among the kingdom’s citizens. Attempt a basic Folklore check to determine how effective your sermons are.',
         skills: simpleRank(['folklore']),
         criticalSuccess: {
-            msg: `Your prayers soothe and calm the more criminal-minded citizens for the time being. ${loseUnrest('1d4')}, and either ${loseRuin('crime', 2)} or ${loseRuin('corruption', 1)} or ${loseRuin('strife', 1)}.`,
+            msg: `Your prayers soothe and calm the more criminal-minded citizens for the time being. ${loseUnrest('1d3')}, and either ${loseRuin('crime', 2)} or ${loseRuin('corruption', 1)} or ${loseRuin('strife', 1)}.`,
         },
         success: {
-            msg: `Your prayers serve to redirect and calm discord. ${loseUnrest('1d3')}`,
+            msg: `Your prayers serve to redirect and calm discord. ${loseUnrest(1)}`,
         },
         failure: {
-            msg: `Your prayers serve to redirect and calm discord. ${loseUnrest('1')}`,
+            msg: `Your prayers serve to redirect and calm discord. ${loseUnrest(1)} and ${gainRuin('decay', 1)}`,
         },
         criticalFailure: {
-            msg: `Your prayers have unsettled some of your citizens. ${gainUnrest('1d4')} and ${gainRuin('decay', 1)} `,
+            msg: `Your prayers have unsettled some of your citizens. ${gainUnrest('1d3')} and ${gainRuin('decay', 1)} `,
         },
     },
     'false-victory': {
-        oncePerRound: false,
+        oncePerRound: true,
         fortune: false,
         enabled: false,
         phase: 'leadership',
@@ -750,7 +753,7 @@ If you are using boating and a navigable river connects not only your kingdom bu
         skills: simpleRank(['intrigue']),
         criticalSuccess: {
             // TODO: ruin of your choice
-            msg: `At the end of this Kingdom turn’s Event Phase, roll again on the random kingdom events table. Rumors of this event being resolved spread throughout your kingdom. You don’t gain any of the benefits of resolving this false victory, but instead ${loseUnrest('1d6')} and one Ruin of your choice by 1. If you randomly roll that same random kingdom event at any time during the next four kingdom turns, you can attempt an Intrigue check with a +1 circumstance bonus to resolve it rather than the normal check to resolve it.`,
+            msg: `At the end of this Kingdom turn’s Event Phase, roll again on the random kingdom events table. Rumors of this event being resolved spread throughout your kingdom. You don’t gain any of the benefits of resolving this false victory, but instead ${loseUnrest('1d5')} and one Ruin of your choice by 1. If you randomly roll that same random kingdom event at any time during the next four kingdom turns, you can attempt an Intrigue check with a +1 circumstance bonus to resolve it rather than the normal check to resolve it.`,
             modifiers: () => [{
                 turns: 5,
                 enabled: false,
@@ -762,7 +765,7 @@ If you are using boating and a navigable river connects not only your kingdom bu
             }],
         },
         success: {
-            msg: `Vague rumors of the kingdom’s leaders attaining victories over vague threats spread through the kingdom. ${loseUnrest('1d3')}`,
+            msg: `Vague rumors of the kingdom’s leaders attaining victories over vague threats spread through the kingdom. ${loseUnrest('1d2')}`,
         },
         failure: {
             msg: `The false event fails to manifest, and rumors of the truth spread throughout the kingdom. ${gainUnrest(1)}. You cannot attempt False Victory on your next Kingdom turn.`,
@@ -830,7 +833,7 @@ The Cooperative Leadership Kingdom feat (page 531) increases the efficiency of t
         },
         success: {
             msg:
-                `You establish your fortification in the hex. ${loseUnrest(1)}`,
+                `You establish your fortification in the hex. Roll a @Check[flat|dc:11|showDC:all]. On a success, ${loseUnrest(1)}.`,
         },
         failure: {
             msg: 'You fail to fortify the hex.',
@@ -927,7 +930,7 @@ The Cooperative Leadership Kingdom feat (page 531) increases the efficiency of t
                 `You fail to harvest any @UUID[Compendium.pf2e.equipment-srd.Item.MvMa010Je10GN5dx]{Azure Lily Pollen}, in part because many of the resources make their way into the kingdom’s criminal underworld. ${gainRuin('crime', 1)}`,
         },
         criticalFailure: {
-            msg: `Not only do you fail to harvest any pollen, and not only do resources make their way into the hands of criminals, but whispers and rumors that you allowed this to happen on purpose spread through the kingdom. ${gainUnrest('1d4')}, ${gainRuin('corruption', 1)}, and ${gainRuin('crime', 2)}`,
+            msg: `Not only do you fail to harvest any pollen, and not only do resources make their way into the hands of criminals, but whispers and rumors that you allowed this to happen on purpose spread through the kingdom. ${gainUnrest('1d3')}, ${gainRuin('corruption', 1)}, and ${gainRuin('crime', 2)}`,
         },
     },
     'harvest-crops': {
@@ -1062,10 +1065,10 @@ The Cooperative Leadership Kingdom feat (page 531) increases the efficiency of t
         description: 'You send spies out to gather intelligence on a neighboring nation, a cult or thieves’ guild within your borders, an unclaimed Freehold, or even an unexplored adventure site. Alternately, you can simply send your spies out to investigate the current health of your kingdom. Attempt a basic check.',
         skills: simpleRank(['intrigue']),
         criticalSuccess: {
-            msg: `You learn something valuable or helpful. If you were infiltrating a specific target, the GM decides what is learned, but the information is exact and precise. For example, if you were infiltrating an unexplored ruin, you might learn that the site is infested with web lurkers and spider swarms. If you were investigating your kingdom’s health, your spies reveal easy methods to address citizen dissatisfaction, allowing you to choose one of the following: ${loseUnrest('1d4')} or reduce a Ruin of your choice by 1.`,
+            msg: `You learn something valuable or helpful. If you were infiltrating a specific target, the GM decides what is learned, but the information is exact and precise. For example, if you were infiltrating an unexplored ruin, you might learn that the site is infested with web lurkers and spider swarms. If you were investigating your kingdom’s health, your spies reveal easy methods to address citizen dissatisfaction, allowing you to choose one of the following: ${loseUnrest('1d3')} or reduce a Ruin of your choice by 1.`,
         },
         success: {
-            msg: `You learn something helpful about the target, but the information is vague and imprecise. For example, if you were infiltrating the same ruin mentioned in the critical success above, you might learn that some sort of aberration uses the ruins as its lair. If you were investigating your kingdom’s health, your spies learn enough that you can take action. ${loseUnrest(1)}`,
+            msg: `You learn something helpful about the target, but the information is vague and imprecise. For example, if you were infiltrating the same ruin mentioned in the critical success above, you might learn that some sort of aberration uses the ruins as its lair. If you were investigating your kingdom’s health, your spies learn enough that you can take action. Roll a @Check[flat|dc:11|showDC:all]. On a success, ${loseUnrest(1)}.`,
         },
         failure: {
             msg: 'Your spies fail to learn anything of import, but they are not themselves compromised.',
@@ -1345,7 +1348,7 @@ You can attempt this skill check with Intrigue, Statecraft, or Warfare; however,
                 turn: 'next',
                 value: '1',
                 type: 'resource-dice',
-            })}, but the citizens catch wind of the fees and grow unhappy. ${gainUnrest('1d6')}, and you cannot Process Hidden Fees on your next Kingdom turn.`,
+            })}, but the citizens catch wind of the fees and grow unhappy. ${gainUnrest('1d5')}, and you cannot Process Hidden Fees on your next Kingdom turn.`,
         },
     },
     'prognostication': {
@@ -1389,9 +1392,10 @@ You can attempt this skill check with Intrigue, Statecraft, or Warfare; however,
         },
     },
     'provide-care': {
-        oncePerRound: false,
+        oncePerRound: true,
         fortune: false,
         enabled: true,
+        disableUnrestPenalty: true,
         phase: 'leadership',
         dc: 'control',
         title: 'Provide Care',
@@ -1459,13 +1463,14 @@ You can attempt this skill check with Intrigue, Statecraft, or Warfare; however,
         oncePerRound: true,
         fortune: false,
         enabled: true,
+        disableUnrestPenalty: true,
         phase: 'leadership',
         dc: 'control',
         title: 'Quell Unrest',
         description: 'You send your agents among the citizenry with the charge of suppressing dissent and calming unrest. You can attempt a basic Arts, Folklore, Intrigue, Magic, Politics, or Warfare check to Quell Unrest, but you can never use the same skill for this activity in consecutive Kingdom turns. This activity cannot be attempted more than once per Kingdom turn.',
         skills: simpleRank(['arts', 'folklore', 'intrigue', 'magic', 'politics', 'warfare']),
         criticalSuccess: {
-            msg: loseUnrest('1d6'),
+            msg: loseUnrest('1d5'),
         },
         success: {
             msg: loseUnrest(1),
@@ -1474,7 +1479,7 @@ You can attempt this skill check with Intrigue, Statecraft, or Warfare; however,
             msg: 'You fail to reduce Unrest.',
         },
         criticalFailure: {
-            msg: `You not only fail to reduce Unrest, but actually incite further anger among the citizenry. Choose one of the following: ${gainUnrest('1d4')} or increase two Ruins of your choice by 1.`,
+            msg: `You not only fail to reduce Unrest, but actually incite further anger among the citizenry. Choose one of the following: ${gainUnrest('1d3')} or increase two Ruins of your choice by 1.`,
         },
     },
     'read-all-about-it': {
@@ -1770,10 +1775,10 @@ The skill used to Repair Reputation depends on which Ruin total you wish to redu
             msg: loseRuin('corruption', 1),
         },
         failure: {
-            msg: 'You fail to reduce the targeted Ruin. You cannot attempt to Repair Reputation on this Ruin for 1 Kingdom turn.',
+            msg: 'You fail to reduce the targeted Ruin. You cannot attempt to Repair Reputation on this Ruin in this and next Kingdom turn.',
         },
         criticalFailure: {
-            msg: `You fail to reduce the targeted Ruin in a particularly public and embarrassing way. ${gainUnrest('1d4')}, and you cannot attempt to Repair Reputation for 3 Kingdom turns.`,
+            msg: `You fail to reduce the targeted Ruin in a particularly public and embarrassing way. ${gainUnrest('1d3')}, and you cannot attempt to Repair Reputation for 3 Kingdom turns.`,
         },
     },
     'repair-reputation-crime': {
@@ -1795,10 +1800,10 @@ The skill used to Repair Reputation depends on which Ruin total you wish to redu
             msg: loseRuin('crime', 1),
         },
         failure: {
-            msg: 'You fail to reduce the targeted Ruin. You cannot attempt to Repair Reputation on this Ruin for 1 Kingdom turn.',
+            msg: 'You fail to reduce the targeted Ruin. You cannot attempt to Repair Reputation on this Ruin in this and next Kingdom turn.',
         },
         criticalFailure: {
-            msg: `You fail to reduce the targeted Ruin in a particularly public and embarrassing way. ${gainUnrest('1d4')}, and you cannot attempt to Repair Reputation for 3 Kingdom turns.`,
+            msg: `You fail to reduce the targeted Ruin in a particularly public and embarrassing way. ${gainUnrest('1d3')}, and you cannot attempt to Repair Reputation for 3 Kingdom turns.`,
         },
     },
     'repair-reputation-decay': {
@@ -1820,10 +1825,10 @@ The skill used to Repair Reputation depends on which Ruin total you wish to redu
             msg: loseRuin('decay', 1),
         },
         failure: {
-            msg: 'You fail to reduce the targeted Ruin. You cannot attempt to Repair Reputation on this Ruin for 1 Kingdom turn.',
+            msg: 'You fail to reduce the targeted Ruin. You cannot attempt to Repair Reputation on this Ruin in this and next Kingdom turn.',
         },
         criticalFailure: {
-            msg: `You fail to reduce the targeted Ruin in a particularly public and embarrassing way. ${gainUnrest('1d4')}, and you cannot attempt to Repair Reputation for 3 Kingdom turns.`,
+            msg: `You fail to reduce the targeted Ruin in a particularly public and embarrassing way. ${gainUnrest('1d3')}, and you cannot attempt to Repair Reputation for 3 Kingdom turns.`,
         },
     },
     'repair-reputation-strife': {
@@ -1845,10 +1850,10 @@ The skill used to Repair Reputation depends on which Ruin total you wish to redu
             msg: loseRuin('strife', 1),
         },
         failure: {
-            msg: 'You fail to reduce the targeted Ruin. You cannot attempt to Repair Reputation on this Ruin for 1 Kingdom turn.',
+            msg: 'You fail to reduce the targeted Ruin. You cannot attempt to Repair Reputation on this Ruin in this and next Kingdom turn.',
         },
         criticalFailure: {
-            msg: `You fail to reduce the targeted Ruin in a particularly public and embarrassing way. ${gainUnrest('1d4')}, and you cannot attempt to Repair Reputation for 3 Kingdom turns.`,
+            msg: `You fail to reduce the targeted Ruin in a particularly public and embarrassing way. ${gainUnrest('1d3')}, and you cannot attempt to Repair Reputation for 3 Kingdom turns.`,
         },
     },
     'repair-the-flooded-mine': {
@@ -1913,7 +1918,7 @@ The skill used to Repair Reputation depends on which Ruin total you wish to redu
             })}`,
         },
         criticalFailure: {
-            msg: `Your ally is tangled up in its own problems and is unable to assist you, is insulted by your request for aid, or might even have an interest in seeing your kingdom struggle against one of your ongoing events. Whatever the case, your pleas for aid make your kingdom look desperate. You gain no aid, but you do ${gainUnrest('1d4')}.`,
+            msg: `Your ally is tangled up in its own problems and is unable to assist you, is insulted by your request for aid, or might even have an interest in seeing your kingdom struggle against one of your ongoing events. Whatever the case, your pleas for aid make your kingdom look desperate. You gain no aid, but you do ${gainUnrest('1d3')}.`,
         },
     },
     'request-foreign-aid-vk': {
@@ -1956,19 +1961,20 @@ The skill used to Repair Reputation depends on which Ruin total you wish to redu
             })}`,
         },
         criticalFailure: {
-            msg: `Your ally is tangled up in its own problems and is unable to assist you, is insulted by your request for aid, or might even have an interest in seeing your kingdom struggle against one of your ongoing events. Whatever the case, your pleas for aid make your kingdom look desperate. You gain no aid, but you do ${gainUnrest('1d4')}.`,
+            msg: `Your ally is tangled up in its own problems and is unable to assist you, is insulted by your request for aid, or might even have an interest in seeing your kingdom struggle against one of your ongoing events. Whatever the case, your pleas for aid make your kingdom look desperate. You gain no aid, but you do ${gainUnrest('1d3')}.`,
         },
     },
     'rest-and-relax': {
         oncePerRound: false,
         fortune: false,
         enabled: true,
+        disableUnrestPenalty: true,
         phase: 'leadership',
         dc: 'control',
         title: 'Rest and Relax',
         description: `Working non-stop can burn out even the most devoted and dedicated individual. As such, it’s important to take time for yourself, and thus set a good example for the nation.
 
-You take time to relax, and you extend the chance to unwind to your citizens as well. The Kingdom skill you use to determine the effectiveness of your time off depends on how you want to spend it: Use a basic Arts check to spend the time engaged in entertainment or the pursuit of a hobby. Use a basic Boating check to enjoy trips on the lakes and rivers of your kingdom. Use a basic Scholarship check to spend the time reading or studying a topic of personal interest beyond your daily duties. Use a basic Trade check to spend your time shopping or feasting. Use a basic Wilderness check to get away from the bustle and relax in the countryside. If your kingdom Rested and Relaxed this or previous Kingdom turn, the DC increases by 4, as your kingdom’s production and output hasn’t had a chance to catch up to all those vacation days.`,
+You take time to relax, and you extend the chance to unwind to your citizens as well. The Kingdom skill you use to determine the effectiveness of your time off depends on how you want to spend it: Use a basic Arts check to spend the time engaged in entertainment or the pursuit of a hobby. Use a basic Boating check to enjoy trips on the lakes and rivers of your kingdom. Use a basic Scholarship check to spend the time reading or studying a topic of personal interest beyond your daily duties. Use a basic Trade check to spend your time shopping or feasting. Use a basic Wilderness check to get away from the bustle and relax in the countryside. If your kingdom Rested and Relaxed this or previous Kingdom turn, the DC increases by 5, as your kingdom’s production and output hasn’t had a chance to catch up to all those vacation days. This increase is cumulative when resting more than once.`,
         skills: simpleRank(['arts', 'boating', 'scholarship', 'trade', 'wilderness']),
         criticalSuccess: {
             msg: 'The citizens enjoy the time off and are ready to get back to work. ' + loseUnrest(1) + ', and the next Leadership activity you take gains a +2 circumstance bonus.',
@@ -1986,12 +1992,21 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
             msg: `The time spent relaxing has calmed nerves; ${loseUnrest(1)}.`,
         },
         failure: {
-            msg: 'The rest is welcome, but not particularly beneficial in the long term.',
+            msg: 'The rest is welcome, but not particularly beneficial in the long term. you have to spend extra time catching up. Take a –2 circumstance penalty to your next skill check made as a Leadership activity. ',
+            modifiers: () => [{
+                turns: 2,
+                consumeId: '',
+                phases: ['leadership'],
+                enabled: true,
+                value: -2,
+                name: 'Rest and Relax: Failure',
+                type: 'circumstance',
+            }],
         },
         criticalFailure: {
-            msg: 'The time is wasted, and when you get back to work, you have to spend extra time catching up. Take a –2 circumstance penalty to your next skill check made as a Leadership activity.',
+            msg: `The time is wasted, and when you get back to work, you have to spend extra time catching up. Take a –2 circumstance penalty to your next skill check made as a Leadership activity. People are not happy that they have to work when you rest. ${gainUnrest('1d3')}`,
             modifiers: () => [{
-                turns: 1,
+                turns: 2,
                 consumeId: '',
                 phases: ['leadership'],
                 enabled: true,
@@ -2020,7 +2035,7 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
             msg: 'Work proceeds but is not yet complete; you can attempt to restore the temple again on the next Kingdom turn.',
         },
         criticalFailure: {
-            msg: `Disaster strikes as the temple’s cavern collapses and rubble spills out to bury and destroy much of the temple’s plaza. ${gainRuin('decay', 1)} and ${gainUnrest('1d4')}. You can still attempt to Restore the Temple, but the DC for success increases by 4. This increase is cumulative with successive critical failures.`,
+            msg: `Disaster strikes as the temple’s cavern collapses and rubble spills out to bury and destroy much of the temple’s plaza. ${gainRuin('decay', 1)} and ${gainUnrest('1d3')}. You can still attempt to Restore the Temple, but the DC for success increases by 4. This increase is cumulative with successive critical failures.`,
         },
     },
     'send-diplomatic-envoy': {
@@ -2057,7 +2072,7 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
             }],
         },
         criticalFailure: {
-            msg: `Disaster! Your envoy fails to reach their destination, is turned back at the border, or is taken prisoner or executed, at the GM’s discretion. The repercussions on your kingdom’s morale and reputation are significant. Choose one of the following results: ${gainUnrest('1d4')}, add 1 to a Ruin of your choice, or ${loseRolledRD(2, false)}. In any event, you cannot attempt to Send a Diplomatic Envoy to this same target for the next 3 Kingdom Turns.`,
+            msg: `Disaster! Your envoy fails to reach their destination, is turned back at the border, or is taken prisoner or executed, at the GM’s discretion. The repercussions on your kingdom’s morale and reputation are significant. Choose one of the following results: ${gainUnrest('1d3')}, add 1 to a Ruin of your choice, or ${loseRolledRD(2, false)}. In any event, you cannot attempt to Send a Diplomatic Envoy to this same target for the next 3 Kingdom Turns.`,
         },
     },
     'show-of-force': {
@@ -2079,33 +2094,35 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
             msg: `The show of force fails to impress criminals but unsettles the rest of the citizens. ${gainUnrest(1)}.`,
         },
         criticalFailure: {
-            msg: `The criminals are emboldened by the failed show of force. ${gainUnrest('1d4')} and ${gainRuin('crime', 1)}.`,
+            msg: `The criminals are emboldened by the failed show of force. ${gainUnrest('1d3')} and ${gainRuin('crime', 1)}.`,
         },
     },
     'spread-the-legend': {
-        oncePerRound: false,
+        oncePerRound: true,
         fortune: false,
         enabled: false,
+        disableUnrestPenalty: true,
         phase: 'leadership',
         dc: 'control',
+        dcAdjustment: 2,
         title: 'Spread the Legend',
-        description: 'You work to spread the word of the party’s heroics and achievements, both through word of mouth and by distributing chapbooks or one-sheets detailing their exploits. Attempt a basic Arts check to determine the success of your efforts. If you have secured a printing press for the kingdom, the Arts check gains a +2 item bonus.',
+        description: 'You work to spread the word of the party’s heroics and achievements, both through word of mouth and by distributing chapbooks or one-sheets detailing their exploits. Attempt an Arts check against your control dc + 2 to determine the success of your efforts. If you have secured a printing press for the kingdom, the Arts check gains a +2 item bonus.',
         skills: simpleRank(['arts']),
         criticalSuccess: {
-            msg: `Not only do your stories bring pride and patriotism to the nation, but they also help increase its glory. ${loseUnrest('1d6')}, and ${createResourceButton({
+            msg: `Not only do your stories bring pride and patriotism to the nation, but they also help increase its glory. ${loseUnrest('1d3')}, and ${createResourceButton({
                 type: 'fame',
                 turn: 'next',
                 value: '1',
             })}. In addition, if the kingdom experiences a dangerous random event during this turn’s Event Phase, reduce that event’s level modifier by 1.`,
         },
         success: {
-            msg: `The rousing and inspiring stories you spread about the PCs helps to bring the nation together. ${loseUnrest('1d6')}`,
+            msg: `The rousing and inspiring stories you spread about the PCs helps to bring the nation together. ${loseUnrest('1d2')}`,
         },
         failure: {
-            msg: `You avoid spreading unfortunate news, but only just barely. The citizens are only slightly entertained by their leaders’ exploits. ${loseUnrest(1)}.`,
+            msg: `You avoid spreading unfortunate news, but only just barely. The citizens are only slightly entertained by their leaders’ exploits. Attempt a @Check[flat|dc:11|showDC:all], on a success ${loseUnrest(1)}.`,
         },
         criticalFailure: {
-            msg: `You accidentally spreads news of a humiliating or embarrassing nature, causing the people of the kingdom to lose respect for their leaders. ${gainUnrest('1d4')}.`,
+            msg: `You accidentally spreads news of a humiliating or embarrassing nature, causing the people of the kingdom to lose respect for their leaders. ${gainUnrest('1+1d2')}.`,
         },
     },
     'supernatural-solution': {
@@ -2158,7 +2175,7 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
             msg: 'Your hunters and trappers fail to supplement your stores and must spend time resupplying and setting new traps; you cannot attempt Supplementary Hunting on the next Kingdom turn.',
         },
         criticalFailure: {
-            msg: `Your hunters and trappers fail to supplement your stores and must spend time resupplying and setting new traps; you cannot attempt Supplementary Hunting on the next Kingdom turn. In addition, your hunters and trappers have accidentally attracted the attention of dangerous wildlife. Either ${gainUnrest('1d4')} or increase a Ruin of your choice by 1.`,
+            msg: `Your hunters and trappers fail to supplement your stores and must spend time resupplying and setting new traps; you cannot attempt Supplementary Hunting on the next Kingdom turn. In addition, your hunters and trappers have accidentally attracted the attention of dangerous wildlife. Either ${gainUnrest('1d3')} or increase a Ruin of your choice by 1.`,
         },
     },
     'tap-treasury': {
@@ -2538,19 +2555,19 @@ this activity on the target.`,
         },
         criticalFailure: {
             msg: `Your smugglers are caught and never
-return! ${gainUnrest('1d6')}, then attempt a @Check[flat|dc:11|showDc:all]; on a failure, the target ends its trade agreement
+return! ${gainUnrest('1d5')}, then attempt a @Check[flat|dc:15|showDc:all]; on a failure, the target ends its trade agreement
 with you, and ends its diplomatic relations as well on a
 critical failure.`
         }
     },
     'determine-victory': {
         oncePerRound: false,
-        fortune: false,
+        fortune: true,
         enabled: true,
         phase: 'armyWinLoss',
         dc: 'control',
         title: 'Determine Victory',
-        description: 'The kingdom’s armies won the battle! Roll a Warfare control check to determine the final outcome.',
+        description: 'The kingdom’s armies won the battle! Roll a Warfare control check to determine the final outcome. This check cannot be affected by fortune and missfortune effects.',
         skills: simpleRank(['warfare']),
         criticalSuccess: {
             msg: `Your victory was great and damage wasn’t that bad. Restore 1 HP to each army damaged in the war encounte, at the start of your next kingdom turn, gain +1 Fame and ${loseUnrest(1)}.`,
@@ -2567,12 +2584,12 @@ critical failure.`
     },
     'determine-loss': {
         oncePerRound: false,
-        fortune: false,
+        fortune: true,
         enabled: true,
         phase: 'armyWinLoss',
         dc: 'control',
         title: 'Determine Loss',
-        description: 'The kingdom’s armies lost the battle. Roll a Defense control check to determine the final outcome.',
+        description: 'The kingdom’s armies lost the battle. Roll a Defense control check to determine the final outcome. This check cannot be affected by fortune and missfortune effects.',
         skills: simpleRank(['defense']),
         criticalSuccess: {
             msg: `Many soldiers escaped the lost battle. All
@@ -2591,7 +2608,7 @@ the war encounter. ${gainUnrest(1)}`,
             msg: `The loss crushed your armies’ spirits.
 Each army that participated in the lost war encounter
 increases its shaken or weary value by 2 (PCs’ choice).
-${gainUnrest('1d4')}`
+${gainUnrest('1d3')}`
         }
     },
 };
@@ -2672,7 +2689,8 @@ export function createResourceButton({
                                          initialCost = false
                                      }: CreateResourceButton): string {
     const turnLabel = turn === 'now' ? '' : ' Next Turn';
-    const label = `${mode === 'gain' ? 'Gain' : 'Lose'} ${value} ${unslugify(type)}${turnLabel}`;
+    const typeName = type === 'fame' ? 'Crisis Point' : unslugify(type);
+    const label = `${mode === 'gain' ? 'Gain' : 'Lose'} ${value} ${typeName}${turnLabel}`;
     return `<button type="button" class="km-gain-lose" 
         data-type="${type}"
         data-mode="${mode}"

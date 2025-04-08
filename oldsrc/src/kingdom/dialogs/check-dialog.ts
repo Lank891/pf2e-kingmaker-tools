@@ -183,6 +183,8 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
             activeSettlement?.settlement,
             activeSettlementStructureResult,
             getSettlementsWithoutLandBorders(this.game, this.kingdom),
+            activities[this.activity!]
+            
         ).concat(getArmyModifiers(this.game));
         if (this.kingdom.unrest > 0 && hasFeat(this.kingdom, 'Inspiring Entertainment')) {
             additionalModifiers.push({

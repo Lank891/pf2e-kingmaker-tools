@@ -12,7 +12,7 @@ This module ships all OGL licensed rules to run the Kingdom, Camping and Weather
 - Removed non-V&K versions of buildings.
 - Changed some camping css to work with Pathfinder UI v3.
 - Added camping setting that adds flat amount of rations consumption.
-- Changed Unrest to have penalties at 1, 4, 8 and 12 instead of 1, 5, 10, 15. Anarchy starts at 16 inestead of 20. Anarchy with Endure Anarchy feat starts at 19 inestead of 24. Ruin and losing hexes starts at 8 insetad of 10.
+- Changed Unrest to have penalties at 1, 4, 8 and 12 instead of 1, 5, 10, 15. Anarchy starts at 16 inestead of 20. Anarchy with Endure Anarchy feat starts at 19 inestead of 24. Ruin and losing hexes starts at 8 insetad of 10. Rebalanced unrest activities.
 - Event check starts at 11 rather than 16.
 - Kingdom feats each level instead of once per 2 levels, slot for 1st-level feat.
 - Unified Creative and Supernatural solution to have the same downsides. Both are decided before rolling the check and better result is used. Creative solution rolls the same skill but second roll has +2 circumstance bonus. Supernatural solution rolls Magic, but does not add item bonuses unless the original activity could be rolled with Magic.
@@ -23,6 +23,7 @@ This module ships all OGL licensed rules to run the Kingdom, Camping and Weather
 - Macro for Sense Direction.
 - Some custom buildings.
 - Activity item bonuses from buildings are calculated from all cities, not only active city + capital.
+- Fame is now Crisis Points.
 
 ## Licensing
 
