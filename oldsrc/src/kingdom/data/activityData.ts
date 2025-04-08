@@ -495,10 +495,10 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
             msg: 'You demolish the lot successfully.',
         },
         failure: {
-            msg: 'You fail to demolish the lot. It remains in Rubble and cannot be used for further construction until you successfully Demolish it.',
+            msg: `You fail to demolish the lot. Either ${loseRolledRD(3)}, or remains in Rubble and cannot be used for further construction until you successfully Demolish it.`,
         },
         criticalFailure: {
-            msg: `You fail to demolish the lot. It remains in Rubble and cannot be used for further construction until you successfully Demolish it. In addition, accidents during the demolition cost you the lives of some of your workers. ${gainUnrest(1)}`,
+            msg: `You fail to demolish the lot. ${loseRolledRD(3)} It remains in Rubble and cannot be used for further construction until you successfully Demolish it. In addition, accidents during the demolition cost you the lives of some of your workers. ${gainUnrest(1)}`,
         },
     },
     'deploy-army': {
