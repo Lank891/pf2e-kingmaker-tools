@@ -24,7 +24,7 @@ export const kingdomChatButtons: KingdomChatButton[] = [
         callback: async (game: Game, actor: Actor, event: Event): Promise<void> => {
             event.preventDefault();
             const update = gainFame(getKingdom(actor), 1);
-            await ChatMessage.create({content: 'Gaining 1 Fame'});
+            await ChatMessage.create({content: 'Gaining 1 Crisis Point'});
             await saveKingdom(actor, update);
         },
     },

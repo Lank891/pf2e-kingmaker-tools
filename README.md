@@ -23,7 +23,7 @@ This module ships all OGL licensed rules to run the Kingdom, Camping and Weather
 - Macro for Sense Direction.
 - Some custom buildings.
 - Activity item bonuses from buildings are calculated from all cities, not only active city + capital.
-- Fame is now Crisis Points.
+- Fame is now Crisis Points and is generated on critical failures instead of on critical successes.
 
 ## Licensing
 

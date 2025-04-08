@@ -716,7 +716,7 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
     }
 
     private async upkeepGainFame(): Promise<void> {
-        await ChatMessage.create({content: 'Gaining 1 Fame'});
+        await ChatMessage.create({content: 'Gaining 1 Crisis Point'});
         await this.saveKingdom(gainFame(this.getKingdom(), 1));
     }
 

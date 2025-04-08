@@ -329,7 +329,7 @@ async function postSimpleDegreeOfSuccess(
         degreeOfSuccess,
         upgradedDegreeOfSuccess,
         messageConfig: {
-            critSuccess: `${buildChatButtons([], 'criticalSuccess')}`,
+            critFailure: `${buildChatButtons([], 'criticalFailure')}`,
             rollMode,
         },
     });
@@ -360,10 +360,10 @@ function getDegreeFromKey(degreeOfSuccess: keyof ActivityResults): DegreeOfSucce
 }
 
 function buildChatButtons(modifiers: Modifier[], resultKey: keyof ActivityResults, activity?: string): string {
-    if (modifiers.length > 0 || resultKey === 'criticalSuccess') {
+    if (modifiers.length > 0 || resultKey === 'criticalFailure') {
         return `
         <div class="km-chat-buttons">
-            ${resultKey === 'criticalSuccess' ? '<button type="button" class="km-gain-fame-button">Gain 1 Fame</button>' : ''}
+            ${resultKey === 'criticalFailure' ? '<button type="button" class="km-gain-fame-button">Gain 1 Crisis Point</button>' : ''}
             ${modifiers.map((modifier, index) => {
             const label = modifierToLabel(modifier);
             return `<button class="km-apply-modifier-effect" 
