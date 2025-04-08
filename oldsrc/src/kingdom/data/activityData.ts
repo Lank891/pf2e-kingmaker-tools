@@ -308,7 +308,7 @@ You can use Capital Investment to repay funds from Tap Treasury (page 528). In t
         dc: 'control',
         title: 'Collect Taxes',
         description: 'Tax collectors travel through the lands to collect funds for the betterment of the kingdom. Attempt a basic check.',
-        skills: simpleRank(['trade'], 1),
+        skills: simpleRank(['politics'], 1),
         criticalSuccess: {
             msg: 'Your tax collectors are wildly successful! For the remainder of the Kingdom turn, gain a +2 circumstance bonus to Economy-based checks.',
             modifiers: () => [{
