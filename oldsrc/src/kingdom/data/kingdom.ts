@@ -252,7 +252,7 @@ export function getSizeData(kingdomSize: number): KingdomSizeData {
 }
 
 export function getControlDC(level: number, size: number, leaderVacant: boolean): number {
-    const sizeModifier = getSizeData(size).controlDCModifier;
+    const sizeModifier = 0; //getSizeData(size).controlDCModifier;
     const adjustedLevel = level;
     const vacancyPenalty = leaderVacant ? 2 : 0;
     return 14 + adjustedLevel + Math.floor(adjustedLevel / 3) + sizeModifier + vacancyPenalty;
