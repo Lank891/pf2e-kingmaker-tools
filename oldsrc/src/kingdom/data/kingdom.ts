@@ -2,6 +2,7 @@ import {Leader} from './leaders';
 import {getKingdomActivities, KingdomActivity} from './activityData';
 import {AbilityScores} from './abilities';
 import {Modifier} from '../modifiers';
+import {Skill, CharacterSkill} from './skills';
 
 export type ResourceDieSize = 'd4' | 'd6' | 'd8' | 'd10' | 'd12';
 
@@ -24,6 +25,8 @@ export interface LeaderValues {
     name: string;
     invested: boolean;
     vacant: boolean;
+    proficientSkills: Skill[];
+    requiredCharacterSkills: CharacterSkill[];
 }
 
 export interface RuinValues {
@@ -446,41 +449,57 @@ export function getDefaultKingdomData(): Kingdom {
                 invested: false,
                 vacant: false,
                 name: '',
+                proficientSkills: ["industry", "intrigue", "politics", "statecraft", "warfare"],
+                requiredCharacterSkills: ["deception", "diplomacy", "intimidation", "performance", "society"]
             },
             counselor: {
                 invested: false,
                 vacant: false,
                 name: '',
+                proficientSkills: ["arts", "folklore", "politics", "scholarship", "trade"],
+                requiredCharacterSkills: ["deception", "diplomacy", "performance", "religion", "society"]
             },
             general: {
                 invested: false,
                 vacant: false,
                 name: '',
+                proficientSkills: ["boating", "defense", "engineering", "exploration", "warfare"],
+                requiredCharacterSkills: ["athletics", "crafting", "diplomacy", "intimidation", "survival"]
             },
             emissary: {
                 invested: false,
                 vacant: false,
                 name: '',
+                proficientSkills: ["intrigue", "magic", "politics", "statecraft", "trade"],
+                requiredCharacterSkills: ["deception", "diplomacy", "intimidation", "stealth", "thievery"]
             },
             magister: {
                 invested: false,
                 vacant: false,
                 name: '',
+                proficientSkills: ["defense", "folklore", "magic", "scholarship", "wilderness"],
+                requiredCharacterSkills: ["arcana", "diplomacy", "nature", "occultism", "religion"]
             },
             treasurer: {
                 invested: false,
                 vacant: false,
                 name: '',
+                proficientSkills: ["arts", "boating", "industry", "intrigue", "trade"],
+                requiredCharacterSkills: ["crafting", "diplomacy", "medicine", "nature", "society"]
             },
             viceroy: {
                 invested: false,
                 vacant: false,
                 name: '',
+                proficientSkills: ["agriculture", "engineering", "industry", "scholarship", "wilderness"],
+                requiredCharacterSkills: ["crafting", "diplomacy", "medicine", "nature", "society"]
             },
             warden: {
                 invested: false,
                 vacant: false,
                 name: '',
+                proficientSkills: ["agriculture", "boating", "defense", "exploration", "wilderness"],
+                requiredCharacterSkills: ["athletics", "diplomacy", "nature", "stealth", "survival"]
             },
         },
         skillRanks: {
