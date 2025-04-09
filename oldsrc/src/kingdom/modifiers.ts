@@ -446,6 +446,7 @@ export function createInvestedModifier(
             enabled: true,
             name: 'Invested Leadership Role',
             type: 'status',
+            phases: ['leadership']
         };
     }
 }

@@ -333,7 +333,7 @@ export function getAllMergedSettlements(game: Game, kingdom: Kingdom): MergedSet
         .map(settlement => {
             const structureResult = getSettlementStructureResult(settlement, mode, autoCalculateSettlementLevel, activities, kingdom.level);
             return {
-                leadershipActivityNumber: structureResult.increaseLeadershipActivities ? 3 : 2,
+                leadershipActivityNumber: 2,
                 settlementConsumption: structureResult.consumption,
                 storage: structureResult.storage,
                 unlockedActivities: new Set(structureResult.unlockActivities),

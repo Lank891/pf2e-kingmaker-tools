@@ -22,6 +22,10 @@ class KingdomSizeDialog extends Application {
                     dice: '1' + s.resourceDieSize,
                     modifier: '+' + s.controlDCModifier,
                     storage: s.commodityCapacity,
+                    requiredMetropolises: s.requiredMetropolises,
+                    requiredCities: s.requiredCities,
+                    requiredTowns: s.requiredTowns,
+                    requiredVillages: s.requiredVillages
                 };
             }),
         };

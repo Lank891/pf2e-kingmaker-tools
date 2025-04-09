@@ -12,6 +12,7 @@ import {
     getSizeData,
     hasFeat,
     Kingdom,
+    KingdomSizeData,
     Leaders,
     LeaderValues,
     ResourceDieSize,
@@ -80,7 +81,7 @@ import {settlementSizeDialog} from './dialogs/settlement-size-dialog';
 import {getSelectedArmies} from '../armies/utils';
 import {showArmyTacticsBrowser} from './dialogs/army-tactics-browser';
 import {showArmyBrowser} from './dialogs/army-browser';
-import { Console } from 'console';
+import {settlementTypeData} from './structures';
 
 interface KingdomOptions {
     game: Game;
@@ -146,10 +147,10 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
         const sizeData = getSizeData(kingdomSize);
         const autoCalculateSettlementLevel = getBooleanSetting(this.game, 'autoCalculateSettlementLevel');
         const {
-            leadershipActivityNumber,
             settlementConsumption,
             unlockedActivities: unlockedSettlementActivities,
         } = getAllMergedSettlements(this.game, kingdomData);
+        const leadershipActivityNumber = this.calculateLeadershipActivities(sizeData); 
         const {current: totalConsumption, surplus: farmSurplus} = getConsumption(this.game, kingdomData);
         const useXpHomebrew = getBooleanSetting(this.game, 'vanceAndKerensharaXP');
         const homebrewSkillIncreases = getBooleanSetting(this.game, 'kingdomSkillIncreaseEveryLevel');
@@ -1103,6 +1104,51 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
         const hasEndureAnarchy = feats.some(f => f.id === 'Endure Anarchy') ||
             bonusFeats.some(f => f.id === 'Endure Anarchy');
         return hasEndureAnarchy ? 19 : 16;
+    }
+
+    private calculateLeadershipActivities(kingdomSize : KingdomSizeData): number {
+        const autocalculateLevel = getBooleanSetting(this.game, 'autoCalculateSettlementLevel');
+
+        let metropolises = 0;
+        let cities = 0;
+        let towns = 0;
+        let villages = 0;
+
+        for(var settlement of this.object.settlements) {
+            const settlementAndScene = getSettlement(this.game, this.object, settlement.sceneId)
+            if(!settlementAndScene)
+                continue;
+            const settlementInfo = getSettlementInfo(settlementAndScene, autocalculateLevel, this.object.level)
+
+            villages += 1;
+            if(settlementInfo.lots > parseInt(settlementTypeData[0].maximumLots))
+                towns += 1;
+            if(settlementInfo.lots > parseInt(settlementTypeData[1].maximumLots))
+                cities += 1;
+            if(settlementInfo.lots > parseInt(settlementTypeData[2].maximumLots))
+                metropolises += 1;
+        }
+
+        let meetsRequirements = true;
+        if(kingdomSize.requiredMetropolises > metropolises)
+        {
+            meetsRequirements = false;
+        }
+        if(kingdomSize.requiredCities > cities - kingdomSize.requiredMetropolises)
+        {
+            meetsRequirements = false;
+        }
+        if(kingdomSize.requiredTowns > towns - kingdomSize.requiredCities - kingdomSize.requiredMetropolises)
+        {
+            meetsRequirements = false;
+        }
+        if(kingdomSize.requiredVillages > villages - kingdomSize.requiredTowns - kingdomSize.requiredCities - kingdomSize.requiredMetropolises) 
+        {
+            meetsRequirements = false;
+        }
+
+
+        return meetsRequirements ? 8 : 4;
     }
 
     private async payConsumption(): Promise<void> {

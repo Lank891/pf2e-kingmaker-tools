@@ -24,6 +24,8 @@ This module ships all OGL licensed rules to run the Kingdom, Camping and Weather
 - Some custom buildings.
 - Activity item bonuses from buildings are calculated from all cities, not only active city + capital.
 - Fame is now Crisis Points and is generated on critical failures instead of on critical successes.
+- Control DC has no penalty for size, size instead limits lidership activities if not enough towns are present; if not met the amount of lidership activities is halved.
+- Invested lidership role bonus is applied only to lidership activities.
 
 ## Licensing
 

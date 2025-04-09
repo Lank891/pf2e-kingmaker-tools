@@ -12,6 +12,10 @@ export interface KingdomSizeData {
     resourceDieSize: ResourceDieSize;
     controlDCModifier: number;
     commodityCapacity: number;
+    requiredMetropolises: number;
+    requiredCities: number;
+    requiredTowns: number;
+    requiredVillages: number;
 }
 
 export type Leaders = Record<Leader, LeaderValues>;
@@ -201,7 +205,7 @@ interface KingdomLevelData {
 export function getLevelData(kingdomLevel: number): KingdomLevelData {
     const claimHexAttempts = kingdomLevel < 4 ? 1 : (kingdomLevel < 9 ? 2 : 3);
     const claimHexCircumstanceBonus = kingdomLevel < 4 ? 0 : 2;
-    const investedLeadershipBonus = kingdomLevel < 8 ? 1 : (kingdomLevel < 16 ? 2 : 3);
+    const investedLeadershipBonus = 1;
     return {
         claimHexAttempts,
         claimHexCircumstanceBonus,
@@ -217,6 +221,10 @@ export const kingdomSizeData: KingdomSizeData[] = [{
     resourceDieSize: 'd4',
     controlDCModifier: 0,
     commodityCapacity: 4,
+    requiredMetropolises: 0,
+    requiredCities: 0,
+    requiredTowns: 0,
+    requiredVillages: 1,
 }, {
     sizeFrom: 10,
     sizeTo: 24,
@@ -224,6 +232,10 @@ export const kingdomSizeData: KingdomSizeData[] = [{
     resourceDieSize: 'd6',
     controlDCModifier: 1,
     commodityCapacity: 8,
+    requiredMetropolises: 0,
+    requiredCities: 0,
+    requiredTowns: 1,
+    requiredVillages: 1,
 }, {
     sizeFrom: 25,
     sizeTo: 49,
@@ -231,6 +243,10 @@ export const kingdomSizeData: KingdomSizeData[] = [{
     resourceDieSize: 'd8',
     controlDCModifier: 2,
     commodityCapacity: 12,
+    requiredMetropolises: 0,
+    requiredCities: 0,
+    requiredTowns: 2,
+    requiredVillages: 3,
 }, {
     sizeFrom: 50,
     sizeTo: 99,
@@ -238,12 +254,20 @@ export const kingdomSizeData: KingdomSizeData[] = [{
     resourceDieSize: 'd10',
     controlDCModifier: 3,
     commodityCapacity: 16,
+    requiredMetropolises: 0,
+    requiredCities: 1,
+    requiredTowns: 5,
+    requiredVillages: 2,
 }, {
     sizeFrom: 100,
     type: 'dominion',
     resourceDieSize: 'd12',
     controlDCModifier: 4,
     commodityCapacity: 20,
+    requiredMetropolises: 1,
+    requiredCities: 5,
+    requiredTowns: 5,
+    requiredVillages: 2,
 }];
 
 export function getSizeData(kingdomSize: number): KingdomSizeData {

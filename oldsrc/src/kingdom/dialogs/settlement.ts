@@ -115,7 +115,7 @@ class SettlementApp extends Application<ApplicationOptions & SettlementOptions> 
             settlementEventBonus: structureData.settlementEventBonus,
             leadershipActivityBonus: structureData.leadershipActivityBonus,
             notes: structureData.notes,
-            leadershipActivities: structureData.increaseLeadershipActivities ? 3 : 2,
+            leadershipActivities: structureData.increaseLeadershipActivities ? 2 : 2,
             availableItems: this.getAvailableItems(settlementInfo.level, structureData.itemLevelBonuses),
             storage,
             skillItemBonuses,
