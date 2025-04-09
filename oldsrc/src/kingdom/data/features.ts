@@ -54,11 +54,11 @@ function expansionExpert(level: number, hexes: number): KingdomFeature {
     };
 }
 
-function experiencedLeadership(level: number, bonus: number): KingdomFeature {
+function abilitiesRequiredToBeLeader(level: number, trained: number, expert: number, master: number, legendary: number): KingdomFeature {
     return {
         level,
-        name: `Experienced Leadership (+${bonus})`,
-        description: 'Invested leadership roles in your kingdom now grant a +2 status bonus to kingdom checks associated with their leadership role’s key ability. At 16th level, this increases to a +3 status bonus.',
+        name: `Required to be a Leader: [${trained > 0 ? ` T:${trained}; ` : ""}${expert > 0 ? ` E:${expert}; ` : ""}${master > 0 ? ` M:${master}; ` : ""}${legendary > 0 ? ` L:${legendary}; ` : ""}]`,
+        description: 'Being in a leadership position requires some specific skills. You have to meet required skill proficiencies in skills for your role to gain full +2 Leadership bonus. For each missing rank, your bonus is lowered by 1 (and can become up to -2 penalty).',
     };
 }
 
@@ -91,6 +91,7 @@ export const features: KingdomFeature[] = [
         description: 'Your heartland’s terrain becomes your kingdom’s favored land—the wilderness terrain that your people feel the strongest emotional ties to and to which your resource gatherers tend to flock. Once per Kingdom turn, during the Region Activities step of the Activity phase, you can attempt two Region activities simultaneously as long as both activities take place in the same hex and that hex contains the same terrain as your heartland. You take a –2 penalty to Kingdom skill checks made during these two activities.',
     },
     settlementConstruction(1, 'Village'),
+    abilitiesRequiredToBeLeader(1, 3, 0, 0, 0),
     // 2
     kingdomFeat(2),
     // 3
@@ -105,6 +106,7 @@ export const features: KingdomFeature[] = [
         description: 'Your people celebrate by indulging you with feasts and finery. All PCs associated with the kingdom enjoy a Fine standard of living at no cost whenever they’re in the kingdom. Any PCs in hostile wilderness, a monster‑filled dungeon, or otherwise cut off from their citizens must provide their own sustenance as usual even if they are within the boundaries of their kingdom. You gain a +1 circumstance bonus to all checks made to Craft or Earn Income while in your kingdom.',
     },
     kingdomFeat(4),
+    abilitiesRequiredToBeLeader(4, 2, 1, 0, 0),
     // 5
     abilityBoosts(5),
     ruinResistance(5),
@@ -115,8 +117,8 @@ export const features: KingdomFeature[] = [
     // 7
     skillIncrease(7),
     kingdomFeat(7),
+    abilitiesRequiredToBeLeader(7, 2, 0, 1, 0),
     // 8
-    experiencedLeadership(8, 2),
     kingdomFeat(8),
     ruinResistance(8),
     // 9
@@ -130,8 +132,9 @@ export const features: KingdomFeature[] = [
     {
         level: 10,
         name: 'Life of Luxury',
-        description: 'Your people lavish you with every creature comfort. This is identical to Fine Living, but all PC leaders enjoy an Extravagant standard of living at no cost whenever they’re in the kingdom. You gain a +2 circumstance bonus to all checks made to Craft or Earn Income while in your kingdom.',
+        description: 'Your people lavish you with every creature comfort. This is identical to Fine Living, but all PC leaders enjoy an Extravagant standard of living at no cost whenever they’re in the kingdom. You gain a +2 circumstance bonus to all checks made to Craft or Earn Income while in your kingdom in sufficiently big city.',
     },
+    abilitiesRequiredToBeLeader(10, 1, 2, 1, 0),
     // 11
     ruinResistance(11),
     skillIncrease(11),
@@ -146,6 +149,7 @@ export const features: KingdomFeature[] = [
     // 13
     skillIncrease(13),
     kingdomFeat(13),
+    abilitiesRequiredToBeLeader(13, 1, 1, 2, 0),
     // 14
     kingdomFeat(14),
     ruinResistance(14),
@@ -155,8 +159,8 @@ export const features: KingdomFeature[] = [
     skillIncrease(15),
     kingdomFeat(15),
     // 16
-    experiencedLeadership(16, 3),
     kingdomFeat(16),
+    abilitiesRequiredToBeLeader(16, 1, 2, 1, 1),
     // 17
     ruinResistance(17),
     skillIncrease(17),
@@ -165,13 +169,14 @@ export const features: KingdomFeature[] = [
     kingdomFeat(18),
     // 19
     skillIncrease(19),
-    kingdomFeat(20),
+    kingdomFeat(19),
+    abilitiesRequiredToBeLeader(19, 1, 1, 1, 2),
     // 20
     abilityBoosts(20),
     {
         level: 20,
         name: 'Envy of the World',
-        description: 'Your kingdom is one of the world’s prominent nations. The first time in a Kingdom turn when your kingdom would gain Unrest or Ruin, ignore that increase. You can ignore additional increases to Unrest or Ruin later in the same turn as well, but you must spend a Fame or Infamy point each time you do so. Your maximum Fame or Infamy point total increases by 1.',
+        description: 'Your kingdom is one of the world’s prominent nations. The first time in a Kingdom turn when your kingdom would gain Unrest or Ruin, ignore that increase. You can ignore additional increases to Unrest or Ruin later in the same turn as well, but you must spend a Crisis point each time you do so. Your maximum Crisis points total increases by 1.',
     },
     kingdomFeat(20),
     ruinResistance(20),
