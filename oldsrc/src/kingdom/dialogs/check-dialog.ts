@@ -203,6 +203,7 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
             additionalModifiers,
             convertedCustomModifiers,
             activities,
+            undefined
         );
         const creativeSolutionModifier = this.calculateModifiers(
             applicableSkills,
@@ -211,6 +212,7 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
             [...additionalModifiers, {enabled: true, type: 'circumstance', value: 2, name: 'Creative Solution'}],
             convertedCustomModifiers,
             activities,
+            undefined
         )[this.selectedSkill];
         const supernaturalSolutionModifier = this.calculateModifiers(
             ['magic'],
@@ -219,6 +221,7 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
             additionalModifiers,
             convertedCustomModifiers,
             activities,
+            ["circumstance", "untyped", "item", "status", "vacancy"]
         )['magic'];
         const selectedSkillModifier = skillModifiers[this.selectedSkill];
         // set all modifiers as consumed that have a consumeId and are enabled
@@ -378,6 +381,7 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
         additionalModifiers: Modifier[],
         convertedCustomModifiers: Modifier[],
         activities: KingdomActivityById,
+        disabledBonusTypes: ("circumstance" | "untyped" | "item" | "status" | "ability" | "proficiency" | "vacancy")[] | undefined
     ): Record<Skill, TotalAndModifiers> {
         return Object.fromEntries(applicableSkills.map(skill => {
 
@@ -386,7 +390,7 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
                 return mergeBonuses(prev, curr);
             }, {value: 0, activities: {}} as SkillItemBonus);
 
-            const modifiers = createSkillModifiers({
+            let modifiers = createSkillModifiers({
                 ruin: this.kingdom.ruin,
                 unrest: this.kingdom.unrest,
                 skillRank: (this.kingdom.skillRanks)[skill],
@@ -403,6 +407,12 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
                 overrides: this.modifierOverrides,
                 activities,
             });
+            if(disabledBonusTypes) {
+                modifiers = modifiers.filter(modifier => {
+                    return !( modifier.value > 0 && disabledBonusTypes.includes(modifier.type) ) 
+                });
+            }
+            
             const total = calculateModifiers(modifiers);
             return [skill, {total, modifiers}];
         })) as Record<Skill, TotalAndModifiers>;

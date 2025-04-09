@@ -2130,7 +2130,7 @@ You take time to relax, and you extend the chance to unwind to your citizens as 
         phase: 'leadership',
         dc: 'control',
         title: 'Supernatural Solution',
-        description: 'Your spellcasters try to resolve issues when mundane solutions just aren’t enough. Attempt a basic check.<br/><br/><b>Supernatural Solution:</b><p>You can decide to use Supernatural Solution before attemptin a Kingdom skil check. Attempt the Magic check against the same DC but without any item bonuses unless original roll could be made with Magic, and take whichever of the two results you prefer. This is a fortune effect. If you don’t use your Supernatural Solution by the end of this Kingdom turn, this benefit ends and you gain 10XP instead.</p>',
+        description: 'Your spellcasters try to resolve issues when mundane solutions just aren’t enough. Attempt a basic check.<br/><br/><b>Supernatural Solution:</b><p>You can decide to use Supernatural Solution before attemptin a Kingdom skil check. Attempt the Magic check against the same DC. Since you are applying magic in an unconvetional way, you don’t apply any bonuses but proficiency and ability bonus. Take whichever of the two results you prefer. This is a fortune effect. If you don’t use your Supernatural Solution by the end of this Kingdom turn, this benefit ends and you gain 10XP instead.</p>',
         oncePerRound: false,
         fortune: true,
         skills: simpleRank(['magic']),
