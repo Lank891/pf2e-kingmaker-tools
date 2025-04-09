@@ -57,7 +57,7 @@ function expansionExpert(level: number, hexes: number): KingdomFeature {
 function abilitiesRequiredToBeLeader(level: number, trained: number, expert: number, master: number, legendary: number): KingdomFeature {
     return {
         level,
-        name: `Required to be a Leader: [${trained > 0 ? ` T:${trained}; ` : ""}${expert > 0 ? ` E:${expert}; ` : ""}${master > 0 ? ` M:${master}; ` : ""}${legendary > 0 ? ` L:${legendary}; ` : ""}]`,
+        name: `Required to be a Leader: [${trained > 0 ? ` T:${trained}; ` : ""}${expert > 0 ? ` E:${expert}; ` : ""}${master > 0 ? ` M:${master}; ` : ""}${legendary > 0 ? ` L:${legendary}; ` : ""}`.slice(0, -2) + ` ]`,
         description: 'Being in a leadership position requires some specific skills. You have to meet required skill proficiencies in skills for your role to gain full +2 Leadership bonus. For each missing rank, your bonus is lowered by 1 (and can become up to -2 penalty).',
     };
 }
@@ -65,7 +65,7 @@ function abilitiesRequiredToBeLeader(level: number, trained: number, expert: num
 function capForSkillTrainings(level: number, master: number, legendary: number): KingdomFeature {
     return {
         level,
-        name: `Trainings limit: [${master > 0 ? ` M:${master}; ` : ""}${legendary > 0 ? ` L:${legendary}; ` : ""}]`,
+        name: `Trainings limit: [${master > 0 ? ` M:${master}; ` : ""}${legendary > 0 ? ` L:${legendary}; ` : ""}`.slice(0, -2) + ` ]`,
         description: `Kingdom must be well-rounded to properly dea with any types of problems and cannot overspecialize. Because of this, you cannot get more then specified number of master and legendary proficiency at the same time.`
     }
 }
