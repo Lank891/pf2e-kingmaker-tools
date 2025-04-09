@@ -26,6 +26,7 @@ This module ships all OGL licensed rules to run the Kingdom, Camping and Weather
 - Fame is now Crisis Points and is generated on critical failures instead of on critical successes.
 - Control DC has no penalty for size, size instead limits leadership activities if not enough towns are present; if not met the amount of lieadership activities is halved.
 - Invested leadership role bonus is applied only to leadership activities.
+- Caps for the amount of master and legendary proficiencies (not forced since trainings are not automated).
 - [WIP] Leadership rework:
     - Base leadership bonus is +2
     - Characters must have enough skills for their role at given kingdom level or their bonus is lower (NPC only scales with their level agains level of kingdom)

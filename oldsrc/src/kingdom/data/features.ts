@@ -62,6 +62,14 @@ function abilitiesRequiredToBeLeader(level: number, trained: number, expert: num
     };
 }
 
+function capForSkillTrainings(level: number, master: number, legendary: number): KingdomFeature {
+    return {
+        level,
+        name: `Trainings limit: [${master > 0 ? ` M:${master}; ` : ""}${legendary > 0 ? ` L:${legendary}; ` : ""}]`,
+        description: `Kingdom must be well-rounded to properly dea with any types of problems and cannot overspecialize. Because of this, you cannot get more then specified number of master and legendary proficiency at the same time.`
+    }
+}
+
 
 export const features: KingdomFeature[] = [
     // 1
@@ -118,6 +126,7 @@ export const features: KingdomFeature[] = [
     skillIncrease(7),
     kingdomFeat(7),
     abilitiesRequiredToBeLeader(7, 2, 0, 1, 0),
+    capForSkillTrainings(7, 1, 0),
     // 8
     kingdomFeat(8),
     ruinResistance(8),
@@ -135,6 +144,7 @@ export const features: KingdomFeature[] = [
         description: 'Your people lavish you with every creature comfort. This is identical to Fine Living, but all PC leaders enjoy an Extravagant standard of living at no cost whenever they’re in the kingdom. You gain a +2 circumstance bonus to all checks made to Craft or Earn Income while in your kingdom in sufficiently big city.',
     },
     abilitiesRequiredToBeLeader(10, 1, 2, 1, 0),
+    capForSkillTrainings(10, 2, 0),
     // 11
     ruinResistance(11),
     skillIncrease(11),
@@ -150,6 +160,7 @@ export const features: KingdomFeature[] = [
     skillIncrease(13),
     kingdomFeat(13),
     abilitiesRequiredToBeLeader(13, 1, 1, 2, 0),
+    capForSkillTrainings(13, 3, 0),
     // 14
     kingdomFeat(14),
     ruinResistance(14),
@@ -158,6 +169,7 @@ export const features: KingdomFeature[] = [
     settlementConstruction(15, 'Metropolis'),
     skillIncrease(15),
     kingdomFeat(15),
+    capForSkillTrainings(15, 3, 1),
     // 16
     kingdomFeat(16),
     abilitiesRequiredToBeLeader(16, 1, 2, 1, 1),
@@ -167,6 +179,7 @@ export const features: KingdomFeature[] = [
     kingdomFeat(17),
     // 18
     kingdomFeat(18),
+    capForSkillTrainings(18, 4, 2),
     // 19
     skillIncrease(19),
     kingdomFeat(19),
