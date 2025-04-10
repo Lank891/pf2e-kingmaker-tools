@@ -1771,6 +1771,35 @@
         "lots": 1
     },
     {
+        "name": "Pathfinder Society Lodge",
+        "notes": "Only one Pathfinder Society Lodge can be built in the kingdom. While in the city with the lodge, you can manage mercenaries and send them on adventures. The DC of random encounter is lowered by 1.",
+        "traits": [
+            "building"
+        ],
+        "reducesUnrest": false,
+        "level": 5,
+        "construction": {
+            "rp": 34,
+            "lumber": 3,
+            "stone": 3,
+            "ore": 3,
+            "skills": [
+                {
+                    "skill": "exploration",
+                    "proficiencyRank": 2
+                }
+            ],
+            "dc": 20
+        },
+        "activityBonusRules": [
+            {
+                "value": 1,
+                "activity": "hire-adventurers"
+            }
+        ],
+        "lots": 2
+    },
+    {
         "name": "Paved Streets",
         "traits": [
             "infrastructure"

@@ -3,16 +3,24 @@
         <th>Size</th>
         <th>Type of Nation</th>
         <th>Resource Die</th>
-        <th>Control DC Modifier</th>
         <th>Commodity Storage</th>
+        <th>Requirements:</th>
+        <th>Required Metropolises</th>
+        <th>Required Cities</th>
+        <th>Required Towns</th>
+        <th>Required Villages</th>
     </tr>
     {{#each data}}
         <tr>
             <td>{{size}}</td>
             <td>{{type}}</td>
             <td>{{dice}}</td>
-            <td>{{modifier}}</td>
             <td>{{storage}}</td>
+            <td></td>
+            <td>{{requiredMetropolises}}</td>
+            <td>{{requiredCities}}</td>
+            <td>{{requiredTowns}}</td>
+            <td>{{requiredVillages}}</td>
         </tr>
     {{/each}}
 </table>

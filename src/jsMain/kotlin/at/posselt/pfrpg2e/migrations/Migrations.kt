@@ -47,7 +47,7 @@ val latestMigrationVersion = migrations.maxOfOrNull { it.version }!!
 suspend fun Game.migratePfrpg2eKingdomCampingWeather() {
     var currentVersion = settings.pfrpg2eKingdomCampingWeather.getSchemaVersion()
     // temporarly
-    // currentVersion = 10;
+    //currentVersion = 20;
     if (currentVersion < 6) {
         ui.notifications.error(
             "${Config.moduleName}: Upgrades from versions prior to 0.12.2 are not supported anymore. " +
@@ -56,7 +56,7 @@ suspend fun Game.migratePfrpg2eKingdomCampingWeather() {
         return
     }
 
-    ui.notifications.info("${currentVersion}/${latestMigrationVersion}")
+    //ui.notifications.info("${currentVersion}/${latestMigrationVersion}")
 
     if (isFirstGM() && currentVersion < latestMigrationVersion) {
         ui.notifications.info("${Config.moduleName}: Running migrations, please do not close the window")

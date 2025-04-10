@@ -76,6 +76,14 @@
             <td><input type="checkbox" {{checked invested}} name="leaders.{{@key}}.invested"></td>
             <td><input type="checkbox" {{checked vacant}} name="leaders.{{@key}}.vacant"></td>
         </tr>
+        <tr style="font-size: smaller">
+            <td>Skills:</td>
+            <td colspan="3" style="text-align: left">
+                {{#each requiredCharacterSkills}}
+                    {{this}}&nbsp;
+                {{/each}}
+            </td>
+        </tr>
     {{/each}}
 </table>
 

@@ -82,7 +82,7 @@
     </li>
 </ol>
 
-<h2>Leadership Activities ({{leadershipActivityNumber}})</h2>
+<h2>Leadership Activities ({{leadershipActivityNumber}} per player)</h2>
 {{#each leadershipActivities}}
     <div class="activity-help" {{#if (lookup ../hideActivities value)}}hidden{{/if}}>
         <button type="button" class="kingdom-activity" data-activity="{{value}}"
@@ -162,6 +162,14 @@
         <button type="button" class="show-help" data-help="{{value}}"><i
                 class="fa-solid fa-question"></i>
         </button>
+    </div>
+{{/each}}
+
+<h3>In case of a battle:</h3>
+{{#each armyWinLossActivities}}
+    <div class="activity-help">
+        <button type="button" class="kingdom-activity" data-activity="{{value}}">{{label}}</button>
+        <button type="button" class="show-help" data-help="{{value}}"><i class="fa-solid fa-question"></i></button>
     </div>
 {{/each}}
 
