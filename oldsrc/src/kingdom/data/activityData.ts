@@ -606,7 +606,7 @@ If you are using boating and a navigable river connects not only your kingdom bu
         requirement: 'You have diplomatic relations with the group you wish to establish an agreement with.',
         skills: {
             boating: 0,
-            trade: 0
+            trade: 0,
         },
         criticalSuccess: {
             msg: `You successfully establish a trade agreement with your target, and your merchants return with gifts! ${gainRolledRD(2)}`,
@@ -2610,6 +2610,37 @@ Each army that participated in the lost war encounter
 increases its shaken or weary value by 2 (PCs’ choice).
 ${gainUnrest('1d3')}`
         }
+    },
+    'retrain': {
+        title: 'Retrain',
+        oncePerRound: true,
+        fortune: false,
+        enabled: true,
+        phase: 'leadership',
+        dc: 'control',
+        description: `With focused effort and the guidance of a capable leader, your kingdom adapts. You may swap one feat for another (meeting the original feat's prerequisites at the time it was gained), or exchange one trained skill rank for another of equal or lower level.
+This must be the first activity of the kingdom turn, and only one Retrain activity may be performed per turn.
+Choose a leader:  
+- For skill retraining, the leader must oversee the target skill. 
+- For feats, the leader must oversee the associated skill, or any leader may be chosen for general feats.
+- Leader always gets his leader bonus for the activity.
+Spend RP equal to [2 x kingdom level ÷ 3] resource dice. If you cannot pay the cost, the activity fails, consuming the RP and action and does not count toward retrain progress.
+Attempt a Politics check against your kingdom's control DC using the chosen leader’s bonus. If the assigned leader becomes vacant, that round does not count toward retrain progress.`,
+        requirement: 'Old retrain ability is not used for ex. feats or buildings.',
+        skills: simpleRank(['politics']),
+        criticalSuccess: {
+            msg: 'Your kingdom embraces change with surprising efficiency. You must repeat this activity for only 1 more kingdom turn, and during that turn, you do not need to pay RP or Resources.',
+        },
+        success: {
+            msg: 'Your kingdom adjusts with some effort but no resistance. You must repeat this activity for 1 more kingdom turn, paying the normal cost.',
+        },
+        failure: {
+            msg: 'The people struggle with uncertainty, and leaders must work to keep progress on course. You must repeat this activity for 2 more kingdom turns.',
+        },
+        criticalFailure: {
+            msg: 'The kingdom resists transformation. Doubt and hesitation spread, and progress grinds forward slowly. You must repeat this activity for 3 more kingdom turns.',
+        },
+        special: 'Retraining progress cannot be rushed or shared between leaders.',
     },
 };
 

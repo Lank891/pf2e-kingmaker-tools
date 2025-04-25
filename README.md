@@ -32,6 +32,7 @@ This module ships all OGL licensed rules to run the Kingdom, Camping and Weather
     - Characters must have enough skills for their role at given kingdom level or their bonus is lower (NPC only scales with their level agains level of kingdom)
     - Each leader makes one leadership activity, if skill is matching for their role they apply their bonus, otherwise -2
     - For events leader always apply their bonus
+- Added new activity: Retrain.
 
 ## Licensing
 
