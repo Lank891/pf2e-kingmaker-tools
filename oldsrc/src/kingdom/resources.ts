@@ -66,7 +66,9 @@ export async function calculateNewValue(
     const value = mode === 'gain' ? currentValue + multipliedValue : currentValue - multipliedValue;
     const missing = value < 0 ? Math.abs(value) : 0;
     const limitedValue = limit === undefined ? value : Math.min(limit, value);
-    const label = type === 'rolled-resource-dice' ? 'Resource Points' : unslugify(type);
+    var label = unslugify(type);
+    if(type === 'rolled-resource-dice') label = 'Resource Points';
+    if(type === 'fame') label = "Crisis Point";
     const turnLabel = turn === 'now' ? 'this turn' : 'next turn';
     const message = `${mode === 'gain' ? 'Gaining' : 'Losing'} ${Math.abs(multipliedValue)} ${label} ${turnLabel}`;
     const missingMessage = showMissing && missing > 0 && turn === 'now' ? `Missing ${missing} ${label}` : '';

@@ -69,7 +69,7 @@ export function createSkillModifiers(
     const proficiencyModifier = createProficiencyModifier(skillRank, untrainedProficiencyMode, kingdomLevel);
     const vacancyModifiers = createVacancyModifiers(ability, leaders);
     // status bonus
-    const investedModifier = createInvestedModifier(kingdomLevel, ability, leaders);
+    //const investedModifier = createInvestedModifier(kingdomLevel, ability, leaders);
     // item bonus
     const structureModifiers = skillItemBonus ? createStructureModifiers(skillItemBonus, activities) : [];
     // status penalty
@@ -89,9 +89,11 @@ export function createSkillModifiers(
     if (unrestModifier) {
         result.push(unrestModifier);
     }
+    /*
     if (investedModifier) {
         result.push(investedModifier);
     }
+    */
     return processModifiers({
         modifiers: result,
         skill,

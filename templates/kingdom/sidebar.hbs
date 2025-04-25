@@ -55,6 +55,37 @@
 </table>
 <table class="km-table">
     <tr>
+        <th>Leader</th>
+        <th width="25%">Expertise</th>
+        <th width="25%">Activity</th>
+    </tr>
+    {{#each leaders}}
+    <tr>
+        <td>{{label}}</td>
+        <td>{{expertise}}</td>
+        <td><input type="checkbox" {{checked performedActivityInTurn}} name="leaders.{{@key}}.performedActivityInTurn"></td>
+    </tr>
+    <tr style="font-size: smaller">
+        <td colspan="3" style="text-align: left">
+            {{#each proficientSkills}}
+                {{this}}&nbsp;
+            {{/each}}
+        </td>
+    </tr>
+    {{/each}}
+</table>
+<table class="km-table">
+    <tr>
+        <th>Supernatural Solutions</th>
+        <th>Creative Solutions</th>
+    </tr>
+    <tr>
+        <td><input type="number" value="{{supernaturalSolutions}}" name="supernaturalSolutions"></td>
+        <td><input type="number" value="{{creativeSolutions}}" name="creativeSolutions"></td>
+    </tr>
+</table>
+<table class="km-table">
+    <tr>
         <th>Die Size</th>
         <th>Dice</th>
         <th>Now</th>
@@ -77,16 +108,6 @@
     <tr>
         <td><input type="number" value="{{resourcePoints.now}}" name="resourcePoints.now"></td>
         <td><input type="number" value="{{resourcePoints.next}}" name="resourcePoints.next"></td>
-    </tr>
-</table>
-<table class="km-table">
-    <tr>
-        <th>Supernatural Solutions</th>
-        <th>Creative Solutions</th>
-    </tr>
-    <tr>
-        <td><input type="number" value="{{supernaturalSolutions}}" name="supernaturalSolutions"></td>
-        <td><input type="number" value="{{creativeSolutions}}" name="creativeSolutions"></td>
     </tr>
 </table>
 <table class="km-table">

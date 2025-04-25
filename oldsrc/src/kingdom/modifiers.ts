@@ -30,7 +30,7 @@ export const allModifierTypes = [
     'ability',
     'proficiency',
     'item',
-    'status',
+    'leader',
     'circumstance',
     'vacancy',
     'untyped',
@@ -198,7 +198,7 @@ export interface ModifierTotal {
 export interface ModifierTotals {
     item: ModifierTotal;
     circumstance: ModifierTotal;
-    status: ModifierTotal;
+    leader: ModifierTotal;
     ability: ModifierTotal;
     proficiency: ModifierTotal;
     untyped: ModifierTotal;
@@ -218,7 +218,7 @@ export function calculateModifiers(modifiers: Modifier[]): ModifierTotals {
             bonus: 0,
             penalty: 0,
         },
-        status: {
+        leader: {
             bonus: 0,
             penalty: 0,
         },
@@ -337,6 +337,7 @@ export function createActiveOtherModifiers(
             phases: ['leadership']
         })
     }
+    /*
     result.push({
         name: 'Invested, Non-Vacant Leader Handles Event',
         type: 'circumstance',
@@ -344,6 +345,7 @@ export function createActiveOtherModifiers(
         enabled: false,
         phases: ['event'],
     });
+    */
     return result;
 }
 
@@ -445,7 +447,7 @@ export function createInvestedModifier(
             value: getLevelData(kingdomLevel).investedLeadershipBonus,
             enabled: true,
             name: 'Invested Leadership Role',
-            type: 'status',
+            type: 'leader',
             phases: ['leadership']
         };
     }
@@ -527,7 +529,7 @@ export function createUnrestModifier(unrest: number): Modifier | undefined {
     const penalty = calculateUnrestPenalty(unrest);
     if (penalty > 0) {
         return {
-            type: 'status',
+            type: 'untyped',
             name: 'Unrest',
             enabled: true,
             value: -penalty,

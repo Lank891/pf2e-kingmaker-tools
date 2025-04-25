@@ -82,6 +82,7 @@ import {getSelectedArmies} from '../armies/utils';
 import {showArmyTacticsBrowser} from './dialogs/army-tactics-browser';
 import {showArmyBrowser} from './dialogs/army-browser';
 import {settlementTypeData} from './structures';
+import {Leader} from './data/leaders';
 
 interface KingdomOptions {
     game: Game;
@@ -770,6 +771,7 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
                 <li>Reducing Effects' Turns by 1</li>
                 <li>Setting available Supernatural and Creative Solutions to 0</li>
                 <li>Adding values from the <b>next</b> columns to the <b>now</b> columns respecting their resource limits</li>
+                <li>Clearing performed activities from leaders</li>
             </ul>
             `,
         });
@@ -783,8 +785,16 @@ class KingdomApp extends FormApplication<FormApplicationOptions & KingdomOptions
                 };
             })
             .filter(modifier => (modifier?.turns ?? 1) > 0);
+        
+        // clear leader activities
+        const leaders = {...current.leaders}
+        for(const leader in leaders) {
+            leaders[leader as Leader].performedActivityInTurn = false;
+        }
+
         await this.saveKingdom({
             modifiers,
+            leaders,
             fame: {
                 ...current.fame,
                 now: clamped(current.fame.next, 0, current.fame.max),

@@ -23,6 +23,8 @@ export type Leaders = Record<Leader, LeaderValues>;
 
 export interface LeaderValues {
     name: string;
+    expertise: number;
+    performedActivityInTurn: boolean;
     invested: boolean;
     vacant: boolean;
     proficientSkills: Skill[];
@@ -449,6 +451,8 @@ export function getDefaultKingdomData(): Kingdom {
                 invested: false,
                 vacant: false,
                 name: '',
+                expertise: 0,
+                performedActivityInTurn: false,
                 proficientSkills: ["industry", "intrigue", "politics", "statecraft", "warfare"],
                 requiredCharacterSkills: ["deception", "diplomacy", "intimidation", "performance", "society"]
             },
@@ -456,6 +460,8 @@ export function getDefaultKingdomData(): Kingdom {
                 invested: false,
                 vacant: false,
                 name: '',
+                expertise: 0,
+                performedActivityInTurn: false,
                 proficientSkills: ["arts", "folklore", "politics", "scholarship", "trade"],
                 requiredCharacterSkills: ["deception", "diplomacy", "performance", "religion", "society"]
             },
@@ -463,6 +469,8 @@ export function getDefaultKingdomData(): Kingdom {
                 invested: false,
                 vacant: false,
                 name: '',
+                expertise: 0,
+                performedActivityInTurn: false,
                 proficientSkills: ["boating", "defense", "engineering", "exploration", "warfare"],
                 requiredCharacterSkills: ["athletics", "crafting", "diplomacy", "intimidation", "survival"]
             },
@@ -470,6 +478,8 @@ export function getDefaultKingdomData(): Kingdom {
                 invested: false,
                 vacant: false,
                 name: '',
+                expertise: 0,
+                performedActivityInTurn: false,
                 proficientSkills: ["intrigue", "magic", "politics", "statecraft", "trade"],
                 requiredCharacterSkills: ["deception", "diplomacy", "intimidation", "stealth", "thievery"]
             },
@@ -477,6 +487,8 @@ export function getDefaultKingdomData(): Kingdom {
                 invested: false,
                 vacant: false,
                 name: '',
+                expertise: 0,
+                performedActivityInTurn: false,
                 proficientSkills: ["defense", "folklore", "magic", "scholarship", "wilderness"],
                 requiredCharacterSkills: ["arcana", "diplomacy", "nature", "occultism", "religion"]
             },
@@ -484,6 +496,8 @@ export function getDefaultKingdomData(): Kingdom {
                 invested: false,
                 vacant: false,
                 name: '',
+                expertise: 0,
+                performedActivityInTurn: false,
                 proficientSkills: ["arts", "boating", "industry", "intrigue", "trade"],
                 requiredCharacterSkills: ["crafting", "diplomacy", "medicine", "nature", "society"]
             },
@@ -491,6 +505,8 @@ export function getDefaultKingdomData(): Kingdom {
                 invested: false,
                 vacant: false,
                 name: '',
+                expertise: 0,
+                performedActivityInTurn: false,
                 proficientSkills: ["agriculture", "engineering", "industry", "scholarship", "wilderness"],
                 requiredCharacterSkills: ["crafting", "diplomacy", "medicine", "nature", "society"]
             },
@@ -498,6 +514,8 @@ export function getDefaultKingdomData(): Kingdom {
                 invested: false,
                 vacant: false,
                 name: '',
+                expertise: 0,
+                performedActivityInTurn: false,
                 proficientSkills: ["agriculture", "boating", "defense", "exploration", "wilderness"],
                 requiredCharacterSkills: ["athletics", "diplomacy", "nature", "stealth", "survival"]
             },

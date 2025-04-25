@@ -77,7 +77,7 @@ export interface ModifierBreakdowns {
     selected: ModifierBreakdown[],
 }
 
-type TotalFields = 'circumstance' | 'untyped' | 'item' | 'status';
+type TotalFields = 'circumstance' | 'untyped' | 'item' | 'leader';
 type CustomModifiers = Pick<ModifierTotals, TotalFields>;
 
 function createModifierList(modifiers: TotalAndModifiers): ModifierBreakdown[] {
@@ -104,7 +104,7 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
     private customModifiers: CustomModifiers = {
         item: {bonus: 0, penalty: 0},
         circumstance: {bonus: 0, penalty: 0},
-        status: {bonus: 0, penalty: 0},
+        leader: {bonus: 0, penalty: 0},
         untyped: {bonus: 0, penalty: 0},
     };
     private modifierOverrides: Record<string, boolean> = {};
@@ -221,7 +221,7 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
             additionalModifiers,
             convertedCustomModifiers,
             activities,
-            ["circumstance", "untyped", "item", "status", "vacancy"]
+            ["circumstance", "untyped", "item", "leader", "vacancy"]
         )['magic'];
         const selectedSkillModifier = skillModifiers[this.selectedSkill];
         // set all modifiers as consumed that have a consumeId and are enabled
@@ -381,7 +381,7 @@ export class CheckDialog extends FormApplication<FormApplicationOptions & CheckD
         additionalModifiers: Modifier[],
         convertedCustomModifiers: Modifier[],
         activities: KingdomActivityById,
-        disabledBonusTypes: ("circumstance" | "untyped" | "item" | "status" | "ability" | "proficiency" | "vacancy")[] | undefined
+        disabledBonusTypes: ("circumstance" | "untyped" | "item" | "leader" | "ability" | "proficiency" | "vacancy")[] | undefined
     ): Record<Skill, TotalAndModifiers> {
         return Object.fromEntries(applicableSkills.map(skill => {
 
